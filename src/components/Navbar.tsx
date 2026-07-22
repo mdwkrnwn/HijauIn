@@ -1,8 +1,21 @@
+'use client'
 // src/components/Navbar.tsx
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FaLeaf } from 'react-icons/fa';
 
 export default function Navbar() {
+  const path = usePathname();
+  console.log(path);
+  const navItems = [
+    { href: "/", name: "Beranda" },
+    { href: "/fitur", name: "Fitur" },
+    { href: "/cara-kerja", name: "Cara Kerja" },
+    { href: "/edukasi", name: "Edukasi" },
+    { href: "/komunitas", name: "Komunitas" },
+    { href: "/tentang", name: "Tentang Kami" }
+  ];
+
   return (
     <nav className="w-full bg-background sticky top-0 z-50">
       <div className=" mx-auto px-16 py-6 flex justify-between items-center">
@@ -12,12 +25,9 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden lg:flex gap-8 text-base font-semibold text-gray-700">
-          <Link href="/" className="hover:text-primary transition-colors text-primary border-b-2 border-primary pb-1">Beranda</Link>
-          <Link href="/fitur" className="hover:text-primary transition-colors">Fitur</Link>
-          <Link href="/cara-kerja" className="hover:text-primary transition-colors">Cara Kerja</Link>
-          <Link href="/edukasi" className="hover:text-primary transition-colors">Edukasi</Link>
-          <Link href="/komunitas" className="hover:text-primary transition-colors">Komunitas</Link>
-          <Link href="/tentang" className="hover:text-primary transition-colors">Tentang Kami</Link>
+          {navItems.map(({ href, name }, idx) => (
+            <Link key={idx} href={href} className={`hover:text-primary transition-colors text-foreground pb-1 ${path === href && "border-b-2 border-primary text-primary"}`}>{name}</Link>
+          ))}
         </div>
 
         <div className="flex gap-4">

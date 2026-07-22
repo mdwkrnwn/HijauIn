@@ -8,7 +8,7 @@ export default function NotFound() {
     <main className="flex min-h-screen items-center justify-center px-6 bg-background">
       <div className="max-w-md rounded-3xl border border-gray-100 bg-white p-10 text-center shadow-sm">
         {/* Icon */}
-        <div className="bg-brand/10 text-primary mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full">
+        <div className="bg-primary/10 text-primary mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full">
           <FaCompass size={34} />
         </div>
 

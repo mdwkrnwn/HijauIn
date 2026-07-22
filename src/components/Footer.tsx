@@ -3,7 +3,7 @@ import { FaInstagram, FaTiktok, FaYoutube, FaFacebook } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-brand-dark text-white pt-20 pb-10">
+    <footer className="w-full bg-primary-dark text-white pt-20 pb-10">
       <div className=" mx-auto px-16 grid grid-cols-1 md:grid-cols-5 gap-12 border-b border-green-800 pb-12">
         <div className="col-span-2">
           <div className="flex items-center gap-2 mb-6">
@@ -13,10 +13,10 @@ export default function Footer() {
             Platform digital untuk membangun kebiasaan ramah lingkungan, mencatat aksi, dan berkontribusi nyata untuk bumi.
           </p>
           <div className="flex gap-6 text-2xl">
-            <FaInstagram className="cursor-pointer hover:text-brand-light" />
-            <FaTiktok className="cursor-pointer hover:text-brand-light" />
-            <FaYoutube className="cursor-pointer hover:text-brand-light" />
-            <FaFacebook className="cursor-pointer hover:text-brand-light" />
+            <FaInstagram className="cursor-pointer hover:text-primary-light" />
+            <FaTiktok className="cursor-pointer hover:text-primary-light" />
+            <FaYoutube className="cursor-pointer hover:text-primary-light" />
+            <FaFacebook className="cursor-pointer hover:text-primary-light" />
           </div>
         </div>
 

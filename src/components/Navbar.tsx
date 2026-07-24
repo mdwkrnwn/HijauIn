@@ -6,7 +6,6 @@ import { FaLeaf } from 'react-icons/fa';
 
 export default function Navbar() {
   const path = usePathname();
-  console.log(path);
   const navItems = [
     { href: "/", name: "Beranda" },
     { href: "/fitur", name: "Fitur" },

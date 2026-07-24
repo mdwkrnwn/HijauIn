@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="bg-background flex flex-col min-h-screen overflow-x-hidden">
         <Navbar />
-        <main className="grow bg-background w-full mx-auto">
+        <main className="grow bg-background w-full mx-auto mb-16">
           {children}
         </main>
         <Footer />

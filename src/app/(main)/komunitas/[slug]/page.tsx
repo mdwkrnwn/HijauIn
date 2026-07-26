@@ -10,7 +10,7 @@ import {
 export default function DetailKomunitas() {
   return (
     <div className="bg-gray-50 flex flex-col items-center w-full pb-24">
-      <div className="max-w-1080p w-full px-16 py-12">
+      <div className="w-full px-16 py-12">
         <Link href="/komunitas" className="text-primary hover:underline inline-flex items-center gap-2 mb-8 text-base font-bold">
           <FaArrowLeft /> Kembali ke Komunitas
         </Link>
@@ -78,8 +78,7 @@ export default function DetailKomunitas() {
           ))}
         </div>
       </div>
-
-      <div className="max-w-1080p flex w-full gap-10 px-16">
+      <div className=" flex w-full gap-10 px-16">
         {/* Left Column */}
         <div className="w-2/3 space-y-10">
           {/* Tentang Komunitas */}
@@ -165,20 +164,7 @@ export default function DetailKomunitas() {
           </div>
 
           {/* Bottom CTA Banner */}
-          <div className="bg-primary-light rounded-[2rem] p-10 flex items-center justify-between relative overflow-hidden shadow-sm border border-green-50">
-            <div className="flex items-center gap-8">
-              <div className="relative w-32 h-32">
-                <Image src="https://picsum.photos/seed/sproutcta/200/200" alt="Sprout" fill className="object-contain" />
-              </div>
-              <div>
-                <h2 className="mb-2 text-3xl font-bold text-gray-900">Gabung bersama <span className="text-primary">Green Campus</span></h2>
-                <p className="text-lg text-gray-700">Bersama kita wujudkan kampus hijau, bersih, dan berkelanjutan.</p>
-              </div>
-            </div>
-            <button className="bg-primary rounded-xl hover:bg-green-700 flex items-center flex-shrink-0 gap-3 px-8 py-4 text-lg font-bold text-white transition">
-              Gabung Komunitas <FaUsers />
-            </button>
-          </div>
+
         </div>
 
         {/* Right Column (Sidebar) */}
@@ -218,6 +204,24 @@ export default function DetailKomunitas() {
               <li className="flex items-center gap-4"><div className="bg-primary-light text-primary flex items-center justify-center w-10 h-10 text-xl rounded-lg"><FaTree /></div> Penghijauan Kampus</li>
             </ul>
           </div>
+        </div>
+
+      </div>
+      <div className='w-full px-10'>
+
+        <div className="bg-primary-light rounded-4xl border-green-50 relative flex items-center justify-between w-full p-10 mt-16 overflow-hidden border shadow-sm">
+          <div className="flex items-center gap-8">
+            <div className="relative w-32 h-32">
+              <Image src="https://picsum.photos/seed/sproutcta/200/200" alt="Sprout" fill className="object-contain" />
+            </div>
+            <div>
+              <h2 className="mb-2 text-3xl font-bold text-gray-900">Gabung bersama <span className="text-primary">Green Campus</span></h2>
+              <p className="text-lg text-gray-700">Bersama kita wujudkan kampus hijau, bersih, dan berkelanjutan.</p>
+            </div>
+          </div>
+          <button className="bg-primary rounded-xl hover:bg-green-700 shrink-0 flex items-center gap-3 px-8 py-4 text-lg font-bold text-white transition">
+            Gabung Komunitas <FaUsers />
+          </button>
         </div>
       </div>
     </div>

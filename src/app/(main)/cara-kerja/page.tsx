@@ -10,26 +10,28 @@ export default function HowItWorks() {
   return (
     <div className="flex flex-col items-center w-full">
       {/* Header Section */}
-      <section className="relative w-full px-16 py-24 overflow-hidden text-center">
-        <div className="text-primary inline-flex items-center gap-2 px-4 py-2 mb-8 text-base font-semibold bg-white rounded-full shadow-sm">
-          <FaCheckCircle /> Cara Kerja HijauIn
+      <section className=" relative flex w-full px-16 pt-24 overflow-hidden text-left">
+        <div className='w-1/2'>
+          <div className="text-primary inline-flex items-center gap-2 px-4 py-2 mb-8 text-base font-semibold bg-white rounded-full shadow-sm">
+            <FaCheckCircle /> Cara Kerja HijauIn
+          </div>
+          <h1 className="mb-8 text-6xl font-extrabold leading-tight text-gray-900">
+            5 Langkah Mudah Menuju Bumi yang <span className="text-primary">Lebih Hijau</span>
+          </h1>
+          <p className=" mb-12 text-xl text-gray-600">
+            HijauIn membantumu mencatat aksi ramah lingkungan, mendapatkan insight dari AI, dan melihat dampak nyatanya. Semua dalam satu platform.
+          </p>
+          <button className="border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 mb-12 text-lg font-bold transition bg-white border-2 rounded-full">
+            Lihat Fitur Lengkap &rarr;
+          </button>
         </div>
-        <h1 className="max-w-4xl mx-auto mb-8 text-6xl font-extrabold leading-tight text-gray-900">
-          5 Langkah Mudah Menuju Bumi yang <span className="text-primary">Lebih Hijau</span>
-        </h1>
-        <p className="max-w-3xl mx-auto mb-12 text-xl text-gray-600">
-          HijauIn membantumu mencatat aksi ramah lingkungan, mendapatkan insight dari AI, dan melihat dampak nyatanya. Semua dalam satu platform.
-        </p>
-        <button className="border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 mb-12 text-lg font-bold transition bg-white border-2 rounded-full">
-          Lihat Fitur Lengkap &rarr;
-        </button>
-        <div className="relative w-250 h-125 mx-auto rounded-t-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+        <div className="h-125 relative w-1/2 mx-auto overflow-hidden">
           <Image src="https://picsum.photos/seed/appmockup/1000/500" alt="App Mockup" fill className="object-cover" />
         </div>
       </section>
 
       {/* 5 Steps Diagram */}
-      <section className="w-full px-16 py-24">
+      <section className="w-full px-16 pt-24">
         <h2 className="mb-24 text-4xl font-bold text-center">Bagaimana <span className="text-primary">HijauIn</span> Bekerja?</h2>
         <div className=" relative flex items-start justify-between mx-auto">
           <div className="top-10 absolute left-0 z-0 w-full h-1 border-t-2 border-gray-300 border-dashed"></div>
@@ -55,7 +57,7 @@ export default function HowItWorks() {
       </section>
 
       {/* System Flow */}
-      <section className="w-full px-16 py-24 text-center">
+      <section className="w-full px-16 pt-24 text-center">
         <h2 className="mb-6 text-4xl font-bold">Alur Sistem <span className="text-primary">HijauIn</span></h2>
         <p className="mb-16 text-xl text-gray-600">Data dan informasi mengalir untuk memberikan pengalaman terbaik.</p>
         <div className=" flex flex-wrap items-center justify-center gap-6 mx-auto">
@@ -79,7 +81,7 @@ export default function HowItWorks() {
       </section>
 
       {/* Perjalanan Aksi Pengguna */}
-      <section className=" w-full px-16 py-24">
+      <section className=" w-full px-16 pt-24">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-bold">Perjalanan Aksi Pengguna</h2>
           <p className="text-xl text-gray-600">Contoh perjalanan aksi hijau dalam 1 minggu.</p>
@@ -130,7 +132,7 @@ export default function HowItWorks() {
       </section>
 
       {/* Mengapa Cara Ini Efektif */}
-      <section className="bg-gray-50 w-full px-16 py-24">
+      <section className="bg-gray-50 w-full px-16 pt-24">
         <h2 className="mb-16 text-4xl font-bold text-center">Mengapa Cara Ini Efektif?</h2>
         <div className=" grid grid-cols-4 gap-8 mx-auto">
           {[
@@ -151,7 +153,7 @@ export default function HowItWorks() {
       </section>
 
       {/* CTA Bottom Section */}
-      <section className="w-full px-16 py-24">
+      <section className="w-full px-16 pt-24">
         <div className="bg-primary-light rounded-[3rem] p-16 flex items-center justify-between mx-auto relative overflow-hidden shadow-sm">
           <div className="h-75 relative w-1/3">
             <Image src="https://picsum.photos/seed/ctahighfive/400/400" alt="High Five" fill className="object-contain" />

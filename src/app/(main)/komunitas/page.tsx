@@ -48,17 +48,17 @@ export default function Komunitas() {
 
         {/* Content */}
         <div className="relative z-10 w-full max-w-3xl">
-          <div className="text-brand bg-brand-light inline-flex items-center gap-2 px-4 py-2 mb-6 text-base font-bold border border-green-100 rounded-full shadow-sm">
+          <div className="text-primary bg-primary-light inline-flex items-center gap-2 px-4 py-2 mb-6 text-base font-bold border border-green-100 rounded-full shadow-sm">
             <FaLeaf /> Komunitas HijauIn
           </div>
           <h1 className="text-7xl mb-8 font-extrabold leading-tight text-gray-900">
-            Bersama Kita Bisa <br /> <span className="text-brand">Mengubah Dunia</span>
+            Bersama Kita Bisa <br /> <span className="text-primary">Mengubah Dunia</span>
           </h1>
           <p className="max-w-2xl mb-10 text-xl leading-relaxed text-gray-700">
             Gabung dengan komunitas hijau di seluruh Indonesia, berbagi aksi, inspirasi, dan ciptakan dampak positif untuk bumi kita.
           </p>
           <div className="flex gap-6">
-            <button className="bg-brand hover:bg-green-700 rounded-xl flex items-center gap-3 px-8 py-4 text-lg font-bold text-white transition shadow-lg">
+            <button className="bg-primary hover:bg-green-700 rounded-xl flex items-center gap-3 px-8 py-4 text-lg font-bold text-white transition shadow-lg">
               <FaUserPlus /> Gabung Komunitas
             </button>
             <button className="hover:bg-gray-50 rounded-xl flex items-center gap-3 px-8 py-4 text-lg font-bold text-gray-800 transition bg-white border-2 border-gray-200">
@@ -78,7 +78,7 @@ export default function Komunitas() {
             { value: "5.243", label: "Kegiatan Telah Dilakukan", icon: <FaCalendarAlt /> }
           ].map((stat, idx) => (
             <div key={idx} className="flex items-center gap-6">
-              <div className="text-brand text-5xl">{stat.icon}</div>
+              <div className="text-primary text-5xl">{stat.icon}</div>
               <div>
                 <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
                 <div className="text-lg font-medium text-gray-500">{stat.label}</div>
@@ -91,8 +91,8 @@ export default function Komunitas() {
       {/* Jelajahi Komunitas Hijau */}
       <section className="max-w-1080p relative w-full px-16 py-24 mx-auto">
         <div className="flex items-end justify-between mb-12">
-          <h2 className="text-4xl font-bold text-gray-900">Jelajahi Komunitas Hijau <FaLeaf className="text-brand inline" /></h2>
-          <button className="text-brand hover:underline flex items-center gap-2 text-lg font-bold">
+          <h2 className="text-4xl font-bold text-gray-900">Jelajahi Komunitas Hijau <FaLeaf className="text-primary inline" /></h2>
+          <button className="text-primary hover:underline flex items-center gap-2 text-lg font-bold">
             Lihat Semua Komunitas <FaChevronRight className="text-base" />
           </button>
         </div>
@@ -110,7 +110,7 @@ export default function Komunitas() {
                 <div className="relative h-48 overflow-hidden">
                   <Image src={`https://picsum.photos/seed/${com.img}/400/300`} alt={com.title} fill className="group-hover:scale-105 object-cover transition duration-500" />
                   <div className="bottom-[-20px] left-6 absolute flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-md z-10">
-                    <FaLeaf className="text-brand text-xl" />
+                    <FaLeaf className="text-primary text-xl" />
                   </div>
                 </div>
                 <div className="flex flex-col justify-between flex-grow p-6 pt-10">
@@ -121,7 +121,7 @@ export default function Komunitas() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-brand flex items-center gap-2 mb-6 text-base font-bold">
+                    <div className="text-primary flex items-center gap-2 mb-6 text-base font-bold">
                       <FaUsers /> <span className="text-gray-700">{com.mem} anggota</span>
                     </div>
                     <div className="inline-block px-4 py-2 text-base font-medium text-gray-600 bg-gray-100 rounded-lg">
@@ -134,7 +134,7 @@ export default function Komunitas() {
           </div>
 
           {/* Right Arrow Carousel Button */}
-          <button className="-right-6 top-1/2 w-14 h-14 hover:text-brand hover:scale-105 absolute z-10 flex items-center justify-center text-xl text-gray-800 transition -translate-y-1/2 bg-white border border-gray-100 rounded-full shadow-lg">
+          <button className="-right-6 top-1/2 w-14 h-14 hover:text-primary hover:scale-105 absolute z-10 flex items-center justify-center text-xl text-gray-800 transition -translate-y-1/2 bg-white border border-gray-100 rounded-full shadow-lg">
             <FaChevronRight />
           </button>
         </div>
@@ -143,8 +143,8 @@ export default function Komunitas() {
       {/* Kegiatan Mendatang */}
       <section className="max-w-1080p w-full px-16 pb-24 mx-auto">
         <div className="flex items-end justify-between mb-12">
-          <h2 className="text-4xl font-bold text-gray-900">Kegiatan Mendatang <FaLeaf className="text-brand inline" /></h2>
-          <button className="text-brand hover:underline flex items-center gap-2 text-lg font-bold">
+          <h2 className="text-4xl font-bold text-gray-900">Kegiatan Mendatang <FaLeaf className="text-primary inline" /></h2>
+          <button className="text-primary hover:underline flex items-center gap-2 text-lg font-bold">
             Lihat Semua Kegiatan <FaChevronRight className="text-base" />
           </button>
         </div>
@@ -159,18 +159,18 @@ export default function Komunitas() {
             <div key={idx} className="rounded-3xl hover:shadow-xl group flex flex-col overflow-hidden transition bg-white border border-gray-200">
               <div className="relative h-48 overflow-hidden">
                 <Image src={`https://picsum.photos/seed/${act.img}/400/300`} alt={act.title} fill className="group-hover:scale-105 object-cover transition duration-500" />
-                <div className="bg-brand-dark rounded-br-2xl absolute top-0 left-0 flex flex-col items-center px-4 py-3 text-white">
+                <div className="bg-primary-dark rounded-br-2xl absolute top-0 left-0 flex flex-col items-center px-4 py-3 text-white">
                   <span className="text-2xl font-bold leading-none">{act.date}</span>
                   <span className="text-base font-medium">{act.month}</span>
                 </div>
               </div>
               <div className="flex flex-col flex-grow p-6">
-                <h3 className="flex-grow mb-4 text-xl font-bold leading-tight text-gray-900">{act.title} <FaLeaf className="text-brand inline ml-1" /></h3>
+                <h3 className="flex-grow mb-4 text-xl font-bold leading-tight text-gray-900">{act.title} <FaLeaf className="text-primary inline ml-1" /></h3>
                 <div className="flex items-center gap-2 mb-2 text-base font-medium text-gray-500">
-                  <FaMapMarkerAlt className="text-brand flex-shrink-0" /> {act.loc}
+                  <FaMapMarkerAlt className="text-primary flex-shrink-0" /> {act.loc}
                 </div>
                 <div className="flex items-center gap-2 mb-6 text-base font-medium text-gray-500">
-                  <FaRegClock className="text-brand flex-shrink-0" /> {act.time}
+                  <FaRegClock className="text-primary flex-shrink-0" /> {act.time}
                 </div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="flex -space-x-3">
@@ -181,7 +181,7 @@ export default function Komunitas() {
                   <span className="text-base font-bold text-gray-600">{act.p} peserta</span>
                 </div>
                 <hr className="mb-4 border-gray-100" />
-                <button className="text-brand hover:bg-brand-light rounded-xl flex items-center justify-center w-full gap-2 py-2 text-base font-bold transition">
+                <button className="text-primary hover:bg-primary-light rounded-xl flex items-center justify-center w-full gap-2 py-2 text-base font-bold transition">
                   <FaUserPlus /> Ikut Kegiatan
                 </button>
               </div>
@@ -193,7 +193,7 @@ export default function Komunitas() {
       {/* Kenapa Gabung Komunitas */}
       <section className="w-full px-16 py-24 bg-white">
         <h2 className="mb-20 text-4xl font-bold text-center text-gray-900">
-          Kenapa Gabung Komunitas HijauIn? <FaLeaf className="text-brand inline" />
+          Kenapa Gabung Komunitas HijauIn? <FaLeaf className="text-primary inline" />
         </h2>
 
         <div className="max-w-1080p relative flex items-start justify-between mx-auto">
@@ -202,7 +202,7 @@ export default function Komunitas() {
 
           {impacts.map((item, index) => (
             <div key={index} className="relative z-10 flex flex-col items-center w-56 px-2 text-center bg-white">
-              <div className="text-brand flex items-center justify-center w-20 h-20 mb-6 text-4xl bg-white border-2 border-gray-100 rounded-full shadow-sm">
+              <div className="text-primary flex items-center justify-center w-20 h-20 mb-6 text-4xl bg-white border-2 border-gray-100 rounded-full shadow-sm">
                 {item.icon}
               </div>
               <h3 className="mb-3 text-xl font-bold text-gray-900">{item.title}</h3>
@@ -232,7 +232,7 @@ export default function Komunitas() {
               Satu aksi kecil dari kita, bisa menjadi perubahan besar untuk masa depan bumi yang lebih baik.
             </p>
             <div className="flex gap-4">
-              <button className="bg-brand rounded-xl hover:bg-green-600 flex items-center justify-center flex-1 gap-2 px-6 py-4 text-base font-bold text-white transition">
+              <button className="bg-primary rounded-xl hover:bg-green-600 flex items-center justify-center flex-1 gap-2 px-6 py-4 text-base font-bold text-white transition">
                 Gabung Sekarang <FaUserPlus />
               </button>
               <button className="rounded-xl hover:bg-white/10 flex items-center justify-center flex-1 gap-2 px-6 py-4 text-base font-bold text-white transition bg-transparent border border-white">
@@ -246,19 +246,19 @@ export default function Komunitas() {
             <h3 className="mb-6 text-xl font-bold text-white">Aktivitas Komunitas Hari Ini</h3>
             <ul className="space-y-6 text-base text-gray-200">
               <li className="flex justify-between items-center border-b border-[#1b5e33] pb-4">
-                <span className="flex items-center gap-3"><FaLeaf className="text-brand-light text-xl" /> Aksi Hijau</span>
+                <span className="flex items-center gap-3"><FaLeaf className="text-primary-light text-xl" /> Aksi Hijau</span>
                 <span className="text-xl font-bold text-white">245</span>
               </li>
               <li className="flex justify-between items-center border-b border-[#1b5e33] pb-4">
-                <span className="flex items-center gap-3"><FaCloud className="text-brand-light text-xl" /> CO₂ Berhasil Dikurangi</span>
+                <span className="flex items-center gap-3"><FaCloud className="text-primary-light text-xl" /> CO₂ Berhasil Dikurangi</span>
                 <span className="text-xl font-bold text-white">2.340 kg</span>
               </li>
               <li className="flex justify-between items-center border-b border-[#1b5e33] pb-4">
-                <span className="flex items-center gap-3"><FaTrashAlt className="text-brand-light text-xl" /> Sampah Terkumpul</span>
+                <span className="flex items-center gap-3"><FaTrashAlt className="text-primary-light text-xl" /> Sampah Terkumpul</span>
                 <span className="text-xl font-bold text-white">1.250 kg</span>
               </li>
               <li className="flex items-center justify-between">
-                <span className="flex items-center gap-3"><FaTree className="text-brand-light text-xl" /> Pohon Ditanam</span>
+                <span className="flex items-center gap-3"><FaTree className="text-primary-light text-xl" /> Pohon Ditanam</span>
                 <span className="text-xl font-bold text-white">320</span>
               </li>
             </ul>

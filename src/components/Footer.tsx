@@ -1,51 +1,139 @@
 // src/components/Footer.tsx
-import { FaInstagram, FaTiktok, FaYoutube, FaFacebook } from 'react-icons/fa';
+
+import Image from "next/image";
+import {
+  FaInstagram,
+  FaTiktok,
+  FaYoutube,
+  FaFacebook,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-primary-dark text-white pt-20 pb-10">
-      <div className=" mx-auto px-16 grid grid-cols-1 md:grid-cols-5 gap-12 border-b border-green-800 pb-12">
-        <div className="col-span-2">
-          <div className="flex items-center gap-2 mb-6">
-            <span className="text-3xl font-bold">HijauIn</span>
+    <footer className="relative overflow-hidden bg-[#00462E] text-white">
+      <div className="px-16 pt-8 pb-6">
+        <div className="flex items-start justify-between">
+          {/* Left */}
+          <div className="w-[27%]">
+            <div className="flex items-center gap-3">
+              <Image
+                src="/assets/icon.png"
+                alt="HijauIn"
+                width={38}
+                height={38}
+              />
+
+              <div>
+                <h2 className="text-[30px] font-bold leading-none">
+                  Hijau<span className="text-[#67A02E]">In</span>
+                </h2>
+
+                <p className="mt-1 text-[10px] text-[#CBE8D4]">
+                  Satu Langkah Hijau Setiap Hari
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-5 max-w-[260px] text-[13px] leading-7 text-[#D8EEE0]">
+              Platform digital untuk membangun kebiasaan ramah lingkungan,
+              memantau dampak, dan berkontribusi nyata untuk bumi.
+            </p>
+
+            <div className="mt-6 flex items-center gap-5 text-[15px] text-white/90">
+              <FaInstagram className="cursor-pointer transition hover:text-white" />
+              <FaTiktok className="cursor-pointer transition hover:text-white" />
+              <FaYoutube className="cursor-pointer transition hover:text-white" />
+              <FaFacebook className="cursor-pointer transition hover:text-white" />
+            </div>
           </div>
-          <p className="text-base text-gray-300 mb-8 max-w-md">
-            Platform digital untuk membangun kebiasaan ramah lingkungan, mencatat aksi, dan berkontribusi nyata untuk bumi.
+
+          {/* Jelajahi */}
+          <div>
+            <h3 className="mb-4 text-[15px] font-semibold">Jelajahi</h3>
+
+            <ul className="space-y-2 text-[13px] leading-6 text-[#D8EEE0]">
+              <li>Beranda</li>
+              <li>Fitur</li>
+              <li>Cara Kerja</li>
+              <li>Edukasi</li>
+              <li>Komunitas</li>
+              <li>Tentang Kami</li>
+            </ul>
+          </div>
+
+          {/* Bantuan */}
+          <div>
+            <h3 className="mb-4 text-[15px] font-semibold">Bantuan</h3>
+
+            <ul className="space-y-2 text-[13px] leading-6 text-[#D8EEE0]">
+              <li>FAQ</li>
+              <li>Pusat Bantuan</li>
+              <li>Kebijakan Privasi</li>
+              <li>Syarat & Ketentuan</li>
+              <li>Hubungi Kami</li>
+            </ul>
+          </div>
+
+          {/* Komunitas */}
+          <div>
+            <h3 className="mb-4 text-[15px] font-semibold">Komunitas</h3>
+
+            <ul className="space-y-2 text-[13px] leading-6 text-[#D8EEE0]">
+              <li>Event</li>
+              <li>Volunteer</li>
+              <li>Partner</li>
+              <li>Blog</li>
+            </ul>
+          </div>
+
+          {/* Kontak */}
+          <div className="w-[210px]">
+            <h3 className="mb-4 text-[15px] font-semibold">Kontak</h3>
+
+            <div className="space-y-3 text-[13px] text-[#D8EEE0]">
+              <div className="flex items-start gap-3">
+                <FaEnvelope className="mt-1 text-[11px]" />
+                <span>hello@hijauin.com</span>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <FaPhoneAlt className="mt-1 text-[11px]" />
+                <span>0812-3456-7890</span>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <FaMapMarkerAlt className="mt-1 text-[11px]" />
+
+                <span>
+                  Jl. Hijau No. 123,
+                  <br />
+                  Jakarta, Indonesia
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="mt-6  pt-4">
+          <p className="flex items-center justify-center gap-2 text-[12px] text-[#D8EEE0]">
+            © 2026 HijauIn. All rights reserved.
+            <span className="text-[#9BE36B]">🍃</span>
           </p>
-          <div className="flex gap-6 text-2xl">
-            <FaInstagram className="cursor-pointer hover:text-primary-light" />
-            <FaTiktok className="cursor-pointer hover:text-primary-light" />
-            <FaYoutube className="cursor-pointer hover:text-primary-light" />
-            <FaFacebook className="cursor-pointer hover:text-primary-light" />
-          </div>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-xl mb-6">Jelajahi</h4>
-          <ul className="space-y-4 text-base text-gray-300">
-            <li>Beranda</li><li>Fitur</li><li>Cara Kerja</li><li>Edukasi</li><li>Komunitas</li><li>Tentang Kami</li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-xl mb-6">Bantuan</h4>
-          <ul className="space-y-4 text-base text-gray-300">
-            <li>FAQ</li><li>Pusat Bantuan</li><li>Kebijakan Privasi</li><li>Syarat & Ketentuan</li><li>Hubungi Kami</li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-xl mb-6">Kontak</h4>
-          <ul className="space-y-4 text-base text-gray-300">
-            <li>hello@hijauin.id</li>
-            <li>0812-3456-7890</li>
-            <li>Jl. Hijau No. 123, Jakarta, Indonesia</li>
-          </ul>
         </div>
       </div>
-      <div className="text-center mt-8 text-base text-gray-400">
-        © 2024 HijauIn. All rights reserved.
-      </div>
+
+      {/* Ornament kanan */}
+      <Image
+        src="/assets/beranda/d.png"
+        alt=""
+        width={350}
+        height={350}
+        className="pointer-events-none absolute -bottom-10 -right-15 select-none opacity-30"
+      />
     </footer>
   );
 }

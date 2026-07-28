@@ -1,16 +1,24 @@
 // src/app/layout.tsx
-import '@/app/globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import "@/app/globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Poppins } from "next/font/google";
 
-export const metadata = {
-  title: 'HijauIn - 1080p Layout',
-}
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className="bg-background flex flex-col min-h-screen overflow-x-hidden">
+      <body
+        className={`${poppins.className} bg-background flex flex-col min-h-screen overflow-x-hidden`}
+      >
         <Navbar />
         <main className="grow bg-background w-full mx-auto mb-16">
           {children}
@@ -18,5 +26,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
       </body>
     </html>
-  )
+  );
 }

@@ -35,12 +35,12 @@ export default function NotFound() {
             Kembali ke Beranda
           </Link>
 
-          <Link
+          {/* <Link
             href="/explore"
             className="text-primary font-semibold hover:underline"
           >
             Jelajahi UMKM
-          </Link>
+          </Link> */}
         </div>
       </div>
     </main>

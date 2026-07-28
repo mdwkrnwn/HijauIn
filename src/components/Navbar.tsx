@@ -1,39 +1,79 @@
-'use client'
-// src/components/Navbar.tsx
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { FaLeaf } from 'react-icons/fa';
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const path = usePathname();
+  const pathname = usePathname();
+
   const navItems = [
     { href: "/", name: "Beranda" },
     { href: "/fitur", name: "Fitur" },
     { href: "/cara-kerja", name: "Cara Kerja" },
     { href: "/edukasi", name: "Edukasi" },
     { href: "/komunitas", name: "Komunitas" },
-    { href: "/tentang", name: "Tentang Kami" }
+    { href: "/tentang", name: "Tentang Kami" },
   ];
 
   return (
-    <nav className="w-full bg-background sticky top-0 z-50">
+    <nav className="sticky top-0 z-50 bg-white border-b border-gray-100">
       <div className=" mx-auto px-16 py-6 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 text-primary-dark">
-          <FaLeaf className="text-3xl text-primary" />
-          <span className="text-2xl font-bold">HijauIn</span>
+        {/* Logo */}
+        <Link href="/" className="flex items-center g">
+          <Image
+            src="/assets/icon.png"
+            alt="HijauIn"
+            width={80}
+            height={80}
+            priority
+          />
+
+          <div className="leading-none">
+            <h1 className="text-[36px] font-semibold">
+              <span className="text-[#0B0F1F]">Hijau</span>
+              <span className="text-[#1F8148]">In</span>
+            </h1>
+            <p className="mt-1 text-[14px] font-medium text-gray-500">
+              Satu Langkah Hijau Setiap Hari
+            </p>
+          </div>
         </Link>
 
-        <div className="hidden lg:flex gap-8 text-base font-semibold text-gray-700">
-          {navItems.map(({ href, name }, idx) => (
-            <Link key={idx} href={href} className={`hover:text-primary transition-colors text-foreground pb-1 ${path === href && "border-b-2 border-primary text-primary"}`}>{name}</Link>
+        {/* Navigation */}
+        <div className="hidden lg:flex items-center gap-10">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`relative pb-2 text-[17px] font-semibold transition-colors ${
+                pathname === item.href
+                  ? "text-[#076635]"
+                  : "text-[#0B0F1F] hover:text-[#076635]"
+              }`}
+            >
+              {item.name}
+
+              {pathname === item.href && (
+                <span className="absolute left-0 bottom-0 h-[3px] w-full rounded-full bg-[#076635]" />
+              )}
+            </Link>
           ))}
         </div>
 
-        <div className="flex gap-4">
-          <Link href="/login" className="px-6 py-3 rounded-full border border-primary font-semibold text-base text-primary hover:bg-gray-50">
+        {/* Buttons */}
+        <div className="flex items-center gap-4">
+          <Link
+            href="/login"
+            className="rounded-xl border border-green-600 bg-white px-7 py-3 font-semibold text-[#076635] transition hover:bg-green-50"
+          >
             Masuk
           </Link>
-          <Link href="/register" className="px-6 py-3 rounded-full bg-primary text-white font-semibold text-base hover:bg-green-700">
+
+          <Link
+            href="/register"
+            className="rounded-xl bg-[#076635] px-7 py-3 font-semibold text-white shadow-md transition hover:bg-green-700"
+          >
             Daftar Gratis
           </Link>
         </div>

@@ -8,7 +8,7 @@ import BottomCTA from './(components)/BottomCTA';
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex bg-white flex-col w-full">
       {/* Hero Section */}
       <Hero />
 

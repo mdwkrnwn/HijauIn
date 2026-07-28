@@ -1,179 +1,487 @@
 // src/app/cara-kerja/page.tsx
-import Image from 'next/image';
+import Image from "next/image";
 import {
-  FaCheckCircle, FaClipboardList, FaRobot, FaStar, FaTrophy,
-  FaGlobe, FaArrowRight, FaBicycle, FaFlask, FaTint,
-  FaSeedling, FaBus, FaRecycle, FaLeaf
-} from 'react-icons/fa';
+  FaCheckCircle,
+  FaClipboardList,
+  FaRobot,
+  FaStar,
+  FaTrophy,
+  FaGlobe,
+  FaArrowRight,
+  FaBicycle,
+  FaFlask,
+  FaTint,
+  FaSeedling,
+  FaBus,
+  FaRecycle,
+  FaLeaf,
+} from "react-icons/fa";
+
+const steps = [
+  {
+    num: "01",
+    icon: "/assets/beranda/catataksi3.png",
+    title: "Catat Aksi",
+    desc: "Catat aksi ramah lingkunganmu setiap hari dengan mudah.",
+  },
+  {
+    num: "02",
+    icon: "/assets/beranda/ai-rekomendasi.png",
+    title: "AI Menganalisis",
+    desc: "AI menganalisis aksimu dan memberi insight personal yang cerdas.",
+  },
+  {
+    num: "03",
+    icon: "/assets/cara-kerja/poin.png",
+    title: "Dapatkan Poin",
+    desc: "Setiap aksi positif akan memberikan Eco Score yang bisa kamu lihat.",
+  },
+  {
+    num: "04",
+    icon: "/assets/beranda/ikutchallange.png",
+    title: "Ikut Challenge",
+    desc: "Ikuti tantangan seru dan selesaikan misi untuk meraih hadiah menarik.",
+  },
+  {
+    num: "05",
+    icon: "/assets/cara-kerja/bumi.png",
+    title: "Berdampak Nyata",
+    desc: "Lihat laporan dampakmu dan kontribusimu untuk bumi yang lebih baik.",
+  },
+];
+
+const flows = [
+  {
+    icon: "/assets/beranda/person.png",
+    title: "Pengguna",
+    desc: "",
+  },
+  {
+    icon: "/assets/beranda/catataksi.png",
+    title: "Catat Aksi",
+    desc: "Data aksi harian dikirim ke sistem",
+  },
+  {
+    icon: "/assets/beranda/ai-rekomendasi.png",
+    title: "AI Green Coach",
+    desc: "AI memverifikasi dan memberi insight",
+  },
+  {
+    icon: "/assets/beranda/eco-score.png",
+    title: "Eco Score",
+    desc: "Poin dihitung dan ditambahkan",
+  },
+  {
+    icon: "/assets/beranda/pantaudampak.png",
+    title: "Dashboard",
+    desc: "Data ditampilkan secara real-time",
+  },
+  {
+    icon: "/assets/cara-kerja/laporan.png",
+    title: "Laporan Dampak",
+    desc: "Dampak positifmu tercatat dan terukur",
+  },
+];
+
+const journeys = [
+  {
+    day: "Senin",
+    icon: "/assets/cara-kerja/sepeda.png",
+    title: "Naik sepeda\nke kampus",
+    point: "+30 poin",
+    desc: "Mengurangi emisi\nCO₂",
+  },
+  {
+    day: "Selasa",
+    icon: "/assets/cara-kerja/botol.png",
+    title: "Bawa tumbler\nsendiri",
+    point: "+20 poin",
+    desc: "Mengurangi sampah\nplastik",
+  },
+  {
+    day: "Rabu",
+    icon: "/assets/air.png",
+    title: "Hemat air saat\nmandi",
+    point: "+15 poin",
+    desc: "Menghemat\npenggunaan air",
+  },
+  {
+    day: "Kamis",
+    icon: "/assets/cara-kerja/pot.png",
+    title: "Menanam\ntanaman",
+    point: "+40 poin",
+    desc: "Meningkatkan\nkualitas udara",
+  },
+  {
+    day: "Jumat",
+    icon: "/assets/cara-kerja/bus.png",
+    title: "Naik transportasi\numum",
+    point: "+25 poin",
+    desc: "Mengurangi polusi\nudara",
+  },
+  {
+    day: "Sabtu",
+    icon: "/assets/cara-kerja/tas.png",
+    title: "Pilah sampah\nrumah",
+    point: "+20 poin",
+    desc: "Mendukung daur\nulang",
+  },
+  {
+    day: "Minggu",
+    icon: "/assets/cara-kerja/trophy.png",
+    title: "Selesaikan\nchallenge",
+    point: "+50 poin",
+    desc: "Dapat badge baru\ndan reward",
+  },
+];
+
+const features = [
+  {
+    icon: <FaCheckCircle className="text-[#11773D] text-2xl" />,
+    title: "Mudah Dilakukan",
+    desc: "Langkah sederhana yang bisa kamu lakukan kapan saja dan di mana saja.",
+  },
+  {
+    icon: "/assets/beranda/ai-rekomendasi.png",
+    title: "Insight Personal",
+    desc: "AI memberikan rekomendasi yang sesuai dengan kebiasaan dan gaya hidupmu.",
+  },
+  {
+    icon: "/assets/beranda/ikutchallange.png",
+    title: "Motivasi Konsisten",
+    desc: "Challenge, poin, dan badge membuatmu lebih semangat untuk terus beraksi.",
+  },
+  {
+    icon: "/assets/cara-kerja/bumi.png",
+    title: "Dampak Nyata",
+    desc: "Setiap aksi tercatat dan memberikan dampak positif nyata untuk bumi.",
+  },
+];
 
 export default function HowItWorks() {
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col bg-white items-center w-full">
       {/* Header Section */}
       <section className=" relative flex w-full px-16 pt-24 overflow-hidden text-left">
-        <div className='w-1/2'>
-          <div className="text-primary inline-flex items-center gap-2 px-4 py-2 mb-8 text-base font-semibold bg-white rounded-full shadow-sm">
+        <div className="w-1/2">
+          <div className="text-[#11773D] inline-flex items-center gap-2 px-4 py-2 mb-8 text-base font-semibold bg-white rounded-full shadow-sm">
             <FaCheckCircle /> Cara Kerja HijauIn
           </div>
-          <h1 className="mb-8 text-6xl font-extrabold leading-tight text-gray-900">
-            5 Langkah Mudah Menuju Bumi yang <span className="text-primary">Lebih Hijau</span>
+          <h1 className="mb-8 text-6xl font-bold leading-tight text-gray-900">
+            5 Langkah Mudah <br /> Menuju Bumi yang <br />
+            <span className="text-[#11773D]">Lebih Hijau</span>
           </h1>
           <p className=" mb-12 text-xl text-gray-600">
-            HijauIn membantumu mencatat aksi ramah lingkungan, mendapatkan insight dari AI, dan melihat dampak nyatanya. Semua dalam satu platform.
+            HijauIn membantumu mencatat aksi ramah lingkungan, mendapatkan{" "}
+            <br />
+            insight dari AI, dan melihat dampak nyatanya. <br /> Semua dalam
+            satu platform.
           </p>
-          <button className="border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 mb-12 text-lg font-bold transition bg-white border-2 rounded-full">
+          <button className="border-[#11773D] text-[#11773D] hover:bg-[#11773D] hover:text-white px-8 py-4 mb-12 text-lg font-bold transition bg-white border-2 rounded-full">
             Lihat Fitur Lengkap &rarr;
           </button>
         </div>
-        <div className="h-125 relative w-1/2 mx-auto overflow-hidden">
-          <Image src="https://picsum.photos/seed/appmockup/1000/500" alt="App Mockup" fill className="object-cover" />
+        <div className="h-150 relative w-1/2 mx-auto overflow-hidden">
+          <Image
+            src="/assets/cara-kerja/her.png"
+            alt="App Mockup"
+            fill
+            className="object-cover"
+          />
         </div>
       </section>
 
       {/* 5 Steps Diagram */}
-      <section className="w-full px-16 pt-24">
-        <h2 className="mb-24 text-4xl font-bold text-center">Bagaimana <span className="text-primary">HijauIn</span> Bekerja?</h2>
-        <div className=" relative flex items-start justify-between mx-auto">
-          <div className="top-10 absolute left-0 z-0 w-full h-1 border-t-2 border-gray-300 border-dashed"></div>
-          {[
-            { num: "01", icon: <FaClipboardList />, title: "Catat Aksi", desc: "Catat aksi ramah lingkunganmu setiap hari dengan mudah." },
-            { num: "02", icon: <FaRobot />, title: "AI Menganalisis", desc: "AI menganalisis aksimu dan memberi insight personal yang cerdas." },
-            { num: "03", icon: <FaStar />, title: "Dapatkan Poin", desc: "Setiap aksi positif akan memberikan Eco Score yang bisa kamu lihat." },
-            { num: "04", icon: <FaTrophy />, title: "Ikut Challenge", desc: "Ikuti tantangan seru dan selesaikan misi untuk meraih hadiah menarik." },
-            { num: "05", icon: <FaGlobe />, title: "Berdampak Nyata", desc: "Lihat laporan dampakmu dan kontribusimu untuk bumi yang lebih baik." }
-          ].map((step, idx) => (
-            <div key={idx} className=" relative z-10 flex flex-col items-center w-64 px-4 text-center">
-              <div className="border-primary text-primary flex items-center justify-center w-12 h-12 mb-4 text-lg font-bold bg-white border-4 rounded-full">
+      <section className="w-full px-16 py-24">
+        {/* Heading */}
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl font-bold text-gray-900">
+            Bagaimana <span className="text-[#11773D]">HijauIn</span> Bekerja?
+          </h2>
+
+          <p className="mt-3 text-lg text-gray-500">
+            <span className="font-semibold text-[#11773D]">HijauIn</span>{" "}
+            bekerja dalam 5 langkah sederhana yang saling terhubung.
+          </p>
+        </div>
+
+        {/* Timeline */}
+        <div className="relative flex justify-between">
+          {/* Garis */}
+          <div className="absolute top-[17px] left-0 right-0 border-t-2 border-dashed border-gray-300" />
+
+          {steps.map((step) => (
+            <div
+              key={step.num}
+              className="relative z-10 flex w-56 flex-col items-center text-center"
+            >
+              {/* Nomor */}
+              <div className="mb-10 flex h-9 w-9 items-center justify-center rounded-full bg-[#046B06] text-sm font-bold text-white shadow">
                 {step.num}
               </div>
-              <div className="bg-primary-light text-primary flex items-center justify-center w-24 h-24 mb-6 text-4xl rounded-full shadow-sm">
-                {step.icon}
+
+              {/* Lingkaran */}
+              <div className="mb-6 flex h-28 w-28 items-center justify-center rounded-full bg-[#F1F8F2] shadow-sm">
+                <Image
+                  src={step.icon}
+                  alt={step.title}
+                  width={68}
+                  height={68}
+                  className="object-contain"
+                />
               </div>
-              <h3 className="mb-3 text-2xl font-bold">{step.title}</h3>
-              <p className="text-base text-gray-600">{step.desc}</p>
+
+              <h3 className="mb-3 text-xl font-bold text-gray-900">
+                {step.title}
+              </h3>
+
+              <p className="max-w-[180px] text-base leading-8 text-gray-500">
+                {step.desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* System Flow */}
-      <section className="w-full px-16 pt-24 text-center">
-        <h2 className="mb-6 text-4xl font-bold">Alur Sistem <span className="text-primary">HijauIn</span></h2>
-        <p className="mb-16 text-xl text-gray-600">Data dan informasi mengalir untuk memberikan pengalaman terbaik.</p>
-        <div className=" flex flex-wrap items-center justify-center gap-6 mx-auto">
-          {[
-            { label: "Pengguna", icon: <FaCheckCircle /> },
-            { label: "Catat Aksi", icon: <FaClipboardList /> },
-            { label: "AI Green Coach", icon: <FaRobot /> },
-            { label: "Eco Score", icon: <FaStar /> },
-            { label: "Dashboard", icon: <FaCheckCircle /> },
-            { label: "Laporan Dampak", icon: <FaGlobe /> }
-          ].map((node, i, arr) => (
-            <div key={i} className="flex items-center gap-6">
-              <div className="rounded-2xl flex flex-col items-center w-48 gap-3 px-8 py-6 bg-white border border-gray-200 shadow-sm">
-                <div className="text-primary text-3xl">{node.icon}</div>
-                <div className="text-lg font-bold text-center text-gray-800">{node.label}</div>
+      <section className="w-full px-16 py-24">
+        {/* Heading */}
+        <div className="text-center">
+          <h2 className="text-4xl font-bold">
+            Alur Sistem <span className="text-[#11773D]">HijauIn</span>
+          </h2>
+
+          <p className="mt-3 text-lg text-gray-500">
+            Data dan informasi mengalir untuk memberikan pengalaman terbaik.
+          </p>
+        </div>
+
+        {/* Flow */}
+        <div className="mt-16 flex items-start justify-between">
+          {flows.map((item, index) => (
+            <div key={index} className="flex items-start">
+              {/* Node */}
+              <div className="flex w-40 flex-col items-center text-center">
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[#F2F8F2]">
+                  <Image
+                    src={item.icon}
+                    alt={item.title}
+                    width={56}
+                    height={56}
+                    className="object-contain"
+                  />
+                </div>
+
+                <h3 className="mt-5 text-xl font-bold text-gray-900">
+                  {item.title}
+                </h3>
+
+                {item.desc && (
+                  <p className="mt-3 text-base leading-7 text-gray-500">
+                    {item.desc}
+                  </p>
+                )}
               </div>
-              {i < arr.length - 1 && <FaArrowRight className="text-2xl text-gray-400" />}
+
+              {/* Arrow */}
+              {index < flows.length - 1 && (
+                <div className="mx-5 mt-10">
+                  <FaArrowRight className="text-lg text-[#11773D]" />
+                </div>
+              )}
             </div>
           ))}
         </div>
       </section>
 
       {/* Perjalanan Aksi Pengguna */}
-      <section className=" w-full px-16 pt-24">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold">Perjalanan Aksi Pengguna</h2>
-          <p className="text-xl text-gray-600">Contoh perjalanan aksi hijau dalam 1 minggu.</p>
+      <section className="w-full px-16 pt-24">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold">Perjalanan Aksi Pengguna</h2>
+
+          <p className="mt-4 text-xl text-gray-500">
+            Contoh perjalanan aksi hijau dalam 1 minggu.
+          </p>
         </div>
 
-        <div className=" relative flex items-stretch justify-between gap-4 mx-auto">
-          <div className="top-1/2 absolute left-0 z-0 w-full h-1 border-t-2 border-gray-200 border-dashed"></div>
-          {[
-            { day: "Senin", icon: <FaBicycle />, title: "Naik sepeda ke kampus", poin: "+30 poin", desc: "Mengurangi emisi CO2" },
-            { day: "Selasa", icon: <FaFlask />, title: "Bawa tumbler sendiri", poin: "+20 poin", desc: "Mengurangi sampah plastik" },
-            { day: "Rabu", icon: <FaTint />, title: "Hemat air saat mandi", poin: "+15 poin", desc: "Menghemat penggunaan air" },
-            { day: "Kamis", icon: <FaSeedling />, title: "Menanam tanaman", poin: "+40 poin", desc: "Meningkatkan kualitas udara" },
-            { day: "Jumat", icon: <FaBus />, title: "Naik transportasi umum", poin: "+25 poin", desc: "Mengurangi polusi udara" },
-            { day: "Sabtu", icon: <FaRecycle />, title: "Pilah sampah rumah", poin: "+20 poin", desc: "Mendukung daur ulang" },
-            { day: "Minggu", icon: <FaTrophy />, title: "Selesaikan challenge", poin: "+50 poin", desc: "Dapat badge baru dan reward" }
-          ].map((item, idx) => (
-            <div key={idx} className="rounded-2xl relative z-10 flex flex-col items-center w-full overflow-hidden text-center bg-white border border-gray-200 shadow-sm">
-              <div className="bg-primary w-full py-2 text-base font-bold text-white">
-                {item.day}
-              </div>
-              <div className="flex flex-col items-center justify-between h-full p-6">
-                <div>
-                  <div className="text-primary flex justify-center mb-4 text-4xl">{item.icon}</div>
-                  <h3 className="mb-2 text-lg font-bold leading-tight text-gray-900">{item.title}</h3>
+        {/* Cards */}
+        <div className="relative mt-14">
+          {/* timeline */}
+          <div className="absolute bottom-[-22px] left-0 right-0 border-t-2 border-dashed border-gray-200"></div>
+
+          <div className="flex justify-between gap-4">
+            {journeys.map((item) => (
+              <div key={item.day} className="flex w-full flex-col items-center">
+                {/* card */}
+                <div className="relative w-full rounded-2xl border border-gray-100 bg-white px-4 pb-8 pt-10 shadow-sm">
+                  {/* hari */}
+                  <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-md bg-[#11773D] px-5 py-1 text-sm font-bold text-white">
+                    {item.day}
+                  </div>
+
+                  {/* icon */}
+                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#F3F8F2]">
+                    <Image
+                      src={item.icon}
+                      alt={item.day}
+                      width={52}
+                      height={52}
+                    />
+                  </div>
+
+                  <h3 className="mt-5 whitespace-pre-line text-center text-lg font-bold leading-7 text-gray-900">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-4 text-center text-xl font-bold text-[#11773D]">
+                    {item.point}
+                  </p>
+
+                  <p className="mt-4 whitespace-pre-line text-center text-sm leading-7 text-gray-500">
+                    {item.desc}
+                  </p>
                 </div>
-                <div className="w-full">
-                  <div className="text-primary mb-2 text-base font-bold">{item.poin}</div>
-                  <p className="text-sm leading-tight text-gray-500">{item.desc}</p>
-                </div>
+
+                {/* titik timeline */}
+                <div className="relative z-10 mt-8 h-3 w-3 rounded-full bg-[#11773D]"></div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Banner */}
+        <div className="relative mt-16 mx-auto flex max-w-6xl items-center justify-between overflow-hidden rounded-[40px]  bg-white px-10 py-8">
+          {/* Ellipse Background */}
+          <div className="absolute left-0 top-1/2 h-56 w-[1020px] -translate-y-1/2 rounded-full bg-[#EEF8EE]" />
+
+          {/* Content */}
+          <div className="relative z-10 flex items-center gap-6">
+            <Image
+              src="/assets/cara-kerja/daun.png"
+              alt=""
+              width={120}
+              height={120}
+              className="-ml-5"
+            />
+
+            <div>
+              <p className="text-lg -mt-8 text-gray-500">Total Mingguan</p>
+
+              <p className="text-4xl mt-5 font-bold text-[#11773D]">
+                +200 poin
+              </p>
             </div>
-          ))}
-        </div>
 
-        {/* Total Points Banner */}
-        <div className=" bg-primary-light rounded-2xl flex items-center justify-between p-8 mx-auto mt-12 border border-green-100 shadow-sm">
-          <div className="flex items-center gap-6">
-            <div className="text-lg font-medium text-gray-600">Total Mingguan</div>
-            <div className="text-primary text-5xl font-extrabold">+200 poin</div>
-          </div>
-          <div className="flex items-center gap-6">
-            <p className="max-w-md text-lg font-medium text-gray-700">
-              Terus konsisten dan tingkatkan dampak positifmu untuk bumi setiap hari!
+            <div className="mx-6 h-20 w-px bg-green-200"></div>
+
+            <p className="max-w-md text-xl font-medium leading-9 text-gray-700">
+              Terus konsisten dan tingkatkan dampak positifmu untuk bumi setiap
+              hari!
             </p>
-            <FaGlobe className="text-primary text-5xl opacity-50" />
           </div>
+
+          {/* Earth */}
+          <Image
+            src="/assets/cara-kerja/bumi2.png"
+            alt=""
+            width={200}
+            height={200}
+            className="relative z-10"
+          />
         </div>
       </section>
 
       {/* Mengapa Cara Ini Efektif */}
-      <section className="bg-gray-50 w-full px-16 pt-24">
-        <h2 className="mb-16 text-4xl font-bold text-center">Mengapa Cara Ini Efektif?</h2>
-        <div className=" grid grid-cols-4 gap-8 mx-auto">
-          {[
-            { icon: <FaCheckCircle />, title: "Mudah Dilakukan", desc: "Langkah sederhana yang bisa kamu lakukan kapan saja dan di mana saja." },
-            { icon: <FaRobot />, title: "Insight Personal", desc: "AI memberikan rekomendasi yang sesuai dengan kebiasaan dan gaya hidupmu." },
-            { icon: <FaTrophy />, title: "Motivasi Konsisten", desc: "Challenge, poin, dan badge membuatmu lebih semangat untuk terus beraksi." },
-            { icon: <FaLeaf />, title: "Dampak Nyata", desc: "Setiap aksi tercatat dan memberikan dampak positif nyata untuk bumi." }
-          ].map((feature, idx) => (
-            <div key={idx} className="rounded-2xl flex flex-col gap-4 p-8 bg-white border border-gray-100 shadow-sm">
-              <div className="bg-primary-light rounded-xl text-primary flex items-center justify-center w-16 h-16 mb-2 text-3xl">
-                {feature.icon}
+      <section className="w-full bg-white px-16 pt-24">
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl font-bold text-gray-900">
+            Mengapa Cara Ini Efektif?
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-4 gap-8">
+          {features.map((item) => (
+            <div
+              key={item.title}
+              className="rounded-3xl border border-gray-200 bg-white px-6 py-5 shadow-[0_2px_10px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              {/* Header */}
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F2F8F2]">
+                  {typeof item.icon === "string" ? (
+                    <Image
+                      src={item.icon}
+                      alt={item.title}
+                      width={28}
+                      height={28}
+                      className="object-contain"
+                    />
+                  ) : (
+                    item.icon
+                  )}
+                </div>
+
+                <h3 className="text-xl font-bold text-gray-900">
+                  {item.title}
+                </h3>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">{feature.title}</h3>
-              <p className="text-base leading-relaxed text-gray-600">{feature.desc}</p>
+
+              {/* Description */}
+              <p className="mt-4 pl-16 text-base leading-8 text-gray-500">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA Bottom Section */}
-      <section className="w-full px-16 pt-24">
-        <div className="bg-primary-light rounded-[3rem] p-16 flex items-center justify-between mx-auto relative overflow-hidden shadow-sm">
-          <div className="h-75 relative w-1/3">
-            <Image src="https://picsum.photos/seed/ctahighfive/400/400" alt="High Five" fill className="object-contain" />
+      <section className="w-full bg-white px-16 py-24">
+        <div
+          className="mx-auto flex items-center justify-between overflow-hidden rounded-[32px] border border-green-100 px-8 py-6"
+          style={{
+            background:
+              "linear-gradient(90deg, #F8FCF8 0%, #FFFFFF 45%, #F8FCF8 100%)",
+          }}
+        >
+          {/* Left Image */}
+          <div className="relative w-[360px] shrink-0">
+            <Image
+              src="/assets/cara-kerja/siapmulai.png"
+              alt=""
+              width={360}
+              height={260}
+              className="h-[240px] w-auto object-contain"
+            />
           </div>
 
-          <div className="z-10 w-1/3 px-6 text-left">
-            <h2 className="mb-4 text-4xl font-bold leading-tight text-gray-900">
-              Siap memulai perjalanan <span className="text-primary">hijau</span> mu hari ini?
+          {/* Text */}
+          <div className="mx-8 flex-1">
+            <h2 className="max-w-lg text-[38px] font-bold leading-tight text-gray-900">
+              Siap memulai perjalanan{" "}
+              <span className="text-[#11773D]">hijau</span>mu hari ini?
             </h2>
-            <p className="text-lg text-gray-700">
-              Bersama HijauIn, setiap langkah kecilmu membawa perubahan besar untuk bumi.
+
+            <p className="mt-4 max-w-lg text-xl leading-9 text-gray-600">
+              Bersama HijauIn, setiap langkah kecilmu membawa perubahan besar
+              untuk bumi.
             </p>
           </div>
 
-          <div className="z-10 flex flex-col items-end w-1/3 gap-4">
-            <button className="bg-primary hover:bg-green-700 w-64 py-4 text-lg font-bold text-white transition rounded-full shadow-lg">
-              Daftar Gratis Sekarang &rarr;
+          {/* Button */}
+          <div className="flex flex-col gap-4">
+            <button className="flex w-[290px] items-center justify-between rounded-2xl bg-[#11773D] px-8 py-5 text-md font-semibold text-white transition hover:bg-green-800">
+              Daftar Gratis Sekarang
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#11773D]">
+                <FaArrowRight className="text-sm" />
+              </span>
             </button>
-            <button className="border-primary text-primary hover:bg-primary-light w-64 py-4 text-lg font-bold transition bg-white border-2 rounded-full">
-              Lihat Fitur Lengkap &rarr;
+
+            <button className="flex w-[290px] items-center justify-between rounded-2xl border-2 border-[#11773D] bg-white px-8 py-5 text-md font-semibold text-[#11773D] transition hover:bg-green-50">
+              Lihat Fitur Lengkap
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#11773D]">
+                <FaArrowRight className="text-sm" />
+              </span>
             </button>
           </div>
         </div>

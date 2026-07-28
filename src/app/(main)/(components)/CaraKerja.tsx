@@ -1,36 +1,154 @@
-import React from 'react'
-import Image from "next/image"
+import Image from "next/image";
+import { FaArrowRight } from "react-icons/fa";
 
-function CaraKerja() {
+const steps = [
+  {
+    num: "1",
+    src: "/assets/beranda/catataksi3.png",
+    width: 100,
+    height: 100,
+    mt: 2,
+    title: "Catat Aksi",
+    desc: (
+      <>
+        Catat aksi ramah lingkungan
+        <br />
+        yang kamu lakukan setiap hari.
+      </>
+    ),
+  },
+  {
+    num: "2",
+    src: "/assets/beranda/dapatkanpoin.png",
+    width: 200,
+    height: 200,
+    mt: 20,
+    title: "Dapatkan Poin",
+    desc: (
+      <>
+        Setiap aksi memberimu
+        <br />
+        poin dan meningkatkan
+        <br />
+        Eco Score-mu.
+      </>
+    ),
+  },
+  {
+    num: "3",
+    src: "/assets/beranda/pantaudampak.png",
+    width: 95,
+    height: 95,
+    mt: 0,
+    title: "Pantau Dampak",
+    desc: (
+      <>
+        Lihat statistik dan laporan
+        <br />
+        dampak positif dari
+        <br />
+        aksimu.
+      </>
+    ),
+  },
+  {
+    num: "4",
+    src: "/assets/beranda/ikutchallange.png",
+    width: 88,
+    height: 88,
+    mt: 4,
+    title: "Ikuti Challenge",
+    desc: (
+      <>
+        Selesaikan tantangan
+        <br />
+        seru dan dapatkan badge
+        <br />
+        serta reward.
+      </>
+    ),
+  },
+  {
+    num: "5",
+    src: "/assets/beranda/berdampakdunia.png",
+    width: 90,
+    height: 90,
+    mt: 1,
+    title: "Berdampak Nyata",
+    desc: (
+      <>
+        Bersama-sama menciptakan
+        <br />
+        perubahan positif untuk
+        <br />
+        bumi yang lebih baik.
+      </>
+    ),
+  },
+];
+
+export default function CaraKerja() {
   return (
-    <section className="px-16 text-center">
-      <h2 className="mb-20 text-4xl font-bold">
-        Cara Kerja <span className="text-primary">HijauIn</span>
+    <section className="px-16 py-9 text-center">
+      {/* Heading */}
+      <h2 className="text-[40px] font-semibold text-[#0B0F1F]">
+        Cara Kerja <span className="text-[#076635]">HijauIn</span>
       </h2>
 
-      <div className="grid *:mx-auto grid-cols-5">
-        {/* Garis putus-putus penghubung (Dotted Line) */}
-        {[
-          { num: "1", src: "/assets/beranda/catataksi3.png", title: "Catat Aksi", desc: "Catat aksi ramah lingkungan yang kamu lakukan setiap hari." },
-          { num: "2", src: "/assets/beranda/dapatkanpoin.png", title: "Dapatkan Poin", desc: "Setiap aksi memberimu poin dan meningkatkan Eco Score-mu." },
-          { num: "3", src: "/assets/beranda/pantaudampak.png", title: "Pantau Dampak", desc: "Lihat statistik dan laporan dampak positif dari aksimu." },
-          { num: "4", src: "/assets/beranda/ikutchallange.png", title: "Ikuti Challenge", desc: "Selesaikan tantangan seru dan dapatkan badge serta reward." },
-          { num: "5", src: "/assets/beranda/berdampakdunia.png", title: "Berdampak Nyata", desc: "Bersama-sama menciptakan perubahan positif untuk bumi yang lebih baik." }
-        ].map((step, idx) => (
-          <div key={idx} className="relative z-10 grid w-48 grid-rows-[auto_1fr_auto_auto] gap-6 px-2 text-center">
-            <div className="bg-primary size-10 flex items-center justify-center p-4 text-xl font-bold text-white rounded-full shadow-md">
-              {step.num}
+      {/* Steps */}
+      <div className="mt-20 flex items-start justify-between">
+        {steps.map((step, index) => (
+          <div key={step.num} className="flex items-start">
+            {/* Item */}
+            <div className="relative flex w-[200px] flex-col items-center">
+              {/* Number */}
+              <div className="absolute left-3 top-0 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-[#076635] text-sm font-bold text-white shadow-md">
+                {step.num}
+              </div>
+
+              {/* Icon */}
+              <div className="relative flex h-[120px] w-[120px] items-center justify-center">
+                {/* Ellipse hijau muda */}
+                <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,#F8FCF6_0%,#EEF8EC_55%,#E3F2DF_100%)] shadow-[0_8px_30px_rgba(109,170,94,0.12)]" />
+
+                {/* Glow putih di tengah */}
+                <div className="absolute left-1/2 top-1/2 h-[88px] w-[88px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/35 blur-md" />
+
+                <Image
+                  src={step.src}
+                  alt={step.title}
+                  width={280}
+                  height={280}
+                  className="relative z-10 object-contain"
+                  style={{
+                    width: `${step.width}px`,
+                    height: `${step.height}px`,
+                    marginTop: `${step.mt}px`,
+                  }}
+                />
+              </div>
+
+              {/* Title */}
+              <h3 className="mt-6 text-[20px] font-semibold text-[#0B0F1F]">
+                {step.title}
+              </h3>
+
+              {/* Description */}
+              <p className="mt-3 text-[14px] leading-5 text-[#667085]">
+                {step.desc}
+              </p>
             </div>
-            <div className="bg-primary-light text-primary size-50 flex justify-center rounded-full">
-              <Image className='object-cover' src={step.src} alt={step.title} width={1536} height={1024} />
-            </div>
-            <h3 className="text-xl font-bold">{step.title}</h3>
-            <p className="text-base leading-relaxed text-gray-500">{step.desc}</p>
+
+            {/* Connector */}
+            {index !== steps.length - 1 && (
+              <div className="mt-[42px] mx-10 flex items-center">
+                <div className="w-14 border-t-2 border-dashed border-[#22A75D]" />
+                <FaArrowRight className="ml-2 text-[#22A75D]" />
+              </div>
+            )}
           </div>
         ))}
       </div>
     </section>
-  )
+  );
 }
-
-export default CaraKerja

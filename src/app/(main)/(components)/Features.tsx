@@ -37,19 +37,32 @@ export default function Features() {
   return (
     <section className="px-16 py-9 text-center">
       {/* Heading */}
-      <h2 className="text-[40px] font-semibold leading-tight text-[#0B0F1F]">
+      <h2
+        data-aos="fade-up"
+        data-aos-duration="700"
+        className="text-[40px] font-semibold leading-tight text-[#0B0F1F]"
+      >
         Fitur Unggulan <span className="text-[#076635]">HijauIn</span>
       </h2>
 
-      <p className="mt-4 text-[18px] text-[#667085]">
+      {/* Subtitle */}
+      <p
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-duration="700"
+        className="mt-4 text-[18px] text-[#667085]"
+      >
         Semua yang kamu butuhkan untuk hidup lebih hijau dalam satu platform
       </p>
 
       {/* Cards */}
       <div className="mt-16 grid grid-cols-6 gap-6">
-        {features.map((feature) => (
+        {features.map((feature, index) => (
           <div
             key={feature.title}
+            data-aos="fade-up"
+            data-aos-delay={index * 150}
+            data-aos-duration="700"
             className="flex min-h-[420px] flex-col items-center rounded-2xl border border-[#ECECEC] bg-white px-7 py-10 shadow-[0_6px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
             {/* Icon */}
@@ -58,7 +71,7 @@ export default function Features() {
               alt={feature.title}
               width={260}
               height={260}
-              className="h-[260] w-[260] -mt-10 object-contain"
+              className="h-[260px] w-[260px] -mt-10 object-contain transition-transform duration-300 group-hover:scale-105"
             />
 
             {/* Title */}

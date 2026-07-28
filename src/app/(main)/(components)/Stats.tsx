@@ -35,11 +35,17 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="relative z-10 mt-5 px-16 py-16">
+    <section
+      data-aos="fade-up"
+      className="relative z-10 mt-5 px-16 py-16"
+    >
       <div className="flex items-center rounded-[25px] border border-[#ECECEC] bg-white py-8 shadow-lg">
         {stats.map((item, index) => (
           <div
             key={index}
+            data-aos="zoom-in"
+            data-aos-delay={index * 150}
+            data-aos-duration="700"
             className={`flex flex-1 items-center justify-center gap-2 px-5 ${
               index !== stats.length - 1
                 ? "border-r border-[#ECECEC]"
@@ -52,11 +58,11 @@ export default function Stats() {
               alt={item.line1}
               width={150}
               height={150}
-              className="h-[80] w-[80] -ml-15 flex-shrink-0 object-contain"
+              className="h-[80px] w-[80px] -ml-15 flex-shrink-0 object-contain"
             />
 
             {/* Text */}
-            <div className="min-w-0 ml-5">
+            <div className="ml-5 min-w-0">
               <h3 className="whitespace-nowrap text-[25px] font-bold leading-none text-[#076635]">
                 {item.value}
               </h3>

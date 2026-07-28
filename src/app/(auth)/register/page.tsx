@@ -10,8 +10,75 @@ import {
 import { FiPieChart, FiTarget, FiAward, FiUserPlus } from "react-icons/fi";
 import { IoLeaf } from "react-icons/io5";
 import Image from "next/image";
+import { supabase } from "@/utils/supabase";
+import { SubmitEvent, useState } from "react";
+import { FaRegEye } from "react-icons/fa";
 
 export default function RegisterPage() {
+
+  // Form States
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [agreeTaS, setAgreeTaS] = useState(false);
+
+  // UI States
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleSignUp = async (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Reset previous messages
+    setError("");
+    setSuccess("");
+
+    // 1. Validations
+    if (!name || !email || !password || !confirmPassword) {
+      return setError("Semua kolom wajib diisi.");
+    }
+    if (password.length < 8) {
+      return setError("Kata sandi minimal 8 karakter.");
+    }
+    if (password !== confirmPassword) {
+      return setError("Konfirmasi kata sandi tidak cocok.");
+    }
+    if (!agreeTaS) {
+      return setError("Anda harus menyetujui Syarat & Ketentuan dan Kebijakan Privasi.");
+    }
+
+    // 2. Supabase Sign Up
+    setIsLoading(true);
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+
+        data: {
+          full_name: name, // Save the name in user metadata
+        }
+      }
+    });
+    setIsLoading(false);
+
+    if (signUpError) {
+      return setError(signUpError.message);
+    }
+
+    // 3. Success state
+    setSuccess("Pendaftaran berhasil!");
+
+    // Optional: Clear form after successful registration
+    setName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+    setAgreeTaS(false);
+  };
   return (
     <div className="min-h-screen w-full relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-green-50">
       {/* Decorative blurred blobs - full page */}
@@ -23,13 +90,13 @@ export default function RegisterPage() {
         {/* Header Row - Logo left, Login link right */}
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-3">
-                  <Image
-                    src="/assets/icon.png"
-                    alt="Eco Illustration"
-                    className="w-12 h-12 object-contain"
-                    width={360}
-                    height={360}
-                  />
+            <Image
+              src="/assets/icon.png"
+              alt="Eco Illustration"
+              className="w-12 h-12 object-contain"
+              width={360}
+              height={360}
+            />
             <div>
               <h1 className="text-primary text-2xl font-bold leading-none">HijauIn</h1>
               <p className="text-sm font-medium text-gray-500 mt-1">Satu Langkah Hijau Setiap Hari</p>
@@ -82,15 +149,29 @@ export default function RegisterPage() {
               <p className="mb-8 text-base font-medium text-center text-gray-500">
                 Isi data diri kamu untuk mulai perjalanan hijau.
               </p>
-
-              <form className="flex flex-col w-full gap-5" onSubmit={(e) => e.preventDefault()}>
+              {/* Status Messages */}
+              {error && (
+                <div className="w-full p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-2xl border border-red-200">
+                  {error}
+                </div>
+              )}
+              {success && (
+                <div className="w-full p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-2xl border border-green-200">
+                  {success}
+                </div>
+              )}
+              <form className="flex flex-col w-full gap-5" onSubmit={handleSignUp}>
                 {/* Input Name */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-base font-bold text-gray-900">Nama Lengkap</label>
+                  <label htmlFor="name" className="text-base font-bold text-gray-900">Nama Lengkap</label>
                   <div className="relative">
                     <FaUser className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
                       type="text"
+                      id="name"
+                      name="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       placeholder="Masukkan nama lengkap kamu"
                       className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-4 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
@@ -99,11 +180,15 @@ export default function RegisterPage() {
 
                 {/* Input Email */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-base font-bold text-gray-900">Email</label>
+                  <label htmlFor="email" className="text-base font-bold text-gray-900">Email</label>
                   <div className="relative">
                     <FaRegEnvelope className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
                       type="email"
+                      id="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       placeholder="Masukkan email aktif kamu"
                       className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-4 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
@@ -112,16 +197,24 @@ export default function RegisterPage() {
 
                 {/* Input Password */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-base font-bold text-gray-900">Kata Sandi</label>
+                  <label htmlFor="password" className="text-base font-bold text-gray-900">Kata Sandi</label>
                   <div className="relative">
                     <FaLock className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Buat kata sandi (min. 8 karakter)"
                       className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-12 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
-                    <button type="button" className="right-4 top-1/2 hover:text-gray-600 absolute text-gray-400 transition-colors -translate-y-1/2">
-                      <FaRegEyeSlash className="w-5 h-5" />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="right-4 top-1/2 hover:text-gray-600 absolute text-gray-400 transition-colors -translate-y-1/2"
+                    >
+                      {showPassword ? <FaRegEye className="w-5 h-5" /> : <FaRegEyeSlash className="w-5 h-5" />}
                     </button>
                   </div>
                 </div>
@@ -132,12 +225,18 @@ export default function RegisterPage() {
                   <div className="relative">
                     <FaLock className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
-                      type="password"
+                      type={showConfirmPassword ? "text" : "password"}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="Konfirmasi kata sandi kamu"
                       className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-12 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
-                    <button type="button" className="right-4 top-1/2 hover:text-gray-600 absolute text-gray-400 transition-colors -translate-y-1/2">
-                      <FaRegEyeSlash className="w-5 h-5" />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="right-4 top-1/2 hover:text-gray-600 absolute text-gray-400 transition-colors -translate-y-1/2"
+                    >
+                      {showConfirmPassword ? <FaRegEye className="w-5 h-5" /> : <FaRegEyeSlash className="w-5 h-5" />}
                     </button>
                   </div>
                 </div>
@@ -145,7 +244,12 @@ export default function RegisterPage() {
                 {/* Checkbox */}
                 <div className="flex items-start gap-3 mt-2">
                   <div className="flex items-center h-6">
-                    <input type="checkbox" className="accent-primary focus:ring-primary w-5 h-5 border-gray-300 rounded cursor-pointer" />
+                    <input
+                      type="checkbox"
+                      checked={agreeTaS}
+                      onChange={(e) => setAgreeTaS(e.target.checked)}
+                      className="accent-primary focus:ring-primary w-5 h-5 border-gray-300 rounded cursor-pointer"
+                    />
                   </div>
                   <p className="text-base font-semibold text-gray-700">
                     Saya setuju dengan <Link href="#" className="text-primary hover:underline">Syarat & Ketentuan</Link> dan <Link href="#" className="text-primary hover:underline">Kebijakan Privasi</Link> HijauIn
@@ -153,8 +257,12 @@ export default function RegisterPage() {
                 </div>
 
                 {/* Submit */}
-                <button type="submit" className="bg-primary hover:bg-primary-dark rounded-2xl flex items-center justify-center w-full py-4 mt-4 text-base font-bold text-white transition-colors">
-                  Daftar Sekarang &rarr;
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="bg-primary hover:bg-primary-dark rounded-2xl flex items-center justify-center w-full py-4 mt-4 text-base font-bold text-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? "Memproses..." : "Daftar Sekarang \u2192"}
                 </button>
 
                 {/* Divider */}
@@ -174,7 +282,7 @@ export default function RegisterPage() {
                   </button>
                 </div>
 
-                                <p className="mt-4 text-base font-semibold text-center text-gray-600">
+                <p className="mt-4 text-base font-semibold text-center text-gray-600">
                   Sudah punya akun?{" "}
                   <Link
                     href="/login"

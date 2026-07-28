@@ -31,7 +31,7 @@ export default function KomunitasPage() {
         </div>
         <div className="lg:w-2/3 opacity-40 lg:opacity-100 absolute top-0 right-0 z-0 flex justify-end w-full h-full">
           <Image
-            src="https://picsum.photos/id/28/800/300"
+            src="/assets/komunitas/hero.png"
             alt="Community Landscape"
             width={800}
             height={300}

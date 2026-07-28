@@ -9,11 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "@supabase/supabase-js": "^2.109.0",
     "embla-carousel-react": "^8.6.0",
-=======
-    "@supabase/supabase-js": "^2.110.9",
->>>>>>> 339f57ce851531852f0916dca993afb637ddf318
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",

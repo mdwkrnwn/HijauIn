@@ -1,20 +1,68 @@
 "use client";
 import Link from "next/link";
+import { SubmitEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   FaApple,
   FaRegEyeSlash,
+  FaRegEye,
   FaLock,
   FaRegEnvelope,
   FaRegUser,
 } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { MdSecurity, MdPublic } from "react-icons/md";
-import { FiUsers, FiTrendingUp } from "react-icons/fi";
+import { MdSecurity } from "react-icons/md";
+import { FiTrendingUp } from "react-icons/fi";
 import { IoLeaf } from "react-icons/io5";
-import { PiTreeBold } from "react-icons/pi";
 import Image from "next/image";
+import { supabase } from "@/utils/supabase";
 
 export default function LoginPage() {
+  const router = useRouter();
+
+  // Form States
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // UI States
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleLogin = async (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Reset previous messages
+    setError("");
+    setSuccess("");
+
+    // Validation
+    if (!email || !password) {
+      return setError("Email dan kata sandi wajib diisi.");
+    }
+
+    // Supabase Sign In
+    setIsLoading(true);
+    const { data, error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    setIsLoading(false);
+
+    if (signInError) {
+      return setError("Email atau kata sandi salah. Silakan coba lagi.");
+    }
+
+    // Success State & Redirect
+    setSuccess("Login berhasil! Mengalihkan...");
+
+    // Redirect user to dashboard/home after a short delay
+    setTimeout(() => {
+      router.push("/admin");
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen w-full relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-green-50">
       {/* Decorative blurred blobs - full page */}
@@ -84,20 +132,34 @@ export default function LoginPage() {
                 Masuk untuk melanjutkan perjalanan hijau mu.
               </p>
 
+              {/* Status Messages */}
+              {error && (
+                <div className="w-full p-4 mb-6 text-sm text-red-700 bg-red-100 rounded-2xl border border-red-200">
+                  {error}
+                </div>
+              )}
+              {success && (
+                <div className="w-full p-4 mb-6 text-sm text-green-700 bg-green-100 rounded-2xl border border-green-200">
+                  {success}
+                </div>
+              )}
+
               <form
                 className="flex flex-col gap-6"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleLogin}
               >
                 {/* Input Email */}
                 <div className="flex flex-col gap-2">
                   <label className="text-base font-bold text-gray-900">
-                    Email atau Nomor Telepon
+                    Email
                   </label>
                   <div className="relative">
                     <FaRegEnvelope className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
-                      type="text"
-                      placeholder="Masukkan email atau nomor telepon"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Masukkan email terdaftar kamu"
                       className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-4 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
                   </div>
@@ -111,15 +173,18 @@ export default function LoginPage() {
                   <div className="relative">
                     <FaLock className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Masukkan kata sandi"
                       className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-12 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
                     <button
                       type="button"
+                      onClick={() => setShowPassword(!showPassword)}
                       className="right-4 top-1/2 hover:text-gray-600 absolute text-gray-400 transition-colors -translate-y-1/2"
                     >
-                      <FaRegEyeSlash className="w-5 h-5" />
+                      {showPassword ? <FaRegEye className="w-5 h-5" /> : <FaRegEyeSlash className="w-5 h-5" />}
                     </button>
                   </div>
                 </div>
@@ -137,9 +202,16 @@ export default function LoginPage() {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="bg-primary hover:bg-primary-dark rounded-2xl flex items-center justify-center w-full gap-2 py-4 mt-2 text-base font-bold text-white transition-colors"
+                  disabled={isLoading}
+                  className="bg-primary hover:bg-primary-dark rounded-2xl flex items-center justify-center w-full gap-2 py-4 mt-2 text-base font-bold text-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  <FaRegUser className="w-4 h-4" /> Masuk
+                  {isLoading ? (
+                    "Memproses..."
+                  ) : (
+                    <>
+                      <FaRegUser className="w-4 h-4" /> Masuk
+                    </>
+                  )}
                 </button>
 
                 {/* Divider */}
@@ -150,22 +222,6 @@ export default function LoginPage() {
                   </span>
                   <div className="flex-1 h-px bg-gray-200"></div>
                 </div>
-
-                {/* Social Logins */}
-                {/* <div className="flex flex-col gap-4">
-                  <button
-                    type="button"
-                    className="rounded-2xl hover:bg-gray-50 flex items-center justify-center w-full gap-3 py-4 text-base font-bold text-gray-700 transition-colors bg-white border border-gray-200"
-                  >
-                    <FcGoogle className="w-6 h-6" /> Masuk dengan Google
-                  </button>
-                  <button
-                    type="button"
-                    className="rounded-2xl hover:bg-gray-50 flex items-center justify-center w-full gap-3 py-4 text-base font-bold text-gray-700 transition-colors bg-white border border-gray-200"
-                  >
-                    <FaApple className="w-6 h-6" /> Masuk dengan Apple
-                  </button>
-                </div> */}
 
                 {/* Social Logins - Side by Side */}
                 <div className="flex gap-4">

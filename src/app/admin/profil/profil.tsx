@@ -11,8 +11,9 @@ import {
 } from "react-icons/md";
 import { FiCalendar, FiUsers } from "react-icons/fi";
 import { FaMapMarkerAlt, FaShieldAlt } from "react-icons/fa";
+import { User } from "@supabase/supabase-js";
 
-export default function Profil() {
+export default function Profil({ user }: { user: User }) {
   const [activeTab, setActiveTab] = useState<'ringkasan' | 'pengaturan'>('ringkasan');
 
   return (
@@ -35,11 +36,11 @@ export default function Profil() {
         <div className="lg:col-span-2 flex flex-col gap-6">
 
           {/* Main Profile Card */}
-          <div className="bg-primary-light/30 border border-primary-light rounded-[32px] p-8 relative overflow-hidden flex flex-col md:flex-row items-center md:items-start gap-8 shadow-sm">
+          <div className="bg-primary-light/30 border border-primary-light rounded-4xl p-8 relative overflow-hidden flex flex-col md:flex-row items-center md:items-start gap-8 shadow-sm">
             {/* Background Decoration */}
             <div className="absolute right-0 bottom-0 w-2/3 h-full pointer-events-none opacity-60 z-0 mix-blend-multiply">
               <Image
-                src="https://picsum.photos/id/29/800/400"
+                src={"https://picsum.photos/id/29/800/400"}
                 alt="Nature Background"
                 fill
                 className="object-cover mask-image-linear-gradient"
@@ -66,11 +67,15 @@ export default function Profil() {
             <div className="relative z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-4">
               <div>
                 <h2 className="text-3xl font-black text-gray-800 flex flex-wrap items-center justify-center md:justify-start gap-3 mb-3">
-                  Dwi Kurniawan
+                  {user.user_metadata?.full_name}
                   <span className="bg-primary-light text-primary text-base px-3 py-1 rounded-full font-bold">Eco Guardian</span>
                 </h2>
                 <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-base text-gray-600 font-bold mb-4">
-                  <span className="flex items-center gap-2"><FiCalendar className="w-5 h-5" /> Bergabung sejak 12 Mar 2025</span>
+                  <span className="flex items-center gap-2"><FiCalendar className="w-5 h-5" /> Bergabung sejak {new Date(user.created_at).toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                  })}</span>
                   <span className="flex items-center gap-2"><FaMapMarkerAlt className="w-5 h-5" /> Indonesia</span>
                 </div>
                 <p className="text-base text-gray-700 font-medium leading-relaxed max-w-md mb-6">
@@ -84,7 +89,7 @@ export default function Profil() {
           </div>
 
           {/* Dynamic Content Section */}
-          <div className="bg-white rounded-[32px] p-6 lg:p-8 shadow-sm flex flex-col gap-8 border border-gray-100">
+          <div className="bg-white rounded-4xl p-6 lg:p-8 shadow-sm flex flex-col gap-8 border border-gray-100">
 
             {/* Tabs */}
             <div className="flex items-center gap-8 border-b border-gray-100 overflow-x-auto">
@@ -121,8 +126,8 @@ export default function Profil() {
                 <div className="border-t border-gray-100 pt-8">
                   <h3 className="font-bold text-lg text-gray-800 mb-4">Tentang Saya</h3>
                   <div className="flex flex-col">
-                    <InfoRow icon={<FaRegEnvelope className="text-gray-400 w-5 h-5" />} label="Email" value="dwi.kurniawan@example.com" />
-                    <InfoRow icon={<FaPhone className="text-gray-400 w-5 h-5" />} label="Nomor Telepon" value="+62 812-3456-7890" />
+                    <InfoRow icon={<FaRegEnvelope className="text-gray-400 w-5 h-5" />} label="Email" value={user.email!} />
+                    <InfoRow icon={<FaPhone className="text-gray-400 w-5 h-5" />} label="Nomor Telepon" value={user.phone!.length > 0 ? user.phone! : '-'} />
                     <InfoRow icon={<FaMapMarkerAlt className="text-gray-400 w-5 h-5" />} label="Lokasi" value="Yogyakarta, Indonesia" borderBottom={false} />
                   </div>
                 </div>
@@ -156,12 +161,12 @@ export default function Profil() {
         <div className="lg:col-span-1 flex flex-col gap-6">
 
           {/* Level & Progress */}
-          <div className="bg-white rounded-[32px] p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-4xl p-6 shadow-sm border border-gray-100">
             <h3 className="font-bold text-lg text-gray-800 mb-6">Level & Progress</h3>
 
             <div className="flex items-center gap-5 mb-8">
               {/* Custom Level Hexagon Approximation */}
-              <div className="relative w-[72px] h-[72px] shrink-0 flex items-center justify-center">
+              <div className="relative w-18 h-18 shrink-0 flex items-center justify-center">
                 <div className="absolute inset-0 bg-primary rounded-xl rotate-45 transform origin-center shadow-inner"></div>
                 <div className="absolute inset-1 bg-success rounded-lg rotate-45 transform origin-center"></div>
                 <div className="relative z-10 text-3xl font-black text-white">12</div>
@@ -188,7 +193,7 @@ export default function Profil() {
           </div>
 
           {/* Badge Saya */}
-          <div className="bg-white rounded-[32px] p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-4xl p-6 shadow-sm border border-gray-100">
             <div className="flex justify-between items-center mb-6">
               <h3 className="font-bold text-lg text-gray-800">Badge Saya</h3>
               <button className="text-primary font-bold text-base hover:underline">Lihat Semua</button>
@@ -203,7 +208,7 @@ export default function Profil() {
           </div>
 
           {/* Aktivitas Terakhir */}
-          <div className="bg-white rounded-[32px] p-6 shadow-sm border border-gray-100 flex-1">
+          <div className="bg-white rounded-4xl p-6 shadow-sm border border-gray-100 flex-1">
             <div className="flex justify-between items-center mb-6">
               <h3 className="font-bold text-lg text-gray-800">Aktivitas Terakhir</h3>
               <button className="text-primary font-bold text-base hover:underline">Lihat Semua</button>
@@ -291,7 +296,7 @@ function BadgeItem({ icon, bg, label }: { icon: React.ReactNode, bg: string, lab
     <div className="flex flex-col items-center gap-2">
       <div className={`relative w-14 h-14 shrink-0 flex items-center justify-center`}>
         <div className={`absolute inset-0 bg-[#0B251C] rounded-xl rotate-45 transform origin-center shadow-md`}></div>
-        <div className={`absolute inset-[3px] ${bg} rounded-lg rotate-45 transform origin-center border border-white/20`}></div>
+        <div className={`absolute inset-0.75 ${bg} rounded-lg rotate-45 transform origin-center border border-white/20`}></div>
         <div className="relative z-10">{icon}</div>
       </div>
       <div className="font-bold text-base text-gray-800 leading-tight mt-1">{label}</div>
@@ -299,7 +304,15 @@ function BadgeItem({ icon, bg, label }: { icon: React.ReactNode, bg: string, lab
   );
 }
 
-function ActivityRow({ icon, bg, action, title, time, points, pointsColor }: any) {
+function ActivityRow({ icon, bg, action, title, time, points, pointsColor }: {
+  icon: React.ReactNode,
+  bg: string,
+  action: string,
+  title: string,
+  time: string,
+  points: string,
+  pointsColor: string,
+}) {
   return (
     <div className="flex items-center justify-between gap-4">
       <div className="flex items-start gap-4">

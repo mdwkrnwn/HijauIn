@@ -1,43 +1,36 @@
 "use client"
 import Link from "next/link";
 import {
-  FaApple, FaRegEyeSlash, FaLock, FaRegEnvelope, FaUser, FaPen
+  FaApple, FaRegEyeSlash, FaLock, FaRegEnvelope, FaUser
 } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import {
-  MdSecurity
-} from "react-icons/md";
-import { FiPieChart, FiTarget, FiAward, FiUserPlus } from "react-icons/fi";
+import { FiUserPlus } from "react-icons/fi";
 import { IoLeaf } from "react-icons/io5";
 import Image from "next/image";
-import { supabase } from "@/utils/supabase";
-import { SubmitEvent, useState } from "react";
+import { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
+import { signUpUser } from "../actions/signUp";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
+  const router = useRouter();
 
-  // Form States
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agreeTaS, setAgreeTaS] = useState(false);
 
-  // UI States
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleSignUp = async (e: SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // Reset previous messages
+  const handleSignUp = async (formData: FormData) => {
     setError("");
     setSuccess("");
 
-    // 1. Validations
     if (!name || !email || !password || !confirmPassword) {
       return setError("Semua kolom wajib diisi.");
     }
@@ -51,28 +44,29 @@ export default function RegisterPage() {
       return setError("Anda harus menyetujui Syarat & Ketentuan dan Kebijakan Privasi.");
     }
 
-    // 2. Supabase Sign Up
     setIsLoading(true);
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
+    try {
+      const result = await signUpUser(formData);
 
-        data: {
-          full_name: name, // Save the name in user metadata
-        }
+      if (!result?.success) {
+        setError(result.message);
+        setIsLoading(false);
+        return;
       }
-    });
+
+      setSuccess("Login berhasil! Mengalihkan...");
+
+      setTimeout(() => {
+        router.push("/login");
+      }, 1000);
+
+    } catch (err) {
+      setError("Terjadi kesalahan sistem. Silakan coba lagi.");
+      setIsLoading(false);
+    }
     setIsLoading(false);
 
-    if (signUpError) {
-      return setError(signUpError.message);
-    }
-
-    // 3. Success state
     setSuccess("Pendaftaran berhasil!");
-
-    // Optional: Clear form after successful registration
     setName("");
     setEmail("");
     setPassword("");
@@ -80,7 +74,7 @@ export default function RegisterPage() {
     setAgreeTaS(false);
   };
   return (
-    <div className="min-h-screen w-full relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-green-50">
+    <div className="min-h-screen w-full relative overflow-hidden bg-linear-to-br from-green-50 via-white to-green-50">
       {/* Decorative blurred blobs - full page */}
       <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -top-24 -right-24 w-80 h-80 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
@@ -126,7 +120,7 @@ export default function RegisterPage() {
             </div>
 
             {/* Illustration - no frame, blends with background */}
-            <div className="relative w-full h-[520px] lg:h-[680px]">
+            <div className="relative w-full h-130 lg:h-170">
               <Image
                 src="/assets/register/main.jpeg"
                 alt="Eco Illustration"
@@ -160,7 +154,7 @@ export default function RegisterPage() {
                   {success}
                 </div>
               )}
-              <form className="flex flex-col w-full gap-5" onSubmit={handleSignUp}>
+              <form className="flex flex-col w-full gap-5" action={handleSignUp}>
                 {/* Input Name */}
                 <div className="flex flex-col gap-2">
                   <label htmlFor="name" className="text-base font-bold text-gray-900">Nama Lengkap</label>
@@ -245,15 +239,16 @@ export default function RegisterPage() {
                 <div className="flex items-start gap-3 mt-2">
                   <div className="flex items-center h-6">
                     <input
+                      id="ToS"
                       type="checkbox"
                       checked={agreeTaS}
                       onChange={(e) => setAgreeTaS(e.target.checked)}
                       className="accent-primary focus:ring-primary w-5 h-5 border-gray-300 rounded cursor-pointer"
                     />
                   </div>
-                  <p className="text-base font-semibold text-gray-700">
+                  <label htmlFor="ToS" className="text-base font-semibold text-gray-700">
                     Saya setuju dengan <Link href="#" className="text-primary hover:underline">Syarat & Ketentuan</Link> dan <Link href="#" className="text-primary hover:underline">Kebijakan Privasi</Link> HijauIn
-                  </p>
+                  </label>
                 </div>
 
                 {/* Submit */}

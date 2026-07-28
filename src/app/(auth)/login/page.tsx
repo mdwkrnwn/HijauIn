@@ -15,52 +15,52 @@ import { MdSecurity } from "react-icons/md";
 import { FiTrendingUp } from "react-icons/fi";
 import { IoLeaf } from "react-icons/io5";
 import Image from "next/image";
-import { supabase } from "@/utils/supabase";
+import { loginUser } from "../actions/login";
 
 export default function LoginPage() {
   const router = useRouter();
 
-  // Form States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // UI States
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleLogin = async (e: SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // Reset previous messages
+  const handleLogin = async (formData: FormData) => {
     setError("");
     setSuccess("");
 
-    // Validation
-    if (!email || !password) {
+    const formEmail = formData.get("email");
+    const formPassword = formData.get("password");
+
+
+    if (!formEmail || !formPassword) {
       return setError("Email dan kata sandi wajib diisi.");
     }
 
-    // Supabase Sign In
     setIsLoading(true);
-    const { data, error: signInError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    setIsLoading(false);
 
-    if (signInError) {
-      return setError("Email atau kata sandi salah. Silakan coba lagi.");
+    try {
+      const result = await loginUser(formData);
+
+      if (!result?.success) {
+        setError(result.message);
+        setIsLoading(false);
+        return;
+      }
+
+      setSuccess("Login berhasil! Mengalihkan...");
+
+      setTimeout(() => {
+        router.push("/admin");
+      }, 1000);
+
+    } catch (err) {
+      setError("Terjadi kesalahan sistem. Silakan coba lagi.");
+      setIsLoading(false);
     }
-
-    // Success State & Redirect
-    setSuccess("Login berhasil! Mengalihkan...");
-
-    // Redirect user to dashboard/home after a short delay
-    setTimeout(() => {
-      router.push("/admin");
-    }, 1000);
   };
 
   return (
@@ -146,7 +146,7 @@ export default function LoginPage() {
 
               <form
                 className="flex flex-col gap-6"
-                onSubmit={handleLogin}
+                action={handleLogin}
               >
                 {/* Input Email */}
                 <div className="flex flex-col gap-2">
@@ -157,6 +157,7 @@ export default function LoginPage() {
                     <FaRegEnvelope className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
                       type="email"
+                      name="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Masukkan email terdaftar kamu"
@@ -174,6 +175,7 @@ export default function LoginPage() {
                     <FaLock className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
                       type={showPassword ? "text" : "password"}
+                      name="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Masukkan kata sandi"

@@ -1,13 +1,18 @@
-import React from 'react'
+"use server"
+import { redirect } from 'next/navigation';
 import Profil from './profil';
-import { supabase } from '@/utils/supabase';
+import { createClient } from '@/utils/supabase.server';
 
 const ProfilePage = async () => {
-  const { data } = await supabase.auth.getUser();
-  console.log(data);
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return redirect('/login')
+  }
+
 
   return (
-    <Profil />
+    <Profil user={user!} />
   )
 }
 

@@ -157,7 +157,7 @@ export function Komunitas({ communities }: { communities: Community[] }) {
   ];
 
   return (
-    <main className="bg-white flex flex-col items-center w-full pb-24">
+    <main className="bg-white flex flex-col items-center w-full gap-12 pb-24">
       {/* Hero Section */}
       <section className="relative w-full h-175 flex items-center px-16 bg-white overflow-hidden">
         {/* Background */}
@@ -227,7 +227,7 @@ export function Komunitas({ communities }: { communities: Community[] }) {
       <section
         data-aos="fade-up"
         data-aos-duration="800"
-        className=" relative z-20 w-full -mt-10 px-16 mx-auto">
+        className="relative z-20 w-full -mt-10 px-16 mx-auto">
         <div className="flex overflow-hidden rounded-[22px] border border-[#EEF2F1] bg-white shadow-md">
           {[
             {
@@ -281,7 +281,7 @@ export function Komunitas({ communities }: { communities: Community[] }) {
       </section>
 
       {/* Jelajahi Komunitas Hijau */}
-      <section className=" relative w-full px-16 py-24 mx-auto">
+      <section className=" relative w-full px-16 mx-auto">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <h2
@@ -316,7 +316,7 @@ export function Komunitas({ communities }: { communities: Community[] }) {
                 <Link
                   href={'/komunitas/' + com.id}
                   data-aos="fade-up"
-                  data-aos-delay={idx * 120}
+                  data-aos-delay={idx * 150}
                   data-aos-duration="800"
                   key={com.id}
                   className="group relative overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
@@ -378,7 +378,7 @@ export function Komunitas({ communities }: { communities: Community[] }) {
       </section>
 
       {/* Kegiatan Mendatang */}
-      <section className=" w-full px-16 pb-24 mx-auto">
+      <section className="w-full px-16 mx-auto">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <h2
@@ -405,7 +405,7 @@ export function Komunitas({ communities }: { communities: Community[] }) {
             <div
               key={idx}
               data-aos="fade-up"
-              data-aos-delay={idx * 140}
+              data-aos-delay={idx * 150}
               data-aos-duration="800"
               className="group overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
             >
@@ -487,7 +487,7 @@ export function Komunitas({ communities }: { communities: Community[] }) {
       </section>
 
       {/* Kenapa Gabung Komunitas */}
-      <section className="w-full bg-white py-24">
+      <section className="w-full bg-white">
         <div className=" mx-auto px-16">
           {/* Header */}
           <div className="mb-14">
@@ -548,7 +548,7 @@ export function Komunitas({ communities }: { communities: Community[] }) {
       </section>
 
       {/* Bottom CTA Section */}
-      <section className=" w-full px-16 pb-24 mx-auto">
+      <section className="w-full px-16 mx-auto">
         <div className="relative overflow-hidden rounded-[22px] bg-linear-to-r from-[#0D4E2E] to-[#0B4A2A] shadow-lg">
           <div className="flex h-113.75">
             {/* LEFT IMAGE */}

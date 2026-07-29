@@ -1,22 +1,6 @@
 // src/app/tentang/page.tsx
 import Image from "next/image";
-import {
-  FaLeaf,
-  FaBullseye,
-  FaEye,
-  FaHeart,
-  FaCheckCircle,
-  FaUsers,
-  FaChartBar,
-  FaGlobe,
-  FaArrowRight,
-  FaTree,
-  FaCheck,
-  FaMobileAlt,
-  FaShieldAlt,
-  FaRegCheckCircle,
-  FaNetworkWired,
-} from "react-icons/fa";
+import { FaLeaf, FaCheckCircle, FaArrowRight, FaCheck } from "react-icons/fa";
 
 const values = [
   {
@@ -140,59 +124,93 @@ const features = [
 
 export default function TentangKami() {
   return (
-    <div className="bg-white flex flex-col items-center w-full pb-24">
+    <main className="bg-white flex flex-col items-center w-full pb-24">
       {/* Hero Section */}
-      <section className="max-w-1080p relative flex flex-col items-center justify-center w-full px-16 pt-24 pb-16 mx-auto overflow-hidden bg-white">
-        <div className="flex items-center justify-between w-full mb-16">
+      <section className="max-w-1080p relative mx-auto flex w-full flex-col items-center justify-center overflow-hidden bg-white px-16 pt-24 pb-16">
+        <div className="mb-16 flex w-full items-center justify-between">
           {/* Left Text Content */}
           <div className="z-10 w-1/2 pr-12">
             {/* Badge */}
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full  bg-[#F2FAF3] px-4 py-2 text-base font-semibold text-[#11773D]">
+            <div
+              data-aos="fade-down"
+              data-aos-duration="700"
+              className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#F2FAF3] px-4 py-2 text-base font-semibold text-[#11773D]"
+            >
               <FaLeaf className="text-base" />
               Tentang HijauIn
             </div>
 
             {/* Heading */}
-            <h1 className="mb-6 text-[60px] font-bold leading-[1.12] tracking-[-0.03em] text-[#0B0F1F]">
+            <h1
+              data-aos="fade-right"
+              data-aos-delay="150"
+              data-aos-duration="900"
+              className="mb-6 text-[60px] font-bold leading-[1.12] tracking-[-0.03em] text-[#0B0F1F]"
+            >
               Teknologi untuk
               <br />
               Hidup yang <span className="text-[#11773D]">Lebih Hijau</span>
             </h1>
 
             {/* Description */}
-            <p className="mb-8 max-w-[520px] text-[18px] leading-9 text-[#667085]">
+            <p
+              data-aos="fade-right"
+              data-aos-delay="300"
+              data-aos-duration="900"
+              className="mb-8 max-w-[520px] text-[18px] leading-9 text-[#667085]"
+            >
               HijauIn adalah platform digital yang menghubungkan teknologi,
               kebiasaan positif, dan komunitas untuk menciptakan dampak nyata
               bagi bumi dan generasi mendatang.
             </p>
 
             {/* Button */}
-            <button className="flex h-[54px] items-center gap-2 rounded-xl border border-[#11773D] bg-white px-7 text-[16px] font-semibold text-[#11773D] transition hover:bg-[#F4FAF5]">
+            <button
+              data-aos="fade-up"
+              data-aos-delay="450"
+              data-aos-duration="800"
+              className="flex h-[54px] items-center gap-2 rounded-xl border border-[#11773D] bg-white px-7 text-[16px] font-semibold text-[#11773D] transition hover:bg-[#F4FAF5]"
+            >
               Misi Kami
               <FaArrowRight className="text-[13px]" />
             </button>
           </div>
 
           {/* Right Image Content */}
-          <div className="h-125 relative z-10 w-1/2">
-            {/* Decorative Background Blob behind image */}
-            <div className="top-1/2 left-1/2 w-150 h-150 bg-primary-light/50 -z-10 blur-3xl absolute -translate-x-1/2 -translate-y-1/2 rounded-full"></div>
+          <div
+            data-aos="fade-left"
+            data-aos-delay="200"
+            data-aos-duration="1000"
+            className="relative z-10 h-125 w-1/2"
+          >
+            {/* Decorative Background Blob */}
+            <div className="bg-primary-light/50 absolute top-1/2 left-1/2 -z-10 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"></div>
+
             <Image
               src="/assets/tentang-kami/hero.png"
               alt="Sustainable City"
               fill
               className="object-contain"
             />
-            <FaLeaf className="top-10 text-primary opacity-40 -rotate-12 absolute left-0 text-5xl transform" />
-            <FaLeaf className="bottom-20 right-10 text-primary opacity-30 absolute text-6xl transform rotate-45" />
+
+            <FaLeaf className="text-primary absolute top-10 left-0 -rotate-12 transform text-5xl opacity-40" />
+            <FaLeaf className="text-primary absolute right-10 bottom-20 rotate-45 transform text-6xl opacity-30" />
           </div>
         </div>
 
-        <div className="z-20 w-full overflow-hidden rounded-[22px] border border-[#EEF2F1] bg-white shadow-md">
+        {/* Value Cards */}
+        <div
+          data-aos="fade-up"
+          data-aos-duration="800"
+          className="z-20 w-full overflow-hidden rounded-[22px] border border-[#EEF2F1] bg-white shadow-md"
+        >
           <div className="grid grid-cols-3">
             {values.map((item, index) => (
               <div
                 key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 150}
+                data-aos-duration="800"
                 className={`flex gap-5 p-8 ${
                   index !== values.length - 1 ? "border-r border-[#EEF2F1]" : ""
                 }`}
@@ -225,18 +243,22 @@ export default function TentangKami() {
       </section>
 
       {/* Misi, Visi & Nilai Kami */}
-      <section className="max-w-1080p relative w-full overflow-hidden rounded-[22px] bg-white px-16 py-20 mx-auto">
+      <section className="max-w-1080p relative mx-auto w-full overflow-hidden rounded-[22px] bg-white px-16 py-20">
         {/* Decoration */}
-        <div className="absolute -left-12 bottom-0 h-28 w-28 rounded-full bg-[#EEF8F1] blur-2xl opacity-70" />
-        <div className="absolute -right-10 top-0 h-28 w-28 rounded-full bg-[#EEF8F1] blur-2xl opacity-70" />
+        <div className="absolute -bottom-0 -left-12 h-28 w-28 rounded-full bg-[#EEF8F1] opacity-70 blur-2xl" />
+        <div className="absolute -right-10 top-0 h-28 w-28 rounded-full bg-[#EEF8F1] opacity-70 blur-2xl" />
 
         {/* Header */}
-        <div className="mb-8 flex items-center gap-1">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="800"
+          className="mb-8 flex items-center gap-1"
+        >
           <h2 className="text-[30px] font-bold text-[#0B0F1F]">
             Misi, Visi & Nilai Kami
           </h2>
 
-          <FaLeaf className="text-[#11773D] text-lg" />
+          <FaLeaf className="text-lg text-[#11773D]" />
         </div>
 
         {/* Cards */}
@@ -244,6 +266,9 @@ export default function TentangKami() {
           {missions.map((item, index) => (
             <div
               key={index}
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
+              data-aos-duration="800"
               className="rounded-[20px] border border-[#E8ECEA] bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               {/* Header */}
@@ -292,12 +317,16 @@ export default function TentangKami() {
       {/* Perjalanan HijauIn */}
       <section className="max-w-1080p mx-auto w-full bg-white px-16 py-24">
         {/* Header */}
-        <div className="mb-14 flex items-center gap-1">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="800"
+          className="mb-14 flex items-center gap-1"
+        >
           <h2 className="text-[30px] font-bold text-[#0B0F1F]">
             Perjalanan <span className="text-[#11773D]">HijauIn</span>
           </h2>
 
-          <FaLeaf className="text-[#11773D] text-lg" />
+          <FaLeaf className="text-lg text-[#11773D]" />
         </div>
 
         {/* Timeline */}
@@ -305,16 +334,19 @@ export default function TentangKami() {
           {/* Green line */}
           <div className="absolute left-[70px] right-[90px] top-[34px] h-[2px] bg-[#11773D]" />
 
-          {/* dashed end */}
+          {/* Dashed end */}
           <div className="absolute right-6 top-[34px] h-[2px] w-16 border-t-2 border-dashed border-[#11773D]" />
 
-          {/* arrow */}
+          {/* Arrow */}
           <FaArrowRight className="absolute right-0 top-[28px] text-[14px] text-[#11773D]" />
 
           <div className="grid grid-cols-5">
             {journey.map((item, index) => (
               <div
                 key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 180}
+                data-aos-duration="800"
                 className="flex flex-col items-center text-center"
               >
                 {/* Circle */}
@@ -344,22 +376,33 @@ export default function TentangKami() {
       </section>
 
       {/* Dampak yang Telah Kami Ciptakan */}
-      <section className="max-w-1080p w-full px-16 py-20 mx-auto">
+      <section className="max-w-1080p mx-auto w-full px-16 py-20">
         {/* Header */}
-        <div className="mb-8 flex items-center gap-1">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="800"
+          className="mb-8 flex items-center gap-1"
+        >
           <h2 className="text-[30px] font-bold text-[#0B0F1F]">
             Dampak yang Telah Kami Ciptakan
           </h2>
 
-          <FaLeaf className="text-[#11773D] text-lg" />
+          <FaLeaf className="text-lg text-[#11773D]" />
         </div>
 
         {/* Card */}
-        <div className="overflow-hidden rounded-[20px] border border-[#E8ECEA] bg-white shadow-sm">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="800"
+          className="overflow-hidden rounded-[20px] border border-[#E8ECEA] bg-white shadow-sm"
+        >
           <div className="grid grid-cols-5">
             {stats.map((item, index) => (
               <div
                 key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 150}
+                data-aos-duration="800"
                 className={`flex items-center gap-4 px-6 py-7 ${
                   index !== stats.length - 1 ? "border-r border-[#EEF2F1]" : ""
                 }`}
@@ -390,8 +433,13 @@ export default function TentangKami() {
       </section>
 
       {/* Mengapa HijauIn Section */}
-      <section className="max-w-1080p bg-gray-50 flex items-center w-full gap-16 px-16 py-24 mx-auto">
-        <div className="h-175 relative w-1/2">
+      <section className="max-w-1080p mx-auto flex w-full items-center gap-16 bg-gray-50 px-16 py-24">
+        {/* Left Image */}
+        <div
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          className="relative h-175 w-1/2"
+        >
           <Image
             src="/assets/tentang-kami/hp.png"
             alt="App Preview"
@@ -399,14 +447,20 @@ export default function TentangKami() {
             className="object-contain"
           />
         </div>
+
+        {/* Right Content */}
         <div className="w-1/2 pr-8">
           {/* Header */}
-          <div className="mb-8 flex items-center gap-1">
+          <div
+            data-aos="fade-left"
+            data-aos-duration="800"
+            className="mb-8 flex items-center gap-1"
+          >
             <h2 className="text-[35px] font-semibold text-[#0B0F1F]">
               Mengapa <span className="text-[#11773D]">HijauIn?</span>
             </h2>
 
-            <FaLeaf className="text-[#11773D] text-lg" />
+            <FaLeaf className="text-lg text-[#11773D]" />
           </div>
 
           {/* List */}
@@ -414,6 +468,9 @@ export default function TentangKami() {
             {features.map((item, index) => (
               <div
                 key={index}
+                data-aos="fade-left"
+                data-aos-delay={index * 150}
+                data-aos-duration="800"
                 className="flex items-center rounded-[18px] border border-[#E8ECEA] bg-white px-6 py-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
               >
                 {/* Icon */}
@@ -452,7 +509,11 @@ export default function TentangKami() {
       <section className="max-w-1080p mx-auto w-full px-16 pt-12 pb-24">
         <div className="relative flex h-[220px] overflow-hidden rounded-[22px] border border-[#E8ECEA] bg-[#F5FBF6] px-10 shadow-sm">
           {/* Left Illustration */}
-          <div className="absolute bottom-0 left-8 z-10 h-[350px] w-[280px]">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            className="absolute bottom-0 left-8 z-10 h-[350px] w-[280px]"
+          >
             <Image
               src="/assets/tentang-kami/cta.png"
               alt="CTA"
@@ -463,7 +524,12 @@ export default function TentangKami() {
           </div>
 
           {/* Content */}
-          <div className="ml-[300px] flex w-[42%] flex-col justify-center">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="200"
+            data-aos-duration="900"
+            className="ml-[300px] flex w-[42%] flex-col justify-center"
+          >
             <h2 className="mb-4 text-[24px] font-bold leading-[1.35] text-[#0B0F1F]">
               Yuk, wujudkan masa depan
               <br />
@@ -479,7 +545,12 @@ export default function TentangKami() {
           </div>
 
           {/* Buttons */}
-          <div className="flex w-[20%] flex-col justify-center gap-4">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="350"
+            data-aos-duration="900"
+            className="flex w-[20%] flex-col justify-center gap-4"
+          >
             <button className="group flex h-[48px] items-center justify-center gap-3 rounded-xl bg-[#11773D] px-6 text-[16px] font-semibold text-white transition hover:bg-[#0E6534]">
               Daftar Gratis Sekarang
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15">
@@ -497,6 +568,9 @@ export default function TentangKami() {
 
           {/* Right Leaves */}
           <Image
+            data-aos="fade-left"
+            data-aos-delay="500"
+            data-aos-duration="900"
             src="/assets/tentang-kami/duan.png"
             alt="Leaves"
             width={120}
@@ -505,6 +579,6 @@ export default function TentangKami() {
           />
         </div>
       </section>
-    </div>
+    </main>
   );
 }

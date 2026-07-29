@@ -4,13 +4,8 @@ import {
   FaUsers,
   FaLeaf,
   FaGlobeAsia,
-  FaCalendarAlt,
   FaMapMarkerAlt,
   FaSeedling,
-  FaHeart,
-  FaLightbulb,
-  FaTrophy,
-  FaChartLine,
   FaUserPlus,
   FaChevronRight,
   FaRegClock,
@@ -155,43 +150,63 @@ export default function Komunitas() {
   ];
 
   return (
-    <div className="bg-white flex flex-col items-center w-full pb-24">
+    <main className="bg-white flex flex-col items-center w-full pb-24">
       {/* Hero Section */}
       <section className="relative w-full h-[700px] flex items-center px-16 bg-white overflow-hidden">
-        {/* Background & Gradient */}
+        {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/assets/komunitas/hero.png"
             alt="Community Hero"
             fill
             className="object-cover"
+            priority
           />
-          <div className="bg-gradient-to-r from-white via-white/90 to-transparent absolute inset-0 w-3/4"></div>
+          <div className="absolute inset-0 w-3/4 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
         </div>
 
         {/* Content */}
         <div className="relative z-10 -mt-10 w-full max-w-[560px]">
           {/* Badge */}
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#F2FAF3] px-4 py-2 text-base font-semibold text-[#11773D]">
+          <div
+            data-aos="fade-down"
+            data-aos-duration="700"
+            className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#F2FAF3] px-4 py-2 text-base font-semibold text-[#11773D]"
+          >
             <FaLeaf className="text-base" />
             Komunitas HijauIn
           </div>
 
           {/* Heading */}
-          <h1 className="mb-6 text-[60px] font-bold leading-[1.08] tracking-[-0.03em] text-[#0B0F1F]">
+          <h1
+            data-aos="fade-right"
+            data-aos-delay="150"
+            data-aos-duration="900"
+            className="mb-6 text-[60px] font-bold leading-[1.08] tracking-[-0.03em] text-[#0B0F1F]"
+          >
             Bersama Kita Bisa
             <br />
             <span className="text-[#11773D]">Mengubah Dunia</span>
           </h1>
 
           {/* Description */}
-          <p className="mb-8 max-w-[470px] text-[18px] leading-9 text-[#4B5563]">
+          <p
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="900"
+            className="mb-8 max-w-[470px] text-[18px] leading-9 text-[#4B5563]"
+          >
             Gabung dengan komunitas hijau di seluruh Indonesia, berbagi aksi,
             inspirasi, dan ciptakan dampak positif untuk bumi kita.
           </p>
 
-          {/* Button */}
-          <div className="flex items-center gap-4">
+          {/* Buttons */}
+          <div
+            data-aos="fade-up"
+            data-aos-delay="450"
+            data-aos-duration="900"
+            className="flex items-center gap-4"
+          >
             <button className="flex h-[56px] items-center gap-2 rounded-xl bg-[#11773D] px-7 text-[16px] font-semibold text-white transition hover:bg-[#0E6534]">
               <FaUserPlus className="text-[15px]" />
               Gabung Komunitas
@@ -206,7 +221,11 @@ export default function Komunitas() {
       </section>
 
       {/* Stats Section */}
-      <section className="max-w-1080p relative z-20 w-full -mt-10 px-16 mx-auto">
+      <section
+        className="max-w-1080p relative z-20 w-full -mt-10 mx-auto px-16"
+        data-aos="fade-up"
+        data-aos-duration="800"
+      >
         <div className="flex overflow-hidden rounded-[22px] border border-[#EEF2F1] bg-white shadow-md">
           {[
             {
@@ -232,11 +251,14 @@ export default function Komunitas() {
           ].map((stat, idx) => (
             <div
               key={idx}
-              className="flex flex-1 items-center justify-center gap-4 py-8 "
+              data-aos="fade-up"
+              data-aos-delay={idx * 150}
+              data-aos-duration="800"
+              className="flex flex-1 items-center justify-center gap-4 py-8"
             >
               {/* Icon */}
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F3FAF4]">
-                <div className="text-[#11773D] text-[45px] -ml-5">
+                <div className="-ml-5 text-[45px] text-[#11773D]">
                   {stat.icon}
                 </div>
               </div>
@@ -257,15 +279,24 @@ export default function Komunitas() {
       </section>
 
       {/* Jelajahi Komunitas Hijau */}
-      <section className="max-w-1080p relative w-full px-16 py-24 mx-auto">
+      <section className="max-w-1080p relative w-full mx-auto px-16 py-24">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
-          <h2 className="flex items-center gap-1 text-[30px] font-bold text-[#0B0F1F]">
+          <h2
+            data-aos="fade-right"
+            data-aos-duration="800"
+            className="flex items-center gap-1 text-[30px] font-bold text-[#0B0F1F]"
+          >
             Jelajahi Komunitas Hijau
-            <FaLeaf className="text-[#11773D] text-lg" />
+            <FaLeaf className="text-lg text-[#11773D]" />
           </h2>
 
-          <button className="flex items-center gap-1 text-sm font-semibold text-[#11773D] transition hover:gap-2">
+          <button
+            data-aos="fade-left"
+            data-aos-delay="150"
+            data-aos-duration="800"
+            className="flex items-center gap-1 text-sm font-semibold text-[#11773D] transition hover:gap-2"
+          >
             Lihat Semua Komunitas
             <FaChevronRight className="text-[11px]" />
           </button>
@@ -276,7 +307,10 @@ export default function Komunitas() {
             {communities.map((com, idx) => (
               <div
                 key={idx}
-                className="group relative overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+                data-aos="fade-up"
+                data-aos-delay={idx * 120}
+                data-aos-duration="800"
+                className="group relative cursor-pointer overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 {/* Thumbnail */}
                 <div className="relative h-[195px] overflow-hidden rounded-t-[18px]">
@@ -322,22 +356,36 @@ export default function Komunitas() {
           </div>
 
           {/* Arrow */}
-          <button className="absolute right-[-22px] top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition hover:scale-105">
+          <button
+            data-aos="zoom-in"
+            data-aos-delay="700"
+            data-aos-duration="700"
+            className="absolute right-[-22px] top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition hover:scale-105"
+          >
             <FaChevronRight className="text-[#0B0F1F]" />
           </button>
         </div>
       </section>
 
       {/* Kegiatan Mendatang */}
-      <section className="max-w-1080p w-full px-16 pb-24 mx-auto">
+      <section className="max-w-1080p w-full mx-auto px-16 pb-24">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
-          <h2 className="flex items-center gap-1 text-[30px] font-bold text-[#0B0F1F]">
+          <h2
+            data-aos="fade-right"
+            data-aos-duration="800"
+            className="flex items-center gap-1 text-[30px] font-bold text-[#0B0F1F]"
+          >
             Kegiatan Mendatang
-            <FaLeaf className="text-[#11773D] text-lg" />
+            <FaLeaf className="text-lg text-[#11773D]" />
           </h2>
 
-          <button className="flex items-center gap-1 text-sm font-semibold text-[#11773D] transition hover:gap-2">
+          <button
+            data-aos="fade-left"
+            data-aos-delay="150"
+            data-aos-duration="800"
+            className="flex items-center gap-1 text-sm font-semibold text-[#11773D] transition hover:gap-2"
+          >
             Lihat Semua Kegiatan
             <FaChevronRight className="text-[11px]" />
           </button>
@@ -348,7 +396,10 @@ export default function Komunitas() {
           {events.map((act, idx) => (
             <div
               key={idx}
-              className="group overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+              data-aos="fade-up"
+              data-aos-delay={idx * 140}
+              data-aos-duration="800"
+              className="group cursor-pointer overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               {/* Thumbnail */}
               <div className="relative h-[205px] overflow-hidden">
@@ -380,13 +431,13 @@ export default function Komunitas() {
 
                 {/* Location */}
                 <div className="mb-2 flex items-center gap-2 text-[13px] text-[#667085]">
-                  <FaMapMarkerAlt className="text-[#11773D] text-[12px]" />
+                  <FaMapMarkerAlt className="text-[12px] text-[#11773D]" />
                   {act.loc}
                 </div>
 
                 {/* Time */}
                 <div className="mb-5 flex items-center gap-2 text-[13px] text-[#667085]">
-                  <FaRegClock className="text-[#11773D] text-[12px]" />
+                  <FaRegClock className="text-[12px] text-[#11773D]" />
                   {act.time}
                 </div>
 
@@ -432,7 +483,11 @@ export default function Komunitas() {
         <div className="max-w-1080p mx-auto px-16">
           {/* Header */}
           <div className="mb-14">
-            <h2 className="flex items-center gap-1 text-[30px] font-bold text-[#0B0F1F]">
+            <h2
+              data-aos="fade-right"
+              data-aos-duration="800"
+              className="flex items-center gap-1 text-[30px] font-bold text-[#0B0F1F]"
+            >
               Kenapa Gabung Komunitas HijauIn?
               <FaLeaf className="text-[#11773D] text-lg" />
             </h2>
@@ -443,6 +498,9 @@ export default function Komunitas() {
             {impacts.map((item, index) => (
               <div
                 key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 150}
+                data-aos-duration="800"
                 className="relative flex flex-col items-center px-5 text-center"
               >
                 {/* Divider */}
@@ -483,11 +541,15 @@ export default function Komunitas() {
       </section>
 
       {/* Bottom CTA Section */}
-      <section className="max-w-1080p w-full px-16 pb-24 mx-auto">
+      <section className="max-w-1080p mx-auto w-full px-16 pb-24">
         <div className="relative overflow-hidden rounded-[22px] bg-gradient-to-r from-[#0D4E2E] to-[#0B4A2A] shadow-lg">
           <div className="flex h-[455px]">
             {/* LEFT IMAGE */}
-            <div className="relative w-[34%] overflow-hidden">
+            <div
+              data-aos="fade-right"
+              data-aos-duration="900"
+              className="relative w-[34%] overflow-hidden"
+            >
               <Image
                 src="/assets/komunitas/yukjadi.png"
                 alt="Join Community"
@@ -501,11 +563,16 @@ export default function Komunitas() {
             </div>
 
             {/* CENTER */}
-            <div className="flex w-[36%] flex-col justify-center px-8 text-white">
+            <div
+              data-aos="fade-up"
+              data-aos-delay="150"
+              data-aos-duration="900"
+              className="flex w-[36%] flex-col justify-center px-8 text-white"
+            >
               <h2 className="mb-4 text-[44px] font-medium leading-[1.35]">
                 Yuk, jadi bagian dari
                 <br />
-                <span className="text-[#94D497]">gerakan perubahan!</span> 
+                <span className="text-[#94D497]">gerakan perubahan!</span>
               </h2>
 
               <p className="mb-8 text-[15px] leading-7 text-[#C6D5CC]">
@@ -513,7 +580,12 @@ export default function Komunitas() {
                 masa depan bumi yang lebih baik.
               </p>
 
-              <div className="flex gap-3">
+              <div
+                data-aos="fade-up"
+                data-aos-delay="350"
+                data-aos-duration="800"
+                className="flex gap-3"
+              >
                 <button className="flex h-[46px] items-center gap-2 rounded-xl bg-[#1D8641] px-6 text-[14px] font-medium text-white transition hover:bg-[#2F8E48]">
                   Gabung Sekarang
                   <FaUserPlus className="text-[13px]" />
@@ -527,48 +599,73 @@ export default function Komunitas() {
             </div>
 
             {/* RIGHT PANEL */}
-            <div className="flex w-[30%] items-center pr-6">
+            <div
+              data-aos="fade-left"
+              data-aos-delay="250"
+              data-aos-duration="900"
+              className="flex w-[30%] items-center pr-6"
+            >
               <div className="w-full rounded-2xl bg-[#1B5B39]/90 p-6">
                 <h3 className="mb-5 text-[17px] font-medium text-white">
                   Aktivitas Komunitas Hari Ini
                 </h3>
 
                 <div className="space-y-5">
-                  <div className="flex items-center justify-between">
+                  <div
+                    data-aos="fade-left"
+                    data-aos-delay="350"
+                    className="flex items-center justify-between"
+                  >
                     <span className="flex items-center gap-3 text-[14px] text-[#D8E7DE]">
                       <FaLeaf className="text-[#9FE870]" />
                       Aksi Hijau
                     </span>
+
                     <span className="text-[28px] font-semibold text-white">
                       245
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div
+                    data-aos="fade-left"
+                    data-aos-delay="450"
+                    className="flex items-center justify-between"
+                  >
                     <span className="flex items-center gap-3 text-[14px] text-[#D8E7DE]">
                       <FaCloud className="text-[#9FE870]" />
                       CO₂ Berhasil Dikurangi
                     </span>
+
                     <span className="text-[28px] font-semibold text-white">
                       2.340 kg
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div
+                    data-aos="fade-left"
+                    data-aos-delay="550"
+                    className="flex items-center justify-between"
+                  >
                     <span className="flex items-center gap-3 text-[14px] text-[#D8E7DE]">
                       <FaTrashAlt className="text-[#9FE870]" />
                       Sampah Terkumpul
                     </span>
+
                     <span className="text-[28px] font-semibold text-white">
                       1.250 kg
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div
+                    data-aos="fade-left"
+                    data-aos-delay="650"
+                    className="flex items-center justify-between"
+                  >
                     <span className="flex items-center gap-3 text-[14px] text-[#D8E7DE]">
                       <FaTree className="text-[#9FE870]" />
                       Pohon Ditanam
                     </span>
+
                     <span className="text-[28px] font-semibold text-white">
                       320
                     </span>
@@ -579,6 +676,6 @@ export default function Komunitas() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

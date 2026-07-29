@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import { Poppins } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Metadata } from "next/types";
+import "aos/dist/aos.css";
+import AOSProvider from "@/utils/aos.provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -12,12 +14,12 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'HijauIn',
-  description: 'Skibidi respect',
+  title: "HijauIn",
+  description: "Skibidi respect",
   icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/icon.png',
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
@@ -33,8 +35,8 @@ export default function RootLayout({
       >
         <NextTopLoader color="#0E5F35" showSpinner />
         <Navbar />
-        <main className="grow bg-background w-full mx-auto mb-16">
-          {children}
+        <main className="grow w-full mx-auto mb-16">
+          <AOSProvider>{children}</AOSProvider>
         </main>
         <Footer />
       </body>

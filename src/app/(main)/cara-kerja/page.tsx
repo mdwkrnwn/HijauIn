@@ -160,10 +160,12 @@ const features = [
 
 export default function HowItWorks() {
   return (
-    <div className="flex flex-col bg-white items-center w-full">
+    <div className="flex flex-col bg-white items-center w-full overflow-hidden">
       {/* Header Section */}
       <section className=" relative flex w-full px-16 pt-24 overflow-hidden text-left">
-        <div className="w-1/2">
+        <div className="w-1/2" data-aos="fade-right">
+          {" "}
+          {/* Muncul dari kanan */}
           <div className="text-[#11773D] inline-flex items-center gap-2 px-4 py-2 mb-8 text-base font-semibold bg-white rounded-full shadow-sm">
             <FaCheckCircle /> Cara Kerja HijauIn
           </div>
@@ -181,7 +183,13 @@ export default function HowItWorks() {
             Lihat Fitur Lengkap &rarr;
           </button>
         </div>
-        <div className="h-150 relative w-1/2 mx-auto overflow-hidden">
+        <div
+          className="h-150 relative w-1/2 mx-auto overflow-hidden"
+          data-aos="fade-left"
+          data-aos-delay="200"
+        >
+          {" "}
+          {/* Muncul dari kiri, sedikit terlambat */}
           <Image
             src="/assets/cara-kerja/her.png"
             alt="App Mockup"
@@ -194,11 +202,12 @@ export default function HowItWorks() {
       {/* 5 Steps Diagram */}
       <section className="w-full px-16 py-24">
         {/* Heading */}
-        <div className="mb-16 text-center">
+        <div className="mb-16 text-center" data-aos="fade-up">
+          {" "}
+          {/* Judul muncul dari bawah */}
           <h2 className="text-4xl font-bold text-gray-900">
             Bagaimana <span className="text-[#11773D]">HijauIn</span> Bekerja?
           </h2>
-
           <p className="mt-3 text-lg text-gray-500">
             <span className="font-semibold text-[#11773D]">HijauIn</span>{" "}
             bekerja dalam 5 langkah sederhana yang saling terhubung.
@@ -208,12 +217,15 @@ export default function HowItWorks() {
         {/* Timeline */}
         <div className="relative flex justify-between">
           {/* Garis */}
+          {/* Garis ini statis, tapi kita bisa membuatnya seolah-olah tumbuh */}
           <div className="absolute top-[17px] left-0 right-0 border-t-2 border-dashed border-gray-300" />
 
-          {steps.map((step) => (
+          {steps.map((step, index) => (
             <div
               key={step.num}
               className="relative z-10 flex w-56 flex-col items-center text-center"
+              data-aos="fade-up"
+              data-aos-delay={index * 150} // Efek stagger (bergantian)
             >
               {/* Nomor */}
               <div className="mb-10 flex h-9 w-9 items-center justify-center rounded-full bg-[#046B06] text-sm font-bold text-white shadow">
@@ -221,7 +233,9 @@ export default function HowItWorks() {
               </div>
 
               {/* Lingkaran */}
-              <div className="mb-6 flex h-28 w-28 items-center justify-center rounded-full bg-[#F1F8F2] shadow-sm">
+              <div className="mb-6 flex h-28 w-28 items-center justify-center rounded-full bg-[#F1F8F2] shadow-sm transition-transform duration-300 hover:scale-110">
+                {" "}
+                {/* Tambah hover scale sedikit */}
                 <Image
                   src={step.icon}
                   alt={step.title}
@@ -246,11 +260,12 @@ export default function HowItWorks() {
       {/* System Flow */}
       <section className="w-full px-16 py-24">
         {/* Heading */}
-        <div className="text-center">
+        <div className="text-center" data-aos="fade-up">
+          {" "}
+          {/* Judul muncul dari bawah */}
           <h2 className="text-4xl font-bold">
             Alur Sistem <span className="text-[#11773D]">HijauIn</span>
           </h2>
-
           <p className="mt-3 text-lg text-gray-500">
             Data dan informasi mengalir untuk memberikan pengalaman terbaik.
           </p>
@@ -261,7 +276,11 @@ export default function HowItWorks() {
           {flows.map((item, index) => (
             <div key={index} className="flex items-start">
               {/* Node */}
-              <div className="flex w-40 flex-col items-center text-center">
+              <div
+                className="flex w-40 flex-col items-center text-center"
+                data-aos="zoom-in" // Efek membesar
+                data-aos-delay={index * 200} // Stagger delay
+              >
                 <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[#F2F8F2]">
                   <Image
                     src={item.icon}
@@ -285,7 +304,11 @@ export default function HowItWorks() {
 
               {/* Arrow */}
               {index < flows.length - 1 && (
-                <div className="mx-5 mt-10">
+                <div
+                  className="mx-5 mt-10"
+                  data-aos="fade-left" // Panah muncul dari kiri ke kanan
+                  data-aos-delay={index * 200 + 100} // Sedikit lebih lambat dari nodenya
+                >
                   <FaArrowRight className="text-lg text-[#11773D]" />
                 </div>
               )}
@@ -295,25 +318,31 @@ export default function HowItWorks() {
       </section>
 
       {/* Perjalanan Aksi Pengguna */}
-      <section className="w-full px-16 pt-24">
-        <div className="text-center">
+      <section className="w-full px-16 pt-24 overflow-hidden">
+        {" "}
+        {/* overflow-hidden penting di sini */}
+        <div className="text-center" data-aos="fade-up">
           <h2 className="text-4xl font-bold">Perjalanan Aksi Pengguna</h2>
 
           <p className="mt-4 text-xl text-gray-500">
             Contoh perjalanan aksi hijau dalam 1 minggu.
           </p>
         </div>
-
         {/* Cards */}
         <div className="relative mt-14">
           {/* timeline */}
           <div className="absolute bottom-[-22px] left-0 right-0 border-t-2 border-dashed border-gray-200"></div>
 
           <div className="flex justify-between gap-4">
-            {journeys.map((item) => (
-              <div key={item.day} className="flex w-full flex-col items-center">
+            {journeys.map((item, index) => (
+              <div
+                key={item.day}
+                className="flex w-full flex-col items-center"
+                data-aos="fade-left" // Muncul dari samping bergantian
+                data-aos-delay={index * 100}
+              >
                 {/* card */}
-                <div className="relative w-full rounded-2xl border border-gray-100 bg-white px-4 pb-8 pt-10 shadow-sm">
+                <div className="relative w-full rounded-2xl border border-gray-100 bg-white px-4 pb-8 pt-10 shadow-sm transition-shadow hover:shadow-md">
                   {/* hari */}
                   <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-md bg-[#11773D] px-5 py-1 text-sm font-bold text-white">
                     {item.day}
@@ -343,14 +372,21 @@ export default function HowItWorks() {
                 </div>
 
                 {/* titik timeline */}
-                <div className="relative z-10 mt-8 h-3 w-3 rounded-full bg-[#11773D]"></div>
+                <div
+                  className="relative z-10 mt-8 h-3 w-3 rounded-full bg-[#11773D]"
+                  data-aos="zoom-in" // Titik muncul dengan zoom
+                  data-aos-delay={index * 100 + 150} // Sedikit lebih lambat dari kartu
+                ></div>
               </div>
             ))}
           </div>
         </div>
-
         {/* Banner */}
-        <div className="relative mt-16 mx-auto flex max-w-6xl items-center justify-between overflow-hidden rounded-[40px]  bg-white px-10 py-8">
+        <div
+          className="relative mt-16 mx-auto flex max-w-6xl items-center justify-between overflow-hidden rounded-[40px]  bg-white px-10 py-8"
+          data-aos="flip-up" // Efek membalik dari bawah ke atas
+          data-aos-delay="300"
+        >
           {/* Ellipse Background */}
           <div className="absolute left-0 top-1/2 h-56 w-[1020px] -translate-y-1/2 rounded-full bg-[#EEF8EE]" />
 
@@ -393,17 +429,19 @@ export default function HowItWorks() {
 
       {/* Mengapa Cara Ini Efektif */}
       <section className="w-full bg-white px-16 pt-24">
-        <div className="mb-16 text-center">
+        <div className="mb-16 text-center" data-aos="fade-up">
           <h2 className="text-4xl font-bold text-gray-900">
             Mengapa Cara Ini Efektif?
           </h2>
         </div>
 
         <div className="grid grid-cols-4 gap-8">
-          {features.map((item) => (
+          {features.map((item, index) => (
             <div
               key={item.title}
               className="rounded-3xl border border-gray-200 bg-white px-6 py-5 shadow-[0_2px_10px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              data-aos="fade-up" // Kartu muncul dari bawah bergantian
+              data-aos-delay={index * 100}
             >
               {/* Header */}
               <div className="flex items-center gap-4">
@@ -436,16 +474,22 @@ export default function HowItWorks() {
       </section>
 
       {/* CTA Bottom Section */}
-      <section className="w-full bg-white px-16 py-24">
+      <section className="w-fit bg-white px-16 py-24">
         <div
           className="mx-auto flex items-center justify-between overflow-hidden rounded-[32px] border border-green-100 px-8 py-6"
           style={{
             background:
               "linear-gradient(90deg, #F8FCF8 0%, #FFFFFF 45%, #F8FCF8 100%)",
           }}
+          data-aos="zoom-in" // Seluruh kotak CTA membesar pelan
+          data-aos-duration="1000"
         >
           {/* Left Image */}
-          <div className="relative w-[360px] shrink-0">
+          <div
+            className="relative w-[360px] shrink-0"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
             <Image
               src="/assets/cara-kerja/siapmulai.png"
               alt=""
@@ -456,7 +500,7 @@ export default function HowItWorks() {
           </div>
 
           {/* Text */}
-          <div className="mx-8 flex-1">
+          <div className="mx-8 flex-1" data-aos="fade-up" data-aos-delay="400">
             <h2 className="max-w-lg text-[38px] font-bold leading-tight text-gray-900">
               Siap memulai perjalanan{" "}
               <span className="text-[#11773D]">hijau</span>mu hari ini?
@@ -469,7 +513,11 @@ export default function HowItWorks() {
           </div>
 
           {/* Button */}
-          <div className="flex flex-col gap-4">
+          <div
+            className="flex flex-col gap-4"
+            data-aos="fade-left"
+            data-aos-delay="600"
+          >
             <button className="flex w-[290px] items-center justify-between rounded-2xl bg-[#11773D] px-8 py-5 text-md font-semibold text-white transition hover:bg-green-800">
               Daftar Gratis Sekarang
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#11773D]">

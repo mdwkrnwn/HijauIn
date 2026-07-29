@@ -91,7 +91,11 @@ export default function CaraKerja() {
   return (
     <section className="px-16 py-9 text-center">
       {/* Heading */}
-      <h2 className="text-[40px] font-semibold text-[#0B0F1F]">
+      <h2
+        data-aos="fade-up"
+        data-aos-duration="700"
+        className="text-[40px] font-semibold text-[#0B0F1F]"
+      >
         Cara Kerja <span className="text-[#076635]">HijauIn</span>
       </h2>
 
@@ -100,7 +104,12 @@ export default function CaraKerja() {
         {steps.map((step, index) => (
           <div key={step.num} className="flex items-start">
             {/* Item */}
-            <div className="relative flex w-[200px] flex-col items-center">
+            <div
+              data-aos="fade-up"
+              data-aos-delay={index * 180}
+              data-aos-duration="700"
+              className="group relative flex w-[200px] flex-col items-center"
+            >
               {/* Number */}
               <div className="absolute left-3 top-0 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-[#076635] text-sm font-bold text-white shadow-md">
                 {step.num}
@@ -108,10 +117,8 @@ export default function CaraKerja() {
 
               {/* Icon */}
               <div className="relative flex h-[120px] w-[120px] items-center justify-center">
-                {/* Ellipse hijau muda */}
                 <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,#F8FCF6_0%,#EEF8EC_55%,#E3F2DF_100%)] shadow-[0_8px_30px_rgba(109,170,94,0.12)]" />
 
-                {/* Glow putih di tengah */}
                 <div className="absolute left-1/2 top-1/2 h-[88px] w-[88px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/35 blur-md" />
 
                 <Image
@@ -119,7 +126,7 @@ export default function CaraKerja() {
                   alt={step.title}
                   width={280}
                   height={280}
-                  className="relative z-10 object-contain"
+                  className="relative z-10 object-contain transition-transform duration-300 group-hover:scale-105"
                   style={{
                     width: `${step.width}px`,
                     height: `${step.height}px`,
@@ -141,7 +148,12 @@ export default function CaraKerja() {
 
             {/* Connector */}
             {index !== steps.length - 1 && (
-              <div className="mt-[42px] mx-10 flex items-center">
+              <div
+                data-aos="fade-right"
+                data-aos-delay={index * 180 + 100}
+                data-aos-duration="600"
+                className="mx-10 mt-[42px] flex items-center"
+              >
                 <div className="w-14 border-t-2 border-dashed border-[#22A75D]" />
                 <FaArrowRight className="ml-2 text-[#22A75D]" />
               </div>

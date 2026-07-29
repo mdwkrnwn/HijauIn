@@ -89,12 +89,16 @@ export default function Testimoni() {
       emblaApi.off("select", onSelect);
     };
   }, [emblaApi]);
+
   return (
     <section className="px-16 py-25">
-      <div className="rounded-[30px] bg-[#F8F9F9] p-8 shadow-[0_10px_35px_rgba(0,0,0,.06)]">
+      <div
+        data-aos="fade-up"
+        className="rounded-[30px] bg-[#F8F9F9] p-8 shadow-[0_10px_35px_rgba(0,0,0,.06)]"
+      >
         <div className="flex gap-8">
           {/* LEFT */}
-          <div className="w-[24%]">
+          <div data-aos="fade-right" className="w-[24%]">
             <h2 className="text-[28px] font-semibold leading-tight text-[#0B0F1F]">
               Komunitas <span className="text-[#076635]">Hijau,</span>
               <br />
@@ -106,8 +110,12 @@ export default function Testimoni() {
               hijau untuk bumi yang lebih baik.
             </p>
 
-            <button className="mt-8 flex h-15 items-center gap-3 rounded-xl border border-[#B7E0C1] px-6 text-[16px] font-semibold text-[#076635] hover:bg-green-50">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EAF8EE]">
+            <button
+              data-aos="zoom-in"
+              data-aos-delay="200"
+              className="group mt-8 flex h-15 items-center gap-3 rounded-xl border border-[#B7E0C1] px-6 text-[16px] font-semibold text-[#076635] transition-all duration-300 hover:-translate-y-1 hover:bg-green-50"
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EAF8EE] transition-transform duration-300 group-hover:scale-110">
                 <FaUsers className="text-[20px]" />
               </div>
               Gabung Komunitas
@@ -115,28 +123,33 @@ export default function Testimoni() {
           </div>
 
           {/* CENTER */}
-          <div className="w-[48%]">
+          <div data-aos="fade-up" data-aos-delay="150" className="w-[48%]">
             <div className="mb-5 flex items-center justify-between">
               <h3 className="text-[22px] font-semibold">
                 Kegiatan Komunitas Terbaru
               </h3>
 
-              <button className="flex items-center gap-2 text-[16px] font-semibold text-[#076635]">
+              <button className="group flex items-center gap-2 text-[16px] font-semibold text-[#076635]">
                 Lihat Semua
-                <FaArrowRight className="text-xs" />
+                <FaArrowRight className="text-xs transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </div>
 
             <div className="grid grid-cols-3 gap-4">
-              {activities.map((item) => (
-                <div key={item.title}>
-                  <div className="relative">
-                    <div className="relative h-[150px] w-full overflow-hidden rounded-2xl">
+              {activities.map((item, index) => (
+                <div
+                  key={item.title}
+                  data-aos="fade-up"
+                  data-aos-delay={index * 150}
+                  className="group"
+                >
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <div className="relative h-[150px] w-full">
                       <Image
                         src={item.img}
                         alt={item.title}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                     </div>
 
@@ -164,17 +177,23 @@ export default function Testimoni() {
           </div>
 
           {/* RIGHT */}
-          <div className="w-[28%] ml-10">
-            <h3 className="mb-6  text-[22px] font-semibold">Kata Mereka</h3>
+          <div
+            data-aos="fade-left"
+            data-aos-delay="300"
+            className="ml-10 w-[28%]"
+          >
+            <h3 className="mb-6 text-[22px] font-semibold">Kata Mereka</h3>
 
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
-                {slides.map((group, index) => (
-                  <div key={index} className="min-w-full space-y-5">
-                    {group.map((item) => (
+                {slides.map((group, slideIndex) => (
+                  <div key={slideIndex} className="min-w-full space-y-5">
+                    {group.map((item, cardIndex) => (
                       <div
                         key={item.name}
-                        className="rounded-2xl bg-[#FCFCFC] p-5"
+                        data-aos="fade-left"
+                        data-aos-delay={cardIndex * 150}
+                        className="rounded-2xl bg-[#FCFCFC] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                       >
                         <div className="flex items-start gap-4">
                           <Image
@@ -212,15 +231,19 @@ export default function Testimoni() {
               </div>
             </div>
 
-            <div className="mt-6 flex justify-center gap-2">
+            <div
+              data-aos="fade-up"
+              data-aos-delay="450"
+              className="mt-6 flex justify-center gap-2"
+            >
               {slides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => emblaApi?.scrollTo(index)}
-                  className={`h-2 w-2 rounded-full transition-all ${
+                  className={`h-2 rounded-full transition-all ${
                     selectedIndex === index
-                      ? "bg-[#22A75D] w-5"
-                      : "bg-[#A5D6B0]"
+                      ? "w-5 bg-[#22A75D]"
+                      : "w-2 bg-[#A5D6B0]"
                   }`}
                 />
               ))}

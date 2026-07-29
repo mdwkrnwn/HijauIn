@@ -9,10 +9,12 @@ const ProfilePage = async () => {
   if (!user) {
     return redirect('/login')
   }
+  const { data: userProfiles } = await supabase.from('profiles').select("*").eq('id', user.id).single()
+
 
 
   return (
-    <Profil user={user!} />
+    <Profil user={user!} userProfiles={userProfiles} />
   )
 }
 

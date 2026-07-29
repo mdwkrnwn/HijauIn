@@ -13,7 +13,20 @@ import { FiCalendar, FiUsers } from "react-icons/fi";
 import { FaMapMarkerAlt, FaShieldAlt } from "react-icons/fa";
 import { User } from "@supabase/supabase-js";
 
-export default function Profil({ user }: { user: User }) {
+export default function Profil({ user, userProfiles }: {
+  user: User, userProfiles: {
+    id: string
+    full_name: string
+    avatar_url: string
+    bio: any
+    city: any
+    eco_score: number
+    level: number
+    xp: number
+    streak: number
+    created_at: string
+  }
+}) {
   const [activeTab, setActiveTab] = useState<'ringkasan' | 'pengaturan'>('ringkasan');
 
   return (
@@ -38,13 +51,13 @@ export default function Profil({ user }: { user: User }) {
           {/* Main Profile Card */}
           <div className="bg-primary-light/30 border border-primary-light rounded-4xl p-8 relative overflow-hidden flex flex-col md:flex-row items-center md:items-start gap-8 shadow-sm">
             {/* Background Decoration */}
-            <div className="absolute right-0 bottom-0 w-2/3 h-full pointer-events-none opacity-60 z-0 mix-blend-multiply">
+            <div className="absolute w-full h-full -right-1/5  pointer-events-none opacity-50 z-0 mix-blend-multiply">
               <Image
-                src={"https://picsum.photos/id/29/800/400"}
+                src={"/assets/challange/main.png"}
                 alt="Nature Background"
                 fill
                 className="object-cover mask-image-linear-gradient"
-                style={{ maskImage: 'linear-gradient(to left, black, transparent), linear-gradient(to top, black, transparent)' }}
+                style={{ maskImage: 'linear-gradient(to left, black, transparent)' }}
               />
             </div>
 
@@ -52,8 +65,8 @@ export default function Profil({ user }: { user: User }) {
             <div className="relative z-10 shrink-0">
               <div className="w-32 h-32 rounded-full border-4 border-white bg-white overflow-hidden shadow-sm relative">
                 <Image
-                  src="https://picsum.photos/id/1005/200/200"
-                  alt="Dwi Kurniawan"
+                  src={userProfiles.avatar_url ?? "/assets/beranda/ava1.png"}
+                  alt={user.user_metadata.full_name}
                   fill
                   className="object-cover"
                 />
@@ -76,7 +89,7 @@ export default function Profil({ user }: { user: User }) {
                     month: 'short',
                     year: 'numeric'
                   })}</span>
-                  <span className="flex items-center gap-2"><FaMapMarkerAlt className="w-5 h-5" /> Indonesia</span>
+                  <span className="flex items-center gap-2"><FaMapMarkerAlt className="w-5 h-5" /> {userProfiles.city ?? "Indonesia"}</span>
                 </div>
                 <p className="text-base text-gray-700 font-medium leading-relaxed max-w-md mb-6">
                   Berusaha menjadi versi terbaik untuk bumi dengan langkah kecil setiap hari.

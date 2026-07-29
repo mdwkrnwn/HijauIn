@@ -48,7 +48,7 @@ const features = [
 
 export default function Hero() {
   return (
-    <section className="flex items-center px-16 py-24">
+    <section className="flex items-center px-16 ">
       {/* Left */}
       <div className="w-[42%]">
         {/* Badge */}
@@ -86,10 +86,10 @@ export default function Hero() {
       {/* Right */}
       <div className="relative w-[58%]">
         <Image
-          src="/assets/fitur/main.png"
+          src="/assets/fitur/her.png"
           alt="Semua Fitur HijauIn"
-          width={1492}
-          height={1054}
+          width={2000}
+          height={2000}
           priority
           className="h-auto w-full object-contain"
         />

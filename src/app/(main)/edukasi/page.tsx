@@ -18,7 +18,7 @@ import {
 
 const topics = [
   {
-    icon: <FaRecycle className="text-primary text-sm" />,
+    icon: <FaRecycle className="text-[#11773D] text-sm" />,
     label: "Sampah & Daur Ulang",
   },
   {
@@ -30,7 +30,7 @@ const topics = [
     label: "Hemat Air",
   },
   {
-    icon: <FaLeaf className="text-primary text-sm" />,
+    icon: <FaLeaf className="text-[#11773D] text-sm" />,
     label: "Gaya Hidup Hijau",
   },
   {
@@ -42,30 +42,29 @@ const topics = [
 const videos = [
   {
     img: "/assets/edukasi/energi.png",
-    title: "Energi Terbarukan untuk Masa Depan",
+    title: "Energi Terbarukan untuk\nMasa Depan",
     dur: "06:45",
     views: "1.4K ditonton",
   },
   {
     img: "/assets/edukasi/3r.png",
-    title: "3R: Reduce, Reuse, Recycle",
+    title: "3R: Reduce, Reuse,\nRecycle",
     dur: "05:30",
     views: "2.3K ditonton",
   },
   {
-    img: "/assets/edukasi/laut.png",
-    title: "Cara Menanam Pohon dengan Benar",
+    img: "/assets/edukasi/caramenanampohon.png",
+    title: "Cara Menanam Pohon\ndengan Benar",
     dur: "07:12",
     views: "1.9K ditonton",
   },
   {
-    img: "/assets/edukasi/caramenanampohon.png",
-    title: "Lindungi Laut, Lindungi Kehidupan",
+    img: "/assets/edukasi/laut.png",
+    title: "Lindungi Laut, Lindungi\nKehidupan",
     dur: "04:58",
     views: "1.8K ditonton",
   },
 ];
-
 const categories = [
   {
     icon: "/assets/edukasi/daur.png",
@@ -101,30 +100,30 @@ const categories = [
 
 const infographics = [
   {
-    img: "/assets/edukasi/kaki.png",
+    img: "/assets/edukasi/kak.png",
     title: "Jejak Karbon",
-    desc: "Apa itu dan bagaimana menguranginya?",
+    desc: "Apa itu dan bagaimana\n menguranginya?",
     views: "1.2K dilihat",
     bg: "bg-[#f0fdf4]",
   },
   {
     img: "/assets/edukasi/air.png",
     title: "Hemat Air",
-    desc: "Mulai dari hal kecil di rumah",
+    desc: "Mulai dari hal kecil\n di rumah",
     views: "980 dilihat",
     bg: "bg-[#f0f9ff]",
   },
   {
     img: "/assets/edukasi/daur.png",
     title: "Daur Ulang",
-    desc: "Proses sederhana, dampak luar biasa",
+    desc: "Proses sederhana,\n dampak luar biasa",
     views: "1.5K dilihat",
     bg: "bg-[#f7fee7]",
   },
   {
     img: "/assets/edukasi/pohon.png",
     title: "Manfaat Menanam Pohon",
-    desc: "Untuk bumi yang lebih baik",
+    desc: "Untuk bumi yang\n lebih baik",
     views: "1.8K dilihat",
     bg: "bg-[#ecfdf5]",
   },
@@ -138,16 +137,16 @@ export default function EdukasiUtama() {
         {/* Left Content */}
         <div className="z-10 flex w-[55%] mb-30 flex-col justify-center">
           {/* Badge */}
-          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#F2FAF3] px-3 py-1.5 text-sm font-semibold text-primary">
+          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#F2FAF3] px-3 py-1.5 text-sm font-semibold text-[#11773D]">
             <FaLeaf className="text-xs" />
             Edukasi Hijau
           </div>
 
           {/* Heading */}
-          <h1 className="mb-6 text-[60px] font-extrabold leading-[1.08] tracking-tight text-gray-900">
+          <h1 className="mb-6 text-[60px] font-bold leading-[1.08] tracking-tight text-[#0B0F1F]">
             Belajar, Peduli,
             <br />
-            Aksi <span className="text-primary">untuk Bumi</span>
+            Aksi <span className="text-[#11773D]">untuk Bumi</span>
           </h1>
 
           {/* Description */}
@@ -163,21 +162,19 @@ export default function EdukasiUtama() {
               className="flex-1 px-6 text-base outline-none"
             />
 
-            <button className="flex h-14 w-14 items-center justify-center bg-primary text-white">
+            <button className="flex h-14 w-14 items-center justify-center bg-[#] text-white">
               <FaSearch />
             </button>
           </div>
 
           {/* Popular */}
-          <p className="mb-4 text-base font-semibold text-primary">
-            Topik Populer
-          </p>
+          <p className="mb-4 text-base font-semibold text-[#0B0F1F]">Topik Populer</p>
 
           <div className="flex flex-wrap gap-3">
             {topics.map((topic, index) => (
               <button
                 key={index}
-                className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-primary hover:bg-primary-light hover:text-primary"
+                className="flex items-center h-[55px] gap-2 rounded-full border border-gray-100 bg-[#F4F7F4] px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-[#] hover:bg-[#]-light hover:text-[#]"
               >
                 {topic.icon}
                 <span>{topic.label}</span>
@@ -202,19 +199,19 @@ export default function EdukasiUtama() {
       {/* Rekomendasi untuk Kamu */}
       <section className="max-w-1080p w-full px-16 py-16 mx-auto">
         <div className="flex items-end justify-between mb-12">
-          <h2 className="text-4xl font-bold text-gray-900">
-            Rekomendasi untuk Kamu <FaLeaf className="text-primary inline" />
+          <h2 className="text-3xl font-bold text-[#0B0F1F]">
+            Rekomendasi untuk Kamu <FaLeaf className="text-[#11773D] inline" />
           </h2>
-          <button className="text-primary hover:underline flex items-center gap-2 text-lg font-bold">
+          <button className="text-[#11773D] hover:underline flex items-center gap-2 text-lg font-bold">
             Lihat Semua <FaChevronRight className="text-base" />
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-4 gap-6">
           {[
             {
               img: "/assets/edukasi/edu1.png",
               tag: "Edukasi",
-              title: "Mengenal Jenis Sampah dan Cara Mengelolanya",
+              title: "Mengenal Jenis Sampah\n dan Cara Mengelolanya",
               desc: "Memahami jenis sampah adalah langkah awal untuk mengelola sampah dengan benar.",
               time: "5 menit baca",
               view: "1.2K dibaca",
@@ -222,7 +219,7 @@ export default function EdukasiUtama() {
             {
               img: "/assets/edukasi/edu2.png",
               tag: "Panduan",
-              title: "10 Cara Hemat Energi di Rumah",
+              title: "10 Cara Hemat Energi\n di Rumah",
               desc: "Langkah sederhana yang bisa kamu lakukan untuk menghemat energi setiap hari.",
               time: "4 menit baca",
               view: "980 dibaca",
@@ -230,7 +227,7 @@ export default function EdukasiUtama() {
             {
               img: "/assets/edukasi/edu3.png",
               tag: "Tips",
-              title: "Kurangi Plastik Sekali Pakai dalam 7 Hari",
+              title: "Kurangi Plastik Sekali Pakai\n dalam 7 Hari",
               desc: "Tantangan 7 hari untuk mengurangi penggunaan plastik sekali pakai.",
               time: "3 menit baca",
               view: "2.1K dibaca",
@@ -238,7 +235,7 @@ export default function EdukasiUtama() {
             {
               img: "/assets/edukasi/edu4.png",
               tag: "Edukasi",
-              title: "Pentingnya Menjaga Ekosistem Laut",
+              title: "Pentingnya Menjaga\n Ekosistem Laut",
               desc: "Laut adalah sumber kehidupan. Yuk, jaga bersama kelestariannya!",
               time: "6 menit baca",
               view: "1.6K dibaca",
@@ -246,32 +243,35 @@ export default function EdukasiUtama() {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="rounded-3xl hover:shadow-xl group flex flex-col overflow-hidden transition bg-white border border-gray-200 cursor-pointer"
+              className="group overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
             >
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-80 overflow-hidden">
                 <Image
                   src={item.img}
                   alt={item.title}
                   fill
                   className="object-cover transition duration-500 group-hover:scale-105"
                 />
-                <div className="top-4 left-4 bg-white/90 backdrop-blur text-primary absolute px-4 py-2 text-base font-bold rounded-lg shadow-sm">
+                <div className="absolute left-4 top-4 rounded-full bg-[#CFEEC6] px-3 py-1 text-xs font-semibold text-[#3E8D2F]">
                   {item.tag}
                 </div>
               </div>
-              <div className="grow flex flex-col p-8">
-                <h3 className="mb-4 text-xl font-bold leading-snug text-gray-900">
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="mb-2 whitespace-pre-line text-[22px] font-bold leading-[1.25] text-[#0B0F1F]">
                   {item.title}
                 </h3>
-                <p className="grow mb-8 text-base leading-relaxed text-gray-600">
+                <p className="mb-5 flex-1 text-sm leading-6 text-[#667085]">
                   {item.desc}
                 </p>
-                <div className="text-primary bg-primary-light/40 rounded-xl flex items-center justify-between px-4 py-2 text-base font-bold">
-                  <span className="flex items-center gap-2">
-                    <FaClock /> {item.time}
+                <div className="flex items-center justify-between border-t border-[#EEF2F1] pt-4 text-xs font-medium text-[#6B7280]">
+                  <span className="flex items-center gap-1.5">
+                    <FaClock className="text-[11px] text-[#7CB342]" />
+                    {item.time}
                   </span>
-                  <span className="flex items-center gap-2">
-                    <FaEye /> {item.view}
+
+                  <span className="flex items-center gap-1.5">
+                    <FaEye className="text-[11px] text-[#7CB342]" />
+                    {item.view}
                   </span>
                 </div>
               </div>
@@ -281,37 +281,42 @@ export default function EdukasiUtama() {
       </section>
 
       {/* Kategori Edukasi */}
-      <section className="bg-gray-50 w-full py-24">
+      <section className="bg-white w-full py-24">
         <div className="max-w-1080p px-16 mx-auto">
-          <div className="flex items-end justify-between mb-12">
-            <h2 className="text-4xl font-bold text-gray-900">
-              Kategori Edukasi <FaLeaf className="text-primary inline" />
+          <div className="mb-8 flex items-center justify-between">
+            <h2 className="flex items-center gap-1 text-[30px] font-bold text-[#0B0F1F]">
+              Kategori Edukasi
+              <FaLeaf className="text-[#11773D] text-lg" />
             </h2>
-            <button className="text-primary hover:underline flex items-center gap-2 text-lg font-bold">
-              Lihat Semua Kategori <FaChevronRight className="text-base" />
+
+            <button className="flex items-center gap-1 text-sm font-semibold text-[#11773D] transition hover:gap-2">
+              Lihat Semua Kategori
+              <FaChevronRight className="text-[11px]" />
             </button>
           </div>
-          <div className="grid grid-cols-6 gap-6">
+          <div className="grid grid-cols-6 gap-5">
             {categories.map((cat, idx) => (
               <div
                 key={idx}
-                className="group flex min-h-[220px] cursor-pointer flex-col items-center justify-center rounded-[32px] border border-gray-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+                className="group flex h-[190px] cursor-pointer flex-col items-center justify-center rounded-[18px] border border-[#EEF2F1] bg-[#F5F8F6] px-5 py-6 text-center  transition-all duration-300 hover:-translate-y-1 hover:border-[#11773D]/20 hover:shadow-md"
               >
-                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#F4FAF5]">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#F2F8F3]">
                   <Image
                     src={cat.icon}
                     alt={cat.name}
-                    width={48}
-                    height={48}
+                    width={200}
+                    height={200}
                     className="object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
 
-                <h3 className="mb-2 text-lg font-bold leading-tight text-gray-900">
+                <h3 className="mb-2 text-[15px] font-semibold leading-5 text-[#0B0F1F]">
                   {cat.name}
                 </h3>
 
-                <p className="text-base text-gray-500">{cat.count}</p>
+                <p className="text-[13px] font-medium text-[#11773D]">
+                  {cat.count}
+                </p>
               </div>
             ))}
           </div>
@@ -320,42 +325,50 @@ export default function EdukasiUtama() {
 
       {/* Video Edukasi Pilihan */}
       <section className="max-w-1080p w-full px-16 py-24 mx-auto">
-        <div className="flex items-end justify-between mb-12">
-          <h2 className="text-4xl font-bold text-gray-900">
-            Video Edukasi Pilihan <FaLeaf className="text-primary inline" />
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="flex items-center gap-1 text-[30px] font-bold text-[#0B0F1F]">
+            Video Edukasi Pilihan
+            <FaLeaf className="text-[#11773D] text-lg" />
           </h2>
-          <button className="text-primary hover:underline flex items-center gap-2 text-lg font-bold">
-            Lihat Semua <FaChevronRight className="text-base" />
+
+          <button className="flex items-center gap-1 text-sm font-semibold text-[#11773D] transition hover:gap-2">
+            Lihat Semua
+            <FaChevronRight className="text-[11px]" />
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-4 gap-6 ">
           {videos.map((vid, idx) => (
-            <div key={idx} className="group cursor-pointer">
-              <div className="relative mb-6 h-48 overflow-hidden rounded-[28px] shadow-md">
+            <div
+              key={idx}
+              className="group overflow-hidden rounded-[18px] h-[340px]  bg-[#F7F9F6]  transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer"
+            >
+              <div className="relative h-[195px] overflow-hidden  rounded-[18px]">
                 <Image
                   src={vid.img}
-                  alt={vid.title}
+                  alt="image"
                   fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
+                  className="object-cover transition duration-500 rounded-3xl  group-hover:scale-105"
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/25 transition group-hover:bg-black/40">
-                  <FaPlayCircle className="text-6xl text-white opacity-90 drop-shadow-lg" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/15 transition group-hover:bg-black/25">
+                  <FaPlayCircle className="text-[38px] text-white/90 drop-shadow-md transition group-hover:scale-110" />
                 </div>
 
                 {/* Duration */}
-                <div className="absolute bottom-4 right-4 rounded-lg bg-black/80 px-3 py-1 text-sm font-semibold text-white">
+                <div className="absolute bottom-2 right-2 rounded-full bg-black/70 px-2.5 py-1 text-[11px] font-semibold text-white">
                   {vid.dur}
                 </div>
               </div>
 
-              <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900 transition group-hover:text-primary">
+              <div className="p-4"> </div>
+
+              <h3 className="ml-5 mb-3 whitespace-pre-line text-[18px] font-bold leading-[1.35] text-[#0B0F1F]">
                 {vid.title}
               </h3>
 
-              <div className="flex w-max items-center gap-2 rounded-lg bg-primary-light px-3 py-1 text-sm font-semibold text-primary">
-                <FaCheckCircle />
+              <div className="flex items-center  ml-5 gap-1.5 text-[12px] font-medium text-[#7A8A81]">
+                <FaCheckCircle className="text-[11px] text-[#8BC34A]" />
                 {vid.views}
               </div>
             </div>
@@ -365,43 +378,46 @@ export default function EdukasiUtama() {
 
       {/* Infografis Populer */}
       <section className="max-w-1080p w-full px-16 pb-24 mx-auto">
-        <div className="flex items-end justify-between mb-12">
-          <h2 className="text-4xl font-bold text-gray-900">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="flex items-center gap-1 text-[30px] font-bold text-[#0B0F1F]">
             Infografis Populer
+            <FaLeaf className="text-[#11773D] text-lg" />
           </h2>
-          <button className="text-primary hover:underline flex items-center gap-2 text-lg font-bold">
-            Lihat Semua <FaChevronRight className="text-base" />
+
+          <button className="flex items-center gap-1 text-sm font-semibold text-[#11773D] transition hover:gap-2">
+            Lihat Semua
+            <FaChevronRight className="text-[11px]" />
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-5">
           {infographics.map((info, idx) => (
             <div
               key={idx}
-              className={`${info.bg} group relative overflow-hidden rounded-[32px] border border-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer`}
+              className={`${info.bg} group relative h-[210px] overflow-hidden rounded-[18px] border border-[#E9F0EA] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer`}
             >
-              <div className="relative z-10">
-                <h3 className="mb-3 text-xl font-bold leading-tight text-gray-900">
+              <div className="relative z-10 w-[45%]">
+                <h3 className="mb-3 text-[18px] font-bold leading-tight text-[#0B0F1F]">
                   {info.title}
                 </h3>
 
-                <p className="mb-6 text-base leading-relaxed text-gray-600">
+                <p className="mb-6 text-[13px] whitespace-pre-line leading-relaxed text-gray-600">
                   {info.desc}
                 </p>
 
-                <div className="flex w-max items-center gap-2 rounded-lg bg-white px-3 py-1 text-sm font-semibold text-primary shadow-sm">
-                  <FaEye />
+                <div className="flex items-center gap-1 text-[11px] font-medium text-[#7A8A81]">
+                  <FaEye className="text-[10px] text-[#8BC34A]" />
                   {info.views}
                 </div>
               </div>
 
               {/* Image */}
-              <div className="absolute -right-8 -bottom-6 z-0 transition-transform duration-300 group-hover:scale-110">
+              <div className="absolute right-0 bottom-5 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src={info.img}
                   alt={info.title}
-                  width={180}
-                  height={180}
-                  className="object-contain opacity-90"
+                  width={170}
+                  height={170}
+                  className="object-contain"
                 />
               </div>
             </div>
@@ -411,45 +427,52 @@ export default function EdukasiUtama() {
 
       {/* Newsletter CTA */}
       <section className="max-w-1080p w-full px-16 pb-24 mx-auto">
-        <div className="bg-linear-to-br from-primary-light to-white rounded-[3rem] p-16 flex items-center justify-between border border-green-100 shadow-sm relative overflow-hidden">
-          <div className="w-[55%] z-10">
-            <h2 className="mb-6 text-4xl font-bold leading-tight text-gray-900">
-              Terus Belajar, Terus Beraksi <br /> untuk Bumi yang{" "}
-              <span className="text-primary">Lebih Baik</span>
+        <div className="relative flex h-[230px] items-center overflow-hidden rounded-[22px] border border-[#E8EFE9] bg-gradient-to-r from-[#F7FBF8] via-white to-[#F4FAF6] px-10 shadow-sm">
+          {/* Left */}
+          <div className="w-[36%]">
+            <h2 className="mb-4 text-[24px] font-bold leading-[1.35] text-[#0B0F1F]">
+              Terus Belajar, Terus Beraksi
+              <br />
+              untuk Bumi yang <span className="text-[#11773D]">Lebih Baik</span>
             </h2>
-            <p className="mb-10 text-xl text-gray-600">
-              Dapatkan artikel terbaru, tips menarik, dan informasi edukasi
-              langsung ke email kamu. <FaLeaf className="text-primary inline" />
+
+            <p className="text-[15px] leading-7 text-[#667085]">
+              Dapatkan artikel terbaru, tips menarik, dan informasi edukasi <br />
+              langsung ke email kamu.
+              <FaLeaf className="ml-1 inline text-[13px] text-[#11773D]" />
             </p>
-            <div className="flex flex-col gap-4">
-              <div className="rounded-2xl flex max-w-lg p-2 bg-white border border-gray-200 shadow-sm">
-                <input
-                  type="email"
-                  placeholder="Masukkan email kamu"
-                  className="w-full px-6 text-lg bg-transparent outline-none"
-                />
-                <button className="bg-primary hover:bg-green-700 whitespace-nowrap rounded-xl px-8 py-4 text-lg font-bold text-white transition">
-                  Berlangganan
-                </button>
-              </div>
-              <p className="text-primary flex items-center gap-2 mt-2 text-base font-bold">
-                <FaLock /> Kami tidak akan membagikan email kamu ke pihak lain.
-              </p>
-            </div>
           </div>
 
-          <div className="w-[45%] relative h-87.5 z-10">
+          {/* Center */}
+          <div className="flex w-[34%] flex-col justify-center">
+            <div className="flex h-[52px] overflow-hidden rounded-xl border border-[#E4E7EC] bg-white shadow-sm">
+              <input
+                type="email"
+                placeholder="Masukkan email kamu"
+                className="flex-1 px-5 text-[14px] outline-none"
+              />
+
+              <button className="bg-[#11773D] px-6 text-[14px] font-semibold text-white hover:bg-[#0E6534]">
+                Berlangganan
+              </button>
+            </div>
+
+            <p className="mt-3 flex items-center gap-2 text-[12px] text-[#667085]">
+              <FaLock className="text-[#11773D]" />
+              Kami tidak akan membagikan email kamu ke pihak lain.
+            </p>
+          </div>
+
+          {/* Right */}
+          <div className="flex w-[30%] mt-10 justify-end self-end">
             <Image
               src="/assets/edukasi/belajar.png"
-              alt="Newsletter Illustration"
-              fill
+              alt="Newsletter"
+              width={380}
+              height={280}
               className="object-contain"
             />
           </div>
-
-          {/* Decorative Elements */}
-          <div className="bg-green-50 blur-3xl absolute top-0 right-0 w-64 h-64 transform translate-x-1/2 -translate-y-1/2 rounded-full opacity-50"></div>
-          <div className="bg-green-50 blur-3xl absolute bottom-0 left-0 w-64 h-64 transform -translate-x-1/2 translate-y-1/2 rounded-full opacity-50"></div>
         </div>
       </section>
     </div>

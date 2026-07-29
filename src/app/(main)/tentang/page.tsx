@@ -124,9 +124,9 @@ const features = [
 
 export default function TentangKami() {
   return (
-    <main className="bg-white flex flex-col items-center w-full pb-24">
+    <main className="bg-white flex flex-col items-center w-full">
       {/* Hero Section */}
-      <section className="max-w-1080p relative mx-auto flex w-full flex-col items-center justify-center overflow-hidden bg-white px-16 pt-24 pb-16">
+      <section className="  relative mx-auto flex w-full flex-col items-center justify-center overflow-hidden bg-white px-16 pt-24 pb-16">
         <div className="mb-16 flex w-full items-center justify-between">
           {/* Left Text Content */}
           <div className="z-10 w-1/2 pr-12">
@@ -211,9 +211,8 @@ export default function TentangKami() {
                 data-aos="fade-up"
                 data-aos-delay={index * 150}
                 data-aos-duration="800"
-                className={`flex gap-5 p-8 ${
-                  index !== values.length - 1 ? "border-r border-[#EEF2F1]" : ""
-                }`}
+                className={`flex gap-5 p-8 ${index !== values.length - 1 ? "border-r border-[#EEF2F1]" : ""
+                  }`}
               >
                 {/* Icon */}
                 <div className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-[#F2FAF4]">
@@ -243,7 +242,7 @@ export default function TentangKami() {
       </section>
 
       {/* Misi, Visi & Nilai Kami */}
-      <section className="max-w-1080p relative mx-auto w-full overflow-hidden rounded-[22px] bg-white px-16 py-20">
+      <section className="  relative mx-auto w-full overflow-hidden rounded-[22px] bg-white px-16 py-20">
         {/* Decoration */}
         <div className="absolute -bottom-0 -left-12 h-28 w-28 rounded-full bg-[#EEF8F1] opacity-70 blur-2xl" />
         <div className="absolute -right-10 top-0 h-28 w-28 rounded-full bg-[#EEF8F1] opacity-70 blur-2xl" />
@@ -315,7 +314,7 @@ export default function TentangKami() {
       </section>
 
       {/* Perjalanan HijauIn */}
-      <section className="max-w-1080p mx-auto w-full bg-white px-16 py-24">
+      <section className="  mx-auto w-full bg-white px-16 py-24">
         {/* Header */}
         <div
           data-aos="fade-right"
@@ -376,7 +375,7 @@ export default function TentangKami() {
       </section>
 
       {/* Dampak yang Telah Kami Ciptakan */}
-      <section className="max-w-1080p mx-auto w-full px-16 py-20">
+      <section className="  mx-auto w-full px-16 py-20">
         {/* Header */}
         <div
           data-aos="fade-right"
@@ -403,9 +402,8 @@ export default function TentangKami() {
                 data-aos="fade-up"
                 data-aos-delay={index * 150}
                 data-aos-duration="800"
-                className={`flex items-center gap-4 px-6 py-7 ${
-                  index !== stats.length - 1 ? "border-r border-[#EEF2F1]" : ""
-                }`}
+                className={`flex items-center gap-4 px-6 py-7 ${index !== stats.length - 1 ? "border-r border-[#EEF2F1]" : ""
+                  }`}
               >
                 {/* Icon */}
                 <Image
@@ -433,7 +431,7 @@ export default function TentangKami() {
       </section>
 
       {/* Mengapa HijauIn Section */}
-      <section className="max-w-1080p mx-auto flex w-full items-center gap-16 bg-gray-50 px-16 py-24">
+      <section className="  mx-auto flex w-full items-center gap-16 bg-gray-50 px-16 py-24">
         {/* Left Image */}
         <div
           data-aos="fade-right"
@@ -506,7 +504,7 @@ export default function TentangKami() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="max-w-1080p mx-auto w-full px-16 pt-12 pb-24">
+      <section className="  mx-auto w-full px-16 pt-12 pb-24">
         <div className="relative flex h-[220px] overflow-hidden rounded-[22px] border border-[#E8ECEA] bg-[#F5FBF6] px-10 shadow-sm">
           {/* Left Illustration */}
           <div

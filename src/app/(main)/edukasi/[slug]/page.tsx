@@ -34,7 +34,7 @@ export default async function DetailEdukasi({
   return (
     <div className="bg-gray-50 flex flex-col items-center w-full pb-24">
       {/* Header Container */}
-      <div className="max-w-1080p w-full px-16 py-12 bg-white">
+      <div className="  w-full px-16 py-12 bg-white">
         <Link
           href="/edukasi"
           className="text-primary hover:underline inline-flex items-center gap-2 mb-8 text-base font-bold"
@@ -67,7 +67,7 @@ export default async function DetailEdukasi({
       </div>
 
       {/* Main Content Layout */}
-      <div className="max-w-1080p bg-gray-50 flex items-start w-full gap-12 px-16 pt-12">
+      <div className="  bg-gray-50 flex items-start w-full gap-12 px-16 pt-12">
         {/* Left Column */}
         <article className="w-2/3">
           <p className="rounded-3xl p-8 mb-12 text-xl leading-relaxed text-gray-700 bg-white border border-gray-100 shadow-sm">

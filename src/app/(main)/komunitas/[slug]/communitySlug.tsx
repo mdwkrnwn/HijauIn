@@ -10,7 +10,7 @@ import { Community } from '../page';
 
 export default function DetailKomunitas({ community }: { community: Community }) {
   return (
-    <div className="bg-gray-50 flex flex-col items-center w-full pb-24">
+    <div className="bg-gray-50 flex flex-col items-center w-full">
       <div className="w-full px-16 py-12">
         <Link href="/komunitas" className="text-primary hover:underline inline-flex items-center gap-2 mb-8 text-base font-bold">
           <FaArrowLeft /> Kembali ke Komunitas
@@ -27,7 +27,7 @@ export default function DetailKomunitas({ community }: { community: Community })
               <div className="flex items-center gap-3 mb-8 text-xl font-medium text-gray-600">
                 <FaMapMarkerAlt className="text-primary" /> {community.city}
               </div>
-              <p className="max-w-md mb-8 text-lg leading-relaxed text-gray-600">
+              <p className="mb-8 text-lg leading-relaxed text-gray-600">
                 {community.caption}
               </p>
               <div className="flex flex-wrap gap-3 mb-12">
@@ -86,20 +86,24 @@ export default function DetailKomunitas({ community }: { community: Community })
           <div className="rounded-3xl p-10 bg-white border border-gray-100 shadow-sm">
             <h2 className="mb-6 text-3xl font-bold text-gray-900">Tentang Komunitas <FaLeaf className="text-primary inline" /></h2>
             <p className="mb-10 text-lg leading-relaxed text-gray-600">
-              Green Campus adalah komunitas mahasiswa yang fokus pada pelestarian lingkungan hidup di kampus dan masyarakat sekitar. Kami percaya bahwa perubahan besar dimulai dari langkah kecil yang konsisten.
+              {community.name} adalah {community.caption}
             </p>
             <div className="bg-gray-50 rounded-2xl grid grid-cols-4 gap-6 p-6 border border-gray-100">
               <div>
                 <div className="text-primary flex items-center gap-2 mb-2 font-bold"><FaCalendarAlt /> Didirikan</div>
-                <div className="text-base font-medium text-gray-800">12 Maret 2021</div>
+                <div className="text-base font-medium text-gray-800">{new Date(community.created_at).toLocaleString('id-ID', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric'
+                })}</div>
               </div>
               <div>
                 <div className="text-primary flex items-center gap-2 mb-2 font-bold"><FaUsers /> Tipe Komunitas</div>
-                <div className="text-base font-medium text-gray-800">Edukasi & Aksi</div>
+                <div className="text-base font-medium text-gray-800">{community.tags[0]}</div>
               </div>
               <div>
                 <div className="text-primary flex items-center gap-2 mb-2 font-bold"><FaMapMarkerAlt /> Lokasi</div>
-                <div className="text-base font-medium text-gray-800">Surabaya, Jawa Timur</div>
+                <div className="text-base font-medium text-gray-800">{community.city}</div>
               </div>
               <div>
                 <div className="text-primary flex items-center gap-2 mb-2 font-bold"><FaGlobe /> Bahasa</div>

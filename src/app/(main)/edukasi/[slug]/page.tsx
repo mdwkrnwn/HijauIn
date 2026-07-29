@@ -154,9 +154,9 @@ export default async function DetailEdukasi({
               <h3 className="text-3xl font-bold text-gray-900">
                 Artikel Lainnya
               </h3>
-              <button className="text-primary hover:underline flex items-center gap-2 text-lg font-bold">
+              <Link href={'/edukasi'} className="text-primary hover:underline flex items-center gap-2 text-lg font-bold">
                 Lihat Semua &rarr;
-              </button>
+              </Link>
             </div>
             <div className="grid grid-cols-3 gap-6">
               {steps.length > 0 && (

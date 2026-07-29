@@ -1,4 +1,5 @@
 // src/app/edukasi/page.tsx
+"use client"
 import Image from "next/image";
 import {
   FaSearch,
@@ -18,6 +19,8 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import { articles } from "@/app/data/edukasi";
+import { SubmitEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const topics = [
   {
@@ -133,10 +136,17 @@ const infographics = [
 ];
 
 export default function EdukasiUtama() {
+  const [search, setSearch] = useState('');
+  const router = useRouter()
+  function searchEdukasi(event: SubmitEvent<HTMLFormElement>): void {
+    event.preventDefault();
+    router.push('/edukasi/' + search)
+  }
+
   return (
-    <div className="flex flex-col items-center w-full pb-24 bg-white">
+    <div className="flex flex-col items-center w-full gap-12">
       {/* Hero Section */}
-      <section className="max-w-1080p relative mx-auto flex w-full items-center justify-between overflow-hidden px-16 py-24">
+      <section className="relative mx-auto flex w-full items-center justify-between overflow-hidden px-16">
         {/* Left Content */}
         <div
           className="z-10 mb-30 flex w-[55%] flex-col justify-center"
@@ -167,7 +177,7 @@ export default function EdukasiUtama() {
           <p
             data-aos="fade-up"
             data-aos-delay="300"
-            className="mb-8 max-w-[520px] text-lg leading-9 text-gray-500"
+            className="mb-8 max-w-130 text-lg leading-9 text-gray-500"
           >
             Temukan berbagai artikel, panduan, dan tips seputar lingkungan untuk
             menambah wawasan dan menginspirasi aksi positif setiap hari.
@@ -177,17 +187,24 @@ export default function EdukasiUtama() {
           <div
             data-aos="fade-up"
             data-aos-delay="400"
-            className="mb-8 flex h-[48px] max-w-[500px] items-center rounded-[14px] border border-[#D9EFD8] bg-white p-[4px] shadow-sm"
+            className="mb-8 flex h-12 max-w-125 items-center rounded-[14px] border border-[#D9EFD8] bg-white p-1 shadow-sm"
           >
-            <input
-              type="text"
-              placeholder="Cari artikel, topik, atau panduan..."
-              className="flex-1 bg-transparent px-4 text-[14px] text-[#0B0F1F] placeholder:text-[#A7B0B5] focus:outline-none"
-            />
+            <form className="flex h-12 w-full items-center" onSubmit={searchEdukasi}>
+              <input
+                type="text"
+                name="searchEdukasi"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value)
+                }}
+                placeholder="Cari artikel, topik, atau panduan..."
+                className="flex-1 bg-transparent px-4 text-[14px] text-[#0B0F1F] placeholder:text-[#A7B0B5] focus:outline-none"
+              />
 
-            <button className="flex h-[48px] w-[50px] -mr-1 items-center justify-center rounded-[10px] bg-[#11773D] text-white transition hover:bg-[#0E6534]">
-              <FaSearch className="text-[14px]" />
-            </button>
+              <button className="flex h-12 w-12.5 -mr-1 items-center justify-center rounded-[10px] bg-[#11773D] text-white transition hover:bg-[#0E6534]">
+                <FaSearch className="text-[14px]" />
+              </button>
+            </form>
           </div>
 
           {/* Popular */}
@@ -206,7 +223,7 @@ export default function EdukasiUtama() {
                 key={index}
                 data-aos="zoom-in"
                 data-aos-delay={600 + index * 100}
-                className="flex h-[55px] items-center gap-2 rounded-full border border-gray-100 bg-[#F4F7F4] px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[#11773D] hover:bg-[#F2FAF3] hover:text-[#11773D]"
+                className="flex h-13.75 items-center gap-2 rounded-full border border-gray-100 bg-[#F4F7F4] px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[#11773D] hover:bg-[#F2FAF3] hover:text-[#11773D]"
               >
                 {topic.icon}
                 <span>{topic.label}</span>
@@ -233,7 +250,7 @@ export default function EdukasiUtama() {
       </section>
 
       {/* Rekomendasi untuk Kamu */}
-      <section className="max-w-1080p mx-auto w-full px-16 py-16">
+      <section className="mx-auto w-full px-16">
         <div
           className="mb-12 flex items-end justify-between"
           data-aos="fade-up"
@@ -275,7 +292,7 @@ export default function EdukasiUtama() {
 
               {/* Content */}
               <div className="flex flex-1 flex-col p-5">
-                <h3 className="mb-2 whitespace-pre-line text-[22px] font-bold leading-[1.25] text-[#0B0F1F]">
+                <h3 className="mb-2 whitespace-pre-line text-[22px] font-bold leading-tight text-[#0B0F1F]">
                   {item.title}
                 </h3>
 
@@ -301,8 +318,8 @@ export default function EdukasiUtama() {
       </section>
 
       {/* Kategori Edukasi */}
-      <section className="w-full bg-white py-24">
-        <div className="max-w-1080p mx-auto px-16">
+      <section className="w-full bg-white">
+        <div className=" mx-auto px-16">
           {/* Header */}
           <div
             className="mb-8 flex items-center justify-between"
@@ -328,7 +345,7 @@ export default function EdukasiUtama() {
                 data-aos="zoom-in-up"
                 data-aos-delay={idx * 100}
                 data-aos-duration="700"
-                className="group flex h-[190px] cursor-pointer flex-col items-center justify-center rounded-[18px] border border-[#EEF2F1] bg-[#F5F8F6] px-5 py-6 text-center transition-all duration-300 hover:-translate-y-2 hover:border-[#11773D]/20 hover:shadow-lg"
+                className="group flex h-47.5 cursor-pointer flex-col items-center justify-center rounded-[18px] border border-[#EEF2F1] bg-[#F5F8F6] px-5 py-6 text-center transition-all duration-300 hover:-translate-y-2 hover:border-[#11773D]/20 hover:shadow-lg"
               >
                 {/* Icon */}
                 <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[#F2F8F3] transition-all duration-300 group-hover:bg-[#E6F5E9]">
@@ -342,7 +359,7 @@ export default function EdukasiUtama() {
                 </div>
 
                 {/* Category Name */}
-                <h3 className="mb-2 min-h-[40px] text-[15px] font-semibold leading-5 text-[#0B0F1F]">
+                <h3 className="mb-2 min-h-10 text-[15px] font-semibold leading-5 text-[#0B0F1F]">
                   {cat.name}
                 </h3>
 
@@ -357,7 +374,7 @@ export default function EdukasiUtama() {
       </section>
 
       {/* Video Edukasi Pilihan */}
-      <section className="max-w-1080p mx-auto w-full px-16 py-24">
+      <section className=" mx-auto w-full px-16">
         {/* Header */}
         <div
           className="mb-8 flex items-center justify-between"
@@ -383,10 +400,10 @@ export default function EdukasiUtama() {
               data-aos="fade-up"
               data-aos-delay={idx * 150}
               data-aos-duration="800"
-              className="group h-[340px] cursor-pointer overflow-hidden rounded-[18px] bg-[#F7F9F6] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
+              className="group h-85 cursor-pointer overflow-hidden rounded-[18px] bg-[#F7F9F6] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
             >
               {/* Thumbnail */}
-              <div className="relative h-[195px] overflow-hidden rounded-[18px]">
+              <div className="relative h-48.75 overflow-hidden rounded-[18px]">
                 <Image
                   src={vid.img}
                   alt={vid.title}
@@ -422,7 +439,7 @@ export default function EdukasiUtama() {
       </section>
 
       {/* Infografis Populer */}
-      <section className="max-w-1080p mx-auto w-full px-16 pb-24">
+      <section className="mx-auto w-full px-16">
         {/* Header */}
         <div
           className="mb-8 flex items-center justify-between"
@@ -448,7 +465,7 @@ export default function EdukasiUtama() {
               data-aos="fade-up"
               data-aos-delay={idx * 150}
               data-aos-duration="800"
-              className={`${info.bg} group relative h-[210px] cursor-pointer overflow-hidden rounded-[18px] border border-[#E9F0EA] p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg`}
+              className={`${info.bg} group relative h-52.5 cursor-pointer overflow-hidden rounded-[18px] border border-[#E9F0EA] p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg`}
             >
               {/* Content */}
               <div className="relative z-10 w-[45%]">
@@ -483,9 +500,9 @@ export default function EdukasiUtama() {
 
       {/* Newsletter CTA */}
       {/* Newsletter */}
-      <section className="max-w-1080p mx-auto w-full px-16 pb-24">
+      <section className=" mx-auto w-full px-16">
         <div
-          className="relative flex h-[230px] items-center overflow-hidden rounded-[22px] border border-[#E8EFE9] bg-gradient-to-r from-[#F7FBF8] via-white to-[#F4FAF6] px-10 shadow-sm"
+          className="relative flex h-57.5 items-center overflow-hidden rounded-[22px] border border-[#E8EFE9] bg-linear-to-r from-[#F7FBF8] via-white to-[#F4FAF6] px-10 shadow-sm"
           data-aos="zoom-in"
           data-aos-duration="900"
         >
@@ -517,7 +534,7 @@ export default function EdukasiUtama() {
             data-aos-delay="250"
             data-aos-duration="800"
           >
-            <div className="flex h-[52px] overflow-hidden rounded-xl border border-[#E4E7EC] bg-white shadow-sm">
+            <div className="flex h-13 overflow-hidden rounded-xl border border-[#E4E7EC] bg-white shadow-sm">
               <input
                 type="email"
                 placeholder="Masukkan email kamu"

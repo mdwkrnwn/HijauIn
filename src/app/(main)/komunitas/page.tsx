@@ -172,8 +172,8 @@ export default function Komunitas() {
         {/* Content */}
         <div className="relative z-10 -mt-10 w-full max-w-[560px]">
           {/* Badge */}
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#D9EFD8] bg-[#F3FAF4] px-4 py-2 text-[13px] font-semibold text-[#11773D]">
-            <FaLeaf className="text-[12px]" />
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#F2FAF3] px-4 py-2 text-base font-semibold text-[#11773D]">
+            <FaLeaf className="text-base" />
             Komunitas HijauIn
           </div>
 

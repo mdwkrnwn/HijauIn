@@ -50,18 +50,18 @@ const features = [
 
 export default function Hero() {
   return (
-    <section className="flex items-center overflow-hidden px-16 py-24">
+    <section className="flex items-center overflow-hidden px-16 py-16">
       {/* Left */}
-      <div className="z-10 w-[42%]">
+      <div className="z-10 mb-40 w-[42%]">
         {/* Badge */}
         <div
           data-aos="fade-right"
           data-aos-duration="700"
-          className="inline-flex items-center gap-2 rounded-full border border-[#DCEFD9] bg-white px-4 py-2 shadow-sm"
+          className="inline-flex items-center gap-2 rounded-full  bg-[#F2FAF3] px-4 py-2"
         >
-          <FaLeaf className="text-[11px] text-[#11773D]" />
+          <FaLeaf className="text-base text-[#11773D]" />
 
-          <span className="text-[13px] font-semibold text-[#11773D]">
+          <span className="text-base font-semibold text-[#11773D]">
             Fitur HijauIn
           </span>
         </div>

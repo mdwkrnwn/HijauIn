@@ -166,7 +166,7 @@ export default function HowItWorks() {
         <div className="w-1/2" data-aos="fade-right">
           {" "}
           {/* Muncul dari kanan */}
-          <div className="text-[#11773D] inline-flex items-center gap-2 px-4 py-2 mb-8 text-base font-semibold bg-white rounded-full shadow-sm">
+          <div className="text-[#11773D] inline-flex items-center gap-2 px-4 py-2 mb-8 text-base font-semibold bg-[#F2FAF3] rounded-full ">
             <FaCheckCircle /> Cara Kerja HijauIn
           </div>
           <h1 className="mb-8 text-6xl font-bold leading-tight text-gray-900">
@@ -179,8 +179,12 @@ export default function HowItWorks() {
             insight dari AI, dan melihat dampak nyatanya. <br /> Semua dalam
             satu platform.
           </p>
-          <button className="border-[#11773D] text-[#11773D] hover:bg-[#11773D] hover:text-white px-8 py-4 mb-12 text-lg font-bold transition bg-white border-2 rounded-full">
-            Lihat Fitur Lengkap &rarr;
+          <button className="group mb-12 inline-flex h-[50px] items-center gap-4 rounded-2xl border border-[#9FD4AF] bg-white px-7 text-[18px] font-semibold text-[#076635] transition-all duration-300 hover:bg-[#F4FAF5]">
+            <span>Lihat Fitur Lengkap</span>
+
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#076635] text-white transition-transform duration-300 group-hover:translate-x-1">
+              <FaArrowRight className="text-[12px]" />
+            </span>
           </button>
         </div>
         <div
@@ -228,7 +232,7 @@ export default function HowItWorks() {
               data-aos-delay={index * 150} // Efek stagger (bergantian)
             >
               {/* Nomor */}
-              <div className="mb-10 flex h-9 w-9 items-center justify-center rounded-full bg-[#046B06] text-sm font-bold text-white shadow">
+              <div className="mb-10 flex h-9 w-9 items-center justify-center rounded-full bg-[#11773D] text-sm font-bold text-white shadow">
                 {step.num}
               </div>
 

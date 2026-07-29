@@ -11,10 +11,13 @@ import {
   FaClock,
   FaEye,
   FaBolt,
+  FaCalendarAlt,
   FaHeart,
   FaLock,
   FaChevronRight,
 } from "react-icons/fa";
+import Link from "next/link";
+import { articles } from "@/app/data/edukasi";
 
 const topics = [
   {
@@ -137,8 +140,8 @@ export default function EdukasiUtama() {
         {/* Left Content */}
         <div className="z-10 flex w-[55%] mb-30 flex-col justify-center">
           {/* Badge */}
-          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#F2FAF3] px-3 py-1.5 text-sm font-semibold text-[#11773D]">
-            <FaLeaf className="text-xs" />
+          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#F2FAF3] px-3 py-1.5 text-base font-semibold text-[#11773D]">
+            <FaLeaf className="text-base" />
             Edukasi Hijau
           </div>
 
@@ -156,19 +159,22 @@ export default function EdukasiUtama() {
           </p>
 
           {/* Search */}
-          <div className="mb-8 flex max-w-[500px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div className="mb-8 flex h-[48px] max-w-[500px] items-center rounded-[14px] border border-[#D9EFD8] bg-white p-[4px] shadow-sm">
             <input
+              type="text"
               placeholder="Cari artikel, topik, atau panduan..."
-              className="flex-1 px-6 text-base outline-none"
+              className="flex-1 bg-transparent px-4 text-[14px] text-[#0B0F1F] placeholder:text-[#A7B0B5] focus:outline-none"
             />
 
-            <button className="flex h-14 w-14 items-center justify-center bg-[#] text-white">
-              <FaSearch />
+            <button className="flex h-[48px] w-[50px] -mr-1 items-center justify-center rounded-[10px] bg-[#11773D] text-white transition hover:bg-[#0E6534]">
+              <FaSearch className="text-[14px]" />
             </button>
           </div>
 
           {/* Popular */}
-          <p className="mb-4 text-base font-semibold text-[#0B0F1F]">Topik Populer</p>
+          <p className="mb-4 text-base font-semibold text-[#0B0F1F]">
+            Topik Populer
+          </p>
 
           <div className="flex flex-wrap gap-3">
             {topics.map((topic, index) => (
@@ -207,75 +213,47 @@ export default function EdukasiUtama() {
           </button>
         </div>
         <div className="grid grid-cols-4 gap-6">
-          {[
-            {
-              img: "/assets/edukasi/edu1.png",
-              tag: "Edukasi",
-              title: "Mengenal Jenis Sampah\n dan Cara Mengelolanya",
-              desc: "Memahami jenis sampah adalah langkah awal untuk mengelola sampah dengan benar.",
-              time: "5 menit baca",
-              view: "1.2K dibaca",
-            },
-            {
-              img: "/assets/edukasi/edu2.png",
-              tag: "Panduan",
-              title: "10 Cara Hemat Energi\n di Rumah",
-              desc: "Langkah sederhana yang bisa kamu lakukan untuk menghemat energi setiap hari.",
-              time: "4 menit baca",
-              view: "980 dibaca",
-            },
-            {
-              img: "/assets/edukasi/edu3.png",
-              tag: "Tips",
-              title: "Kurangi Plastik Sekali Pakai\n dalam 7 Hari",
-              desc: "Tantangan 7 hari untuk mengurangi penggunaan plastik sekali pakai.",
-              time: "3 menit baca",
-              view: "2.1K dibaca",
-            },
-            {
-              img: "/assets/edukasi/edu4.png",
-              tag: "Edukasi",
-              title: "Pentingnya Menjaga\n Ekosistem Laut",
-              desc: "Laut adalah sumber kehidupan. Yuk, jaga bersama kelestariannya!",
-              time: "6 menit baca",
-              view: "1.6K dibaca",
-            },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="group overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+          {articles.map((item) => (
+            <Link
+              key={item.id}
+              href={`/edukasi/${item.slug}`}
+              className="group block cursor-pointer overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="relative h-80 overflow-hidden">
                 <Image
-                  src={item.img}
+                  src={item.image}
                   alt={item.title}
                   fill
                   className="object-cover transition duration-500 group-hover:scale-105"
                 />
+
                 <div className="absolute left-4 top-4 rounded-full bg-[#CFEEC6] px-3 py-1 text-xs font-semibold text-[#3E8D2F]">
                   {item.tag}
                 </div>
               </div>
+
               <div className="flex flex-1 flex-col p-5">
                 <h3 className="mb-2 whitespace-pre-line text-[22px] font-bold leading-[1.25] text-[#0B0F1F]">
                   {item.title}
                 </h3>
+
                 <p className="mb-5 flex-1 text-sm leading-6 text-[#667085]">
                   {item.desc}
                 </p>
+
                 <div className="flex items-center justify-between border-t border-[#EEF2F1] pt-4 text-xs font-medium text-[#6B7280]">
                   <span className="flex items-center gap-1.5">
                     <FaClock className="text-[11px] text-[#7CB342]" />
-                    {item.time}
+                    {item.readTime}
                   </span>
 
                   <span className="flex items-center gap-1.5">
-                    <FaEye className="text-[11px] text-[#7CB342]" />
-                    {item.view}
+                    <FaCalendarAlt className="text-[11px] text-[#7CB342]" />
+                    {item.date}
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -437,7 +415,8 @@ export default function EdukasiUtama() {
             </h2>
 
             <p className="text-[15px] leading-7 text-[#667085]">
-              Dapatkan artikel terbaru, tips menarik, dan informasi edukasi <br />
+              Dapatkan artikel terbaru, tips menarik, dan informasi edukasi{" "}
+              <br />
               langsung ke email kamu.
               <FaLeaf className="ml-1 inline text-[13px] text-[#11773D]" />
             </p>
@@ -468,7 +447,7 @@ export default function EdukasiUtama() {
             <Image
               src="/assets/edukasi/belajar.png"
               alt="Newsletter"
-              width={380}
+              width={300}
               height={280}
               className="object-contain"
             />

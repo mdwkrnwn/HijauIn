@@ -14,8 +14,39 @@ import {
   FaLink,
   FaLeaf,
   FaUsers,
+  FaFacebookF,
+  FaShoppingBag,
   FaTint,
 } from "react-icons/fa";
+
+import {
+  FaBottleWater,
+  FaBan,
+  FaBoxOpen,
+  FaBagShopping,
+  FaLightbulb,
+  FaPlug,
+  FaSun,
+} from "react-icons/fa6";
+
+const stepIcons: Record<string, React.ReactNode[]> = {
+  "kurangi-plastik-sekali-pakai": [
+    <FaBottleWater />,
+    <FaBan />,
+    <FaShoppingBag />,
+    <FaLeaf />,
+    <FaBoxOpen />,
+    <FaBagShopping />,
+    <FaUsers />,
+  ],
+
+  "hemat-energi-di-rumah": [
+    <FaLightbulb />,
+    <FaPlug />,
+    <FaLightbulb />,
+    <FaSun />,
+  ],
+};
 
 export default async function DetailEdukasi({
   params,
@@ -31,160 +62,180 @@ export default async function DetailEdukasi({
   }
 
   const steps = article.content.filter((item) => item.type === "step");
+  const intro = article.content.find((item) => item.type === "paragraph");
+  const qu = article.content.find((item) => item.type === "quote");
+  const icons = stepIcons[article.slug] ?? [];
+  const shuffle = <T,>(array: T[]) => {
+    const result = [...array];
+
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
+
+    return result;
+  };
+
+  const shuffledArticles = shuffle(
+    articles.filter((item) => item.id !== article.id),
+  );
+
+  const relatedArticles = shuffledArticles.slice(0, 3);
+
+  const otherArticles = [...shuffledArticles].reverse();
   return (
     <div className="bg-gray-50 flex flex-col items-center w-full pb-24">
       {/* Header Container */}
       <div className="  w-full px-16 py-12 bg-white">
         <Link
           href="/edukasi"
-          className="text-primary hover:underline inline-flex items-center gap-2 mb-8 text-base font-bold"
+          className="text-[#11773D] hover:underline inline-flex items-center gap-2 mb-8 text-base font-bold"
         >
           <FaArrowLeft /> Kembali ke Edukasi
         </Link>
-        <h1 className="max-w-4xl mb-6 text-5xl font-extrabold leading-tight text-gray-900">
-          {article.title} <FaLeaf className="text-primary inline" />
+        <h1 className="max-w-3xl mb-6 text-5xl font-bold leading-tight text-[#0B0F1F]">
+          {article.title}
         </h1>
-        <div className="flex items-center gap-6 mb-10 text-base font-medium text-gray-600">
-          <span className="bg-primary-light text-primary px-4 py-1 text-sm font-bold rounded-md">
+        <div className="mb-10 flex items-center gap-8 text-[15px] font-medium text-[#667085]">
+          <span className="rounded-full bg-[#EAF5EE] px-5 py-2 text-sm font-semibold text-[#11773D]">
             {article.tag}
           </span>
-          <span className="flex items-center gap-2">
-            <FaCalendarAlt />
-            {article.date}
-          </span>
-          <span className="flex items-center gap-2">
-            <FaClock /> {article.readTime}
-          </span>
+
+          <div className="flex items-center gap-2">
+            <FaCalendarAlt className="text-[18px] text-[#11773D]" />
+            <span>{article.date}</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <FaClock className="text-[18px] text-[#11773D]" />
+            <span>{article.readTime}</span>
+          </div>
         </div>
-        <div className="w-full h-[500px] relative rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+        <div className="w-full h-[550px] relative rounded-3xl overflow-hidden shadow-lg border border-gray-100">
           <Image
             src={article.banner}
             alt={article.title}
             fill
-            className="object-cover"
+            className="object-cover object-center"
           />
         </div>
       </div>
 
       {/* Main Content Layout */}
-      <div className="  bg-gray-50 flex items-start w-full gap-12 px-16 pt-12">
+      <div className="  bg-gray-50 flex items-start w-full gap-12 px-16 pt-8">
         {/* Left Column */}
         <article className="w-2/3">
-          <p className="rounded-3xl p-8 mb-12 text-xl leading-relaxed text-gray-700 bg-white border border-gray-100 shadow-sm">
-            Plastik sekali pakai membutuhkan ratusan tahun untuk terurai dan
-            mencemari lingkungan kita. Yuk, ikuti tantangan 7 hari ini untuk
-            mengurangi penggunaan{" "}
-            <strong>plastik dan mulai hidup lebih hijau!</strong>
+          <p className="rounded-3xl p-8 mb-12 text-xl leading-relaxed text-gray-700 bg-white ">
+            {intro?.text}
+            {/* <strong>plastik dan mulai hidup lebih hijau!</strong> */}
           </p>
 
-          <div className="relative mb-16 ml-4 space-y-10">
-            <div className="left-6 top-6 bottom-6 absolute z-0 w-1 bg-gray-300"></div>
-            {[
-              {
-                icon: <FaTint />,
-                day: "Hari 1",
-                title: "Bawa Botol Minum Sendiri",
-                desc: "Biasakan membawa botol minum isi ulang ke mana pun kamu pergi.",
-              },
-              {
-                icon: <FaCheckCircle />,
-                day: "Hari 2",
-                title: "Tolak Sedotan Plastik",
-                desc: "Gunakan sedotan stainless atau tanpa sedotan. Bumi akan berterima kasih!",
-              },
-              {
-                icon: <FaLeaf />,
-                day: "Hari 3",
-                title: "Bawa Tas Belanja Sendiri",
-                desc: "Tas kain lebih kuat, bisa dipakai berulang kali, dan ramah lingkungan.",
-              },
-              {
-                icon: <FaLeaf />,
-                day: "Hari 4",
-                title: "Pilih Produk Tanpa Plastik",
-                desc: "Pilih produk dengan kemasan ramah lingkungan atau isi ulang.",
-              },
-              {
-                icon: <FaCheckCircle />,
-                day: "Hari 5",
-                title: "Gunakan Wadah Makan Sendiri",
-                desc: "Bawa kotak makan sendiri untuk mengurangi styrofoam dan plastik.",
-              },
-              {
-                icon: <FaCheckCircle />,
-                day: "Hari 6",
-                title: "Hindari Kantong Plastik",
-                desc: "Biasakan menolak kantong plastik saat berbelanja.",
-              },
-              {
-                icon: <FaUsers />,
-                day: "Hari 7",
-                title: "Evaluasi dan Bagikan",
-                desc: "Lihat perubahan kecil yang kamu buat dan ajak orang lain untuk melakukan hal yang sama!",
-              },
-            ].map((step, idx) => (
-              <div key={idx} className="relative z-10 flex items-start gap-8">
-                <div className="w-14 h-14 bg-primary ring-4 ring-gray-50 flex items-center justify-center flex-shrink-0 text-2xl text-white rounded-full shadow-md">
-                  {step.icon}
+          <div className="relative -mt-10 mb-15">
+            {/* Timeline */}
+            <div className="absolute left-[33px] top-[34px] bottom-[34px] w-[2px] bg-[#DCEBD6]" />
+
+            <div className="space-y-8">
+              {steps.map((step, idx) => (
+                <div key={idx} className="relative flex items-start gap-6">
+                  {/* Titik timeline */}
+                  <div className="absolute left-[30px] top-[30px] z-20 h-[8px] w-[8px] -translate-x-1/2 rounded-full bg-[#8BC34A]" />
+
+                  {/* Icon */}
+                  <div className="z-10 flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-full bg-[#EEF7E8] text-[30px] text-[#11773D]">
+                    {icons[idx] ?? <FaLeaf />}
+                  </div>
+
+                  {/* Content */}
+                  <div className="pt-2">
+                    <h3 className="mb-2 text-[30px] font-semibold text-[#0B0F1F]">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-[18px] leading-8 text-[#667085]">
+                      {step.text}
+                    </p>
+                  </div>
                 </div>
-                <div className="pt-2">
-                  <h3 className="mb-2 text-2xl font-bold text-gray-900">
-                    {step.day} – {step.title}
-                  </h3>
-                  <p className="text-lg leading-relaxed text-gray-600">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          <div className="bg-primary-light/40 rounded-2xl border-primary-light flex items-center gap-6 p-8 mb-16 border">
-            <FaLeaf className="text-primary flex-shrink-0 text-4xl" />
-            <p className="text-lg italic font-medium text-gray-800">
-              Perubahan besar dimulai dari langkah-langkah kecil yang kita
-              lakukan setiap hari. Yuk, terus konsisten untuk masa depan bumi
-              yang lebih baik!
-            </p>
+          <div className="relative mb-16 overflow-hidden rounded-[24px] border border-[#E3EDD9] bg-[#F4F8F1] px-10 py-8">
+            {/* Daun kiri */}
+            <Image
+              src="/assets/edukasi/leaf-left.png"
+              alt="Leaf"
+              width={28}
+              height={28}
+              className="absolute left-8 top-8"
+            />
+
+            {/* Daun kanan */}
+            <Image
+              src="/assets/edukasi/leaf-right.png"
+              alt="Leaf Decoration"
+              width={55}
+              height={55}
+              className="absolute bottom-0 right-0 select-none"
+            />
+
+            <div className="flex items-start gap-5 pr-28">
+              <div className="mt-1 h-7 w-7 shrink-0" />
+
+              <p className="text-[22px] leading-[1.9] text-[#3B3F45]">
+                {qu?.text}
+              </p>
+            </div>
           </div>
 
           {/* Artikel Lainnya (Bottom Left) */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-3xl font-bold text-gray-900">
+              <h3 className="text-3xl font-bold text-[#0B0F1F]">
                 Artikel Lainnya
               </h3>
-              <Link href={'/edukasi'} className="text-primary hover:underline flex items-center gap-2 text-lg font-bold">
+              <Link
+                href={"/edukasi"}
+                className="text-[#11773D] hover:underline flex items-center gap-2 text-lg font-bold"
+              >
                 Lihat Semua &rarr;
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-6">
-              {steps.length > 0 && (
-                <div className="relative mb-16 ml-4 space-y-10">
-                  <div className="absolute left-6 top-6 bottom-6 z-0 w-1 bg-gray-300" />
+              {otherArticles.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/edukasi/${item.slug}`}
+                  className="group overflow-hidden rounded-[22px] border border-[#E8ECEA] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  {/* Image */}
+                  <div className="relative h-[180px] overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
 
-                  {steps.map((step, idx) => (
-                    <div
-                      key={idx}
-                      className="relative z-10 flex items-start gap-8"
-                    >
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-2xl text-white shadow-md ring-4 ring-gray-50">
-                        <FaLeaf />
-                      </div>
+                    {/* Tag */}
+                    <span className="absolute bottom-4 left-4 rounded-full bg-white px-4 py-1 text-sm font-semibold text-[#11773D] shadow-sm">
+                      {item.tag}
+                    </span>
+                  </div>
 
-                      <div className="pt-2">
-                        <h3 className="mb-2 text-2xl font-bold text-gray-900">
-                          {step.title}
-                        </h3>
+                  {/* Content */}
+                  <div className="p-5">
+                    <h4 className="mb-5 line-clamp-2 text-[22px] font-bold leading-[1.4] text-[#0B0F1F] transition group-hover:text-[#11773D]">
+                      {item.title}
+                    </h4>
 
-                        <p className="text-lg leading-relaxed text-gray-600">
-                          {step.text}
-                        </p>
-                      </div>
+                    <div className="flex items-center gap-2 text-[15px] text-[#667085]">
+                      <FaClock className="text-[#11773D]" />
+                      <span>{item.readTime}</span>
                     </div>
-                  ))}
-                </div>
-              )}
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </article>
@@ -192,113 +243,145 @@ export default async function DetailEdukasi({
         {/* Right Column - Sidebar */}
         <aside className="w-1/3 space-y-8">
           {/* Penulis Box */}
-          <div className="rounded-3xl p-8 bg-white border border-gray-100 shadow-sm">
-            <h4 className="mb-6 text-xl font-bold text-gray-900">Penulis</h4>
-            <div className="flex items-center gap-6">
-              <div className="bg-primary-light flex items-center justify-center flex-shrink-0 w-16 h-16 border border-green-100 rounded-full">
-                <FaLeaf className="text-primary text-3xl" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-1 text-xl font-bold text-gray-900">
-                  Tim HijauIn{" "}
-                  <FaCheckCircle className="text-primary text-base" />
+          <div className="overflow-hidden rounded-[24px] border border-[#E8ECEA] bg-white shadow-sm">
+            {/* Penulis */}
+            <div className="p-8">
+              <h4 className="mb-8 text-[30px] font-semibold text-[#0B0F1F]">
+                Penulis
+              </h4>
+
+              <div className="flex items-center gap-5">
+                {/* Logo */}
+                <div className="flex h-[104px] w-[104px] shrink-0 items-center justify-center rounded-full border-2 border-[#11773D] bg-[#F4F8F1]">
+                  {/* Ganti dengan logo HijauIn */}
+                  <Image
+                    src="/assets/edukasi/daunteam.png"
+                    alt="HijauIn"
+                    width={55}
+                    height={55}
+                  />
+
+                  {/* kalau belum punya logo */}
+                  {/* <FaLeaf className="text-[38px] text-[#11773D]" /> */}
                 </div>
-                <p className="text-base leading-tight text-gray-500">
-                  Bersama menebar inspirasi untuk hidup lebih hijau.
-                </p>
+
+                <div>
+                  <div className="mb-2 flex items-center gap-2">
+                    <h5 className="text-[25px] font-semibold text-[#0B0F1F]">
+                      Tim HijauIn
+                    </h5>
+
+                    <FaCheckCircle className="text-[20px] text-[#11773D]" />
+                  </div>
+
+                  <p className="max-w-[280px] text-[18px] leading-9 text-[#667085]">
+                    Bersama menebar inspirasi untuk hidup lebih hijau.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Bagikan Artikel */}
-          <div className="rounded-3xl p-8 bg-white border border-gray-100 shadow-sm">
-            <h4 className="mb-6 text-xl font-bold text-gray-900">
-              Bagikan Artikel
-            </h4>
-            <div className="flex gap-4 text-2xl">
-              <button className="hover:opacity-80 flex items-center justify-center w-12 h-12 text-white transition bg-green-500 rounded-full">
-                <FaWhatsapp />
-              </button>
-              <button className="hover:opacity-80 flex items-center justify-center w-12 h-12 text-white transition bg-blue-600 rounded-full">
-                <FaFacebook />
-              </button>
-              <button className="bg-sky-500 hover:opacity-80 flex items-center justify-center w-12 h-12 text-white transition rounded-full">
-                <FaTwitter />
-              </button>
-              <button className="hover:bg-gray-300 flex items-center justify-center w-12 h-12 text-gray-600 transition bg-gray-200 rounded-full">
-                <FaLink />
-              </button>
+            {/* Divider */}
+            <div className="border-t border-[#EEF2F1]" />
+
+            {/* Share */}
+            <div className="p-8">
+              <h4 className="mb-8 text-[30px] font-semibold text-[#0B0F1F]">
+                Bagikan Artikel
+              </h4>
+
+              <div className="flex gap-6">
+                <button className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white transition hover:scale-105">
+                  <FaWhatsapp className="text-[28px]" />
+                </button>
+
+                <button className="flex h-14 w-14 items-center justify-center rounded-full bg-[#1877F2] text-white transition hover:scale-105">
+                  <FaFacebookF className="text-[26px]" />
+                </button>
+
+                <button className="flex h-14 w-14 items-center justify-center rounded-full bg-[#1DA1F2] text-white transition hover:scale-105">
+                  <FaTwitter className="text-[24px]" />
+                </button>
+
+                <button className="flex h-14 w-14 items-center justify-center rounded-full bg-[#ECECEC] text-[#4B5563] transition hover:bg-[#E5E7EB]">
+                  <FaLink className="text-[22px]" />
+                </button>
+              </div>
             </div>
           </div>
 
           {/* Artikel Terkait */}
-          <div className="rounded-3xl p-8 bg-white border border-gray-100 shadow-sm">
-            <h4 className="mb-6 text-xl font-bold text-gray-900">
+          <div className="rounded-[24px] border border-[#E8ECEA] bg-white p-8 shadow-sm">
+            <h4 className="mb-8 text-[26px] font-semibold text-[#0B0F1F]">
               Artikel Terkait
             </h4>
-            <div className="space-y-6">
-              {[
-                {
-                  img: "rel1",
-                  title: "Mengenal Jenis Sampah dan Cara Mengelolanya",
-                  time: "5 menit baca",
-                },
-                {
-                  img: "rel2",
-                  title: "10 Cara Hemat Energi di Rumah",
-                  time: "4 menit baca",
-                },
-                {
-                  img: "rel3",
-                  title: "Pentingnya Menjaga Ekosistem Laut",
-                  time: "6 menit baca",
-                },
-              ].map((rel, idx) => (
-                <div
-                  key={idx}
-                  className="group flex items-center gap-4 cursor-pointer"
+
+            <div className="space-y-8">
+              {relatedArticles.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/edukasi/${item.slug}`}
+                  className="group flex items-start gap-5"
                 >
-                  <div className="rounded-xl relative flex-shrink-0 w-24 h-24 overflow-hidden shadow-sm">
+                  {/* Thumbnail */}
+                  <div className="relative h-[110px] w-[150px] shrink-0 overflow-hidden rounded-2xl">
                     <Image
-                      src={`https://picsum.photos/seed/${rel.img}/150/150`}
-                      alt={rel.title}
+                      src={item.image}
+                      alt={item.title}
                       fill
-                      className="group-hover:scale-105 object-cover transition"
+                      className="object-cover transition duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <div>
-                    <h5 className="line-clamp-2 group-hover:text-primary mb-2 text-base font-bold text-gray-900 transition">
-                      {rel.title}
+
+                  {/* Content */}
+                  <div className="flex-1 pt-1">
+                    <h5 className="mb-4 line-clamp-2 text-[22px] font-semibold leading-[1.35] text-[#0B0F1F] transition group-hover:text-[#11773D]">
+                      {item.title}
                     </h5>
-                    <div className="flex items-center gap-2 text-sm font-medium text-gray-500">
-                      <FaClock className="text-primary" /> {rel.time}
+
+                    <div className="flex items-center gap-2 text-[17px] text-[#667085]">
+                      <FaClock className="text-[#11773D]" />
+                      <span>{item.readTime}</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
 
           {/* Sidebar CTA */}
-          <div className="bg-primary-light/50 rounded-3xl border-primary-light flex flex-col items-center p-8 text-center border shadow-sm">
-            <h4 className="mb-4 text-2xl font-bold text-gray-900">
-              Yuk, jadi bagian dari perubahan!
-            </h4>
-            <p className="mb-8 text-base text-gray-700">
-              Setiap langkah kecil yang kamu ambil hari ini, membawa perubahan
-              besar untuk masa depan bumi.
-            </p>
-            <button className="bg-primary rounded-xl hover:bg-green-700 flex items-center justify-center w-full gap-3 py-4 mb-6 text-lg font-bold text-white transition shadow-md">
-              Gabung Komunitas <FaUsers />
-            </button>
-            <div className="relative w-full h-32">
-              <Image
-                src="https://picsum.photos/seed/earthcta/300/150"
-                alt="Earth"
-                fill
-                className="object-contain"
-              />
+          <div className="relative overflow-hidden rounded-[24px] border border-[#E8ECEA] bg-[#F4F8F1] p-8 shadow-sm">
+            <div className="relative z-10 flex items-center justify-between gap-6">
+              {/* Left */}
+              <div className="max-w-[300px]">
+                <h3 className="mb-5 text-[28px] font-bold leading-tight text-[#11773D]">
+                  Yuk, jadi bagian dari perubahan!
+                </h3>
+
+                <p className="mb-8 text-[18px] leading-[2] text-[#667085]">
+                  Setiap langkah kecil yang kamu ambil hari ini, membawa
+                  perubahan besar untuk masa depan bumi.
+                </p>
+
+                <button className="inline-flex items-center gap-3 rounded-xl bg-[#11773D] px-8 py-4 text-[18px] font-semibold text-white transition hover:bg-[#0F6535]">
+                  Gabung Komunitas
+                  <FaUsers className="text-lg" />
+                </button>
+              </div>
+
+              {/* Right */}
+              <div className="relative h-[300px] w-[200px] shrink-0">
+                <Image
+                  src="/assets/edukasi/bumi.png"
+                  alt="Bumi"
+                  fill
+                  className="object-contain mt-10"
+                />
+              </div>
             </div>
+
+            {/* Background dekorasi */}
+            <div className="absolute -bottom-2 right-0 h-24 w-40 rounded-full bg-[#E8F3E4] blur-2xl" />
           </div>
         </aside>
       </div>

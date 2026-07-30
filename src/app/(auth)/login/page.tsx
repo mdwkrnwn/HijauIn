@@ -66,8 +66,8 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen w-full relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-green-50">
       {/* Decorative blurred blobs - full page */}
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -top-24 -right-24 w-80 h-80 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#11773D]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-24 -right-24 w-80 h-80 bg-[#11773D]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 lg:py-16">
         <div className="lg:flex-row flex flex-col items-center w-full gap-16">
@@ -75,7 +75,7 @@ export default function LoginPage() {
           <div className="lg:w-1/2 flex flex-col justify-between w-full">
             {/* Logo & Header */}
             <div>
-              <div className="flex items-center gap-3 mb-10">
+              <Link href="/" className="flex items-center gap-3 mb-10">
                 <Image
                   src="/assets/icon.png"
                   alt="Eco Illustration"
@@ -84,23 +84,23 @@ export default function LoginPage() {
                   height={360}
                 />
                 <div>
-                  <h1 className="text-primary text-2xl font-bold leading-none">
+                  <h1 className="text-[#11773D] text-2xl font-bold leading-none">
                     HijauIn
                   </h1>
                   <p className="text-sm font-medium text-gray-500 mt-1">
                     Satu Langkah Hijau Setiap Hari
                   </p>
                 </div>
-              </div>
+              </Link>
 
-              <div className="bg-primary/10 text-primary inline-flex items-center gap-2 px-4 py-2 mb-3 text-sm font-bold rounded-full">
+              <div className="bg-[#11773D]/10 text-[#11773D] inline-flex items-center gap-2 px-4 py-2 mb-3 text-sm font-bold rounded-full">
                 <IoLeaf className="w-4 h-4" /> Aksi Kecil, Dampak Besar
               </div>
 
-              <h2 className="mb-4 text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900">
+              <h2 className="mb-4 text-4xl lg:text-5xl font-bold leading-tight text-[#0B0F1F]">
                 Yuk, lanjutkan
                 <br />
-                perjalanan <span className="text-primary">hijau</span> mu!
+                perjalanan <span className="text-[#11773D]">hijau</span> mu!
               </h2>
 
               <p className="text-base text-gray-600 font-medium leading-relaxed max-w-md">
@@ -123,10 +123,10 @@ export default function LoginPage() {
           {/* Right Column - Auth Form */}
           <div className="lg:w-1/2 relative flex flex-col items-center justify-center w-full">
             {/* Auth Card */}
-            <div className="bg-white rounded-[40px] p-10 lg:p-14 shadow-2xl shadow-primary/10 border border-gray-100 w-full relative z-10">
-              <h3 className="flex items-center gap-2 mb-2 text-3xl font-extrabold text-gray-900">
+            <div className="bg-white rounded-[40px] p-10 lg:p-14 shadow-2xl shadow-[#11773D]/10 border border-gray-100 w-full relative z-10">
+              <h3 className="flex items-center gap-2 mb-2 text-3xl font-bold text-[#0B0F1F]">
                 Selamat Datang Kembali!{" "}
-                <IoLeaf className="text-primary w-6 h-6" />
+                <IoLeaf className="text-[#11773D] w-6 h-6" />
               </h3>
               <p className="mb-8 text-base font-medium text-gray-500">
                 Masuk untuk melanjutkan perjalanan hijau mu.
@@ -150,7 +150,7 @@ export default function LoginPage() {
               >
                 {/* Input Email */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-base font-bold text-gray-900">
+                  <label className="text-base font-bold text-[#0B0F1F]">
                     Email
                   </label>
                   <div className="relative">
@@ -161,14 +161,14 @@ export default function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Masukkan email terdaftar kamu"
-                      className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-4 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
+                      className="rounded-2xl focus:border-[#11773D] w-full py-4 pl-12 pr-4 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Input Password */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-base font-bold text-gray-900">
+                  <label className="text-base font-bold text-[#0B0F1F]">
                     Kata Sandi
                   </label>
                   <div className="relative">
@@ -179,7 +179,7 @@ export default function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Masukkan kata sandi"
-                      className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-12 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
+                      className="rounded-2xl focus:border-[#11773D] w-full py-4 pl-12 pr-12 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
                     <button
                       type="button"
@@ -195,7 +195,7 @@ export default function LoginPage() {
                 <div className="flex justify-end">
                   <Link
                     href="#"
-                    className="text-primary hover:underline text-base font-bold"
+                    className="text-[#11773D] hover:underline text-base font-bold"
                   >
                     Lupa kata sandi?
                   </Link>
@@ -205,7 +205,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="bg-primary hover:bg-primary-dark rounded-2xl flex items-center justify-center w-full gap-2 py-4 mt-2 text-base font-bold text-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="bg-[#11773D] hover:bg-[#11773D]-dark rounded-2xl flex items-center justify-center w-full gap-2 py-4 mt-2 text-base font-bold text-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
                     "Memproses..."
@@ -246,7 +246,7 @@ export default function LoginPage() {
                   Belum punya akun?{" "}
                   <Link
                     href="/register"
-                    className="text-primary hover:underline font-bold"
+                    className="text-[#11773D] hover:underline font-bold"
                   >
                     Daftar sekarang
                   </Link>
@@ -257,10 +257,10 @@ export default function LoginPage() {
             {/* Trust Indicators */}
             <div className="flex items-start justify-between w-full px-2 mt-12">
               <div className="flex flex-col w-1/3 gap-2 pr-4">
-                <div className="bg-primary rounded-xl flex items-center justify-center w-10 h-10 mb-1 text-white">
+                <div className="bg-[#11773D] rounded-xl flex items-center justify-center w-10 h-10 mb-1 text-white">
                   <MdSecurity className="w-5 h-5" />
                 </div>
-                <h4 className="text-base font-bold text-gray-900">
+                <h4 className="text-base font-bold text-[#0B0F1F]">
                   Aman & Terpercaya
                 </h4>
                 <p className="text-sm font-medium leading-tight text-gray-500">
@@ -268,10 +268,10 @@ export default function LoginPage() {
                 </p>
               </div>
               <div className="flex flex-col w-1/3 gap-2 pr-4">
-                <div className="bg-primary/10 rounded-xl text-primary flex items-center justify-center w-10 h-10 mb-1">
+                <div className="bg-[#11773D]/10 rounded-xl text-[#11773D] flex items-center justify-center w-10 h-10 mb-1">
                   <IoLeaf className="w-5 h-5" />
                 </div>
-                <h4 className="text-base font-bold text-gray-900">
+                <h4 className="text-base font-bold text-[#0B0F1F]">
                   Aksi Nyata
                 </h4>
                 <p className="text-sm font-medium leading-tight text-gray-500">
@@ -282,7 +282,7 @@ export default function LoginPage() {
                 <div className="rounded-xl flex items-center justify-center w-10 h-10 mb-1 text-gray-600 bg-gray-100">
                   <FiTrendingUp className="w-5 h-5" />
                 </div>
-                <h4 className="text-base font-bold text-gray-900">
+                <h4 className="text-base font-bold text-[#0B0F1F]">
                   Pantau Perkembangan
                 </h4>
                 <p className="text-sm font-medium leading-tight text-gray-500">

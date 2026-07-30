@@ -24,12 +24,12 @@ export default function Navbar() {
           <Image
             src="/assets/icon.png"
             alt="HijauIn"
-            width={80}
-            height={80}
+            width={60}
+            height={60}
             priority
           />
 
-          <div className="leading-none">
+          <div className=" ml-2 leading-none">
             <h1 className="text-[36px] font-semibold">
               <span className="text-[#0B0F1F]">Hijau</span>
               <span className="text-[#1F8148]">In</span>

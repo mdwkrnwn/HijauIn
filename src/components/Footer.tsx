@@ -22,8 +22,8 @@ export default function Footer() {
               <Image
                 src="/assets/icon.png"
                 alt="HijauIn"
-                width={88}
-                height={88}
+                width={60}
+                height={60}
               />
 
               <div>

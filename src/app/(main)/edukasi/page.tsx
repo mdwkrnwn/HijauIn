@@ -1,5 +1,5 @@
 // src/app/edukasi/page.tsx
-"use client"
+"use client";
 import Image from "next/image";
 import {
   FaSearch,
@@ -136,11 +136,30 @@ const infographics = [
 ];
 
 export default function EdukasiUtama() {
-  const [search, setSearch] = useState('');
-  const router = useRouter()
+  const [search, setSearch] = useState("");
+
+  const filteredArticles = articles.filter((item) => {
+    const keyword = search.toLowerCase();
+
+    const content = item.content
+      .map((c) => {
+        if ("text" in c) return c.text;
+        return "";
+      })
+      .join(" ")
+      .toLowerCase();
+
+    return (
+      item.title.toLowerCase().includes(keyword) ||
+      item.desc.toLowerCase().includes(keyword) ||
+      item.tag.toLowerCase().includes(keyword) ||
+      content.includes(keyword)
+    );
+  });
+  const router = useRouter();
   function searchEdukasi(event: SubmitEvent<HTMLFormElement>): void {
     event.preventDefault();
-    router.push('/edukasi/' + search)
+    router.push("/edukasi/" + search);
   }
 
   return (
@@ -189,13 +208,16 @@ export default function EdukasiUtama() {
             data-aos-delay="400"
             className="mb-8 flex h-12 max-w-125 items-center rounded-[14px] border border-[#D9EFD8] bg-white p-1 shadow-sm"
           >
-            <form className="flex h-12 w-full items-center" onSubmit={searchEdukasi}>
+            <form
+              className="flex h-12 w-full items-center"
+              onSubmit={searchEdukasi}
+            >
               <input
                 type="text"
                 name="searchEdukasi"
                 value={search}
                 onChange={(e) => {
-                  setSearch(e.target.value)
+                  setSearch(e.target.value);
                 }}
                 placeholder="Cari artikel, topik, atau panduan..."
                 className="flex-1 bg-transparent px-4 text-[14px] text-[#0B0F1F] placeholder:text-[#A7B0B5] focus:outline-none"
@@ -266,55 +288,68 @@ export default function EdukasiUtama() {
           </button>
         </div>
 
-        <div className="grid grid-cols-4 gap-6">
-          {articles.map((item, index) => (
-            <Link
-              key={item.id}
-              href={`/edukasi/${item.slug}`}
-              data-aos="fade-up"
-              data-aos-delay={index * 150}
-              data-aos-duration="800"
-              className="group block cursor-pointer overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-            >
-              {/* Image */}
-              <div className="relative h-80 overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+        {filteredArticles.length > 0 ? (
+          <div className="grid grid-cols-4 gap-6">
+            {filteredArticles.map((item, index) => (
+              <Link
+                key={item.id}
+                href={`/edukasi/${item.slug}`}
+                data-aos="fade-up"
+                data-aos-delay={index * 150}
+                data-aos-duration="800"
+                className="group block cursor-pointer overflow-hidden rounded-[18px] border border-[#E8ECEA] bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+              >
+                {/* Image */}
+                <div className="relative h-80 overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
 
-                <div className="absolute left-4 top-4 rounded-full bg-[#CFEEC6] px-3 py-1 text-xs font-semibold text-[#3E8D2F]">
-                  {item.tag}
+                  <div className="absolute left-4 top-4 rounded-full bg-[#CFEEC6] px-3 py-1 text-xs font-semibold text-[#3E8D2F]">
+                    {item.tag}
+                  </div>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className="mb-2 whitespace-pre-line text-[22px] font-bold leading-tight text-[#0B0F1F]">
-                  {item.title}
-                </h3>
+                {/* Content */}
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="mb-2 whitespace-pre-line text-[22px] font-bold leading-tight text-[#0B0F1F]">
+                    {item.title}
+                  </h3>
 
-                <p className="mb-5 flex-1 text-sm leading-6 text-[#667085]">
-                  {item.desc}
-                </p>
+                  <p className="mb-5 flex-1 text-sm leading-6 text-[#667085]">
+                    {item.desc}
+                  </p>
 
-                <div className="flex items-center justify-between border-t border-[#EEF2F1] pt-4 text-xs font-medium text-[#6B7280]">
-                  <span className="flex items-center gap-1.5">
-                    <FaClock className="text-[11px] text-[#7CB342]" />
-                    {item.readTime}
-                  </span>
+                  <div className="flex items-center justify-between border-t border-[#EEF2F1] pt-4 text-xs font-medium text-[#6B7280]">
+                    <span className="flex items-center gap-1.5">
+                      <FaClock className="text-[11px] text-[#7CB342]" />
+                      {item.readTime}
+                    </span>
 
-                  <span className="flex items-center gap-1.5">
-                    <FaCalendarAlt className="text-[11px] text-[#7CB342]" />
-                    {item.date}
-                  </span>
+                    <span className="flex items-center gap-1.5">
+                      <FaCalendarAlt className="text-[11px] text-[#7CB342]" />
+                      {item.date}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center rounded-[24px] border border-dashed border-[#D9E5DD] bg-[#F8FBF9] py-20">
+            <h3 className="text-2xl font-bold text-[#0B0F1F]">
+              Artikel tidak ditemukan
+            </h3>
+
+            <p className="mt-2 max-w-md text-center text-[#667085]">
+              Tidak ada artikel yang sesuai dengan kata kunci <b>"{search}"</b>.
+              Coba gunakan kata kunci lain.
+            </p>
+          </div>
+        )}
       </section>
 
       {/* Kategori Edukasi */}

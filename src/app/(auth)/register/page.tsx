@@ -76,8 +76,8 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen w-full relative overflow-hidden bg-linear-to-br from-green-50 via-white to-green-50">
       {/* Decorative blurred blobs - full page */}
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -top-24 -right-24 w-80 h-80 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#11773D]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-24 -right-24 w-80 h-80 bg-[#11773D]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
 
@@ -92,7 +92,7 @@ export default function RegisterPage() {
               height={360}
             />
             <div>
-              <h1 className="text-primary text-2xl font-bold leading-none">HijauIn</h1>
+              <h1 className="text-[#11773D] text-2xl font-bold leading-none">HijauIn</h1>
               <p className="text-sm font-medium text-gray-500 mt-1">Satu Langkah Hijau Setiap Hari</p>
             </div>
           </div>
@@ -106,12 +106,12 @@ export default function RegisterPage() {
             <div className="absolute top-4 right-4 w-28 h-28 bg-[radial-gradient(#A5D6A7_2px,transparent_2px)] bg-size-[16px_16px] opacity-40 z-0 pointer-events-none"></div>
 
             <div>
-              <div className="bg-primary/10 text-primary inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-bold rounded-full">
+              <div className="bg-[#11773D]/10 text-[#11773D] inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-bold rounded-full">
                 <IoLeaf className="w-4 h-4" /> Aksi Kecil, Dampak Besar
               </div>
 
-              <h2 className="mb-4 text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900">
-                Mulai Perjalanan<br /><span className="text-primary">Hijau</span> mu Sekarang!
+              <h2 className="mb-4 text-4xl lg:text-5xl font-bold leading-tight text-[#0B0F1F]">
+                Mulai Perjalanan<br /><span className="text-[#11773D]">Hijau</span> mu Sekarang!
               </h2>
 
               <p className="text-base text-gray-600 font-medium leading-relaxed max-w-md">
@@ -133,12 +133,12 @@ export default function RegisterPage() {
           {/* Right Column - Auth Form */}
           <div className="lg:w-1/2 relative flex flex-col items-center justify-center w-full">
             {/* Auth Card */}
-            <div className="bg-white rounded-[40px] p-10 lg:p-12 shadow-2xl shadow-primary/10 border border-gray-100 w-full relative z-10 flex flex-col items-center">
-              <div className="bg-primary/10 text-primary flex items-center justify-center w-20 h-20 mb-6 rounded-full">
+            <div className="bg-white rounded-[40px] p-10 lg:p-12 shadow-2xl shadow-[#11773D]/10 border border-gray-100 w-full relative z-10 flex flex-col items-center">
+              <div className="bg-[#11773D]/10 text-[#11773D] flex items-center justify-center w-20 h-20 mb-6 rounded-full">
                 <FiUserPlus className="w-9 h-9" />
               </div>
-              <h3 className="flex items-center gap-2 mb-2 text-3xl font-extrabold text-center text-gray-900">
-                Buat Akun Baru <IoLeaf className="text-primary w-6 h-6" />
+              <h3 className="flex items-center gap-2 mb-2 text-3xl font-bold text-center text-[#0B0F1F]">
+                Buat Akun Baru <IoLeaf className="text-[#11773D] w-6 h-6" />
               </h3>
               <p className="mb-8 text-base font-medium text-center text-gray-500">
                 Isi data diri kamu untuk mulai perjalanan hijau.
@@ -157,7 +157,7 @@ export default function RegisterPage() {
               <form className="flex flex-col w-full gap-5" action={handleSignUp}>
                 {/* Input Name */}
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="text-base font-bold text-gray-900">Nama Lengkap</label>
+                  <label htmlFor="name" className="text-base font-bold text-[#0B0F1F]">Nama Lengkap</label>
                   <div className="relative">
                     <FaUser className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
@@ -167,14 +167,14 @@ export default function RegisterPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Masukkan nama lengkap kamu"
-                      className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-4 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
+                      className="rounded-2xl focus:border-[#11773D] w-full py-4 pl-12 pr-4 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Input Email */}
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="email" className="text-base font-bold text-gray-900">Email</label>
+                  <label htmlFor="email" className="text-base font-bold text-[#0B0F1F]">Email</label>
                   <div className="relative">
                     <FaRegEnvelope className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
@@ -184,14 +184,14 @@ export default function RegisterPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Masukkan email aktif kamu"
-                      className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-4 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
+                      className="rounded-2xl focus:border-[#11773D] w-full py-4 pl-12 pr-4 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Input Password */}
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="password" className="text-base font-bold text-gray-900">Kata Sandi</label>
+                  <label htmlFor="password" className="text-base font-bold text-[#0B0F1F]">Kata Sandi</label>
                   <div className="relative">
                     <FaLock className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
@@ -201,7 +201,7 @@ export default function RegisterPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Buat kata sandi (min. 8 karakter)"
-                      className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-12 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
+                      className="rounded-2xl focus:border-[#11773D] w-full py-4 pl-12 pr-12 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
                     <button
                       type="button"
@@ -215,7 +215,7 @@ export default function RegisterPage() {
 
                 {/* Input Confirm Password */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-base font-bold text-gray-900">Konfirmasi Kata Sandi</label>
+                  <label className="text-base font-bold text-[#0B0F1F]">Konfirmasi Kata Sandi</label>
                   <div className="relative">
                     <FaLock className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
                     <input
@@ -223,7 +223,7 @@ export default function RegisterPage() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="Konfirmasi kata sandi kamu"
-                      className="rounded-2xl focus:border-primary w-full py-4 pl-12 pr-12 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
+                      className="rounded-2xl focus:border-[#11773D] w-full py-4 pl-12 pr-12 text-base font-semibold transition-colors bg-white border border-gray-200 outline-none"
                     />
                     <button
                       type="button"
@@ -243,11 +243,11 @@ export default function RegisterPage() {
                       type="checkbox"
                       checked={agreeTaS}
                       onChange={(e) => setAgreeTaS(e.target.checked)}
-                      className="accent-primary focus:ring-primary w-5 h-5 border-gray-300 rounded cursor-pointer"
+                      className="accent-[#11773D] focus:ring-[#11773D] w-5 h-5 border-gray-300 rounded cursor-pointer"
                     />
                   </div>
                   <label htmlFor="ToS" className="text-base font-semibold text-gray-700">
-                    Saya setuju dengan <Link href="#" className="text-primary hover:underline">Syarat & Ketentuan</Link> dan <Link href="#" className="text-primary hover:underline">Kebijakan Privasi</Link> HijauIn
+                    Saya setuju dengan <Link href="#" className="text-[#11773D] hover:underline">Syarat & Ketentuan</Link> dan <Link href="#" className="text-[#11773D] hover:underline">Kebijakan Privasi</Link> HijauIn
                   </label>
                 </div>
 
@@ -255,7 +255,7 @@ export default function RegisterPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="bg-primary hover:bg-primary-dark rounded-2xl flex items-center justify-center w-full py-4 mt-4 text-base font-bold text-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="bg-[#11773D] hover:bg-[#11773D]-dark rounded-2xl flex items-center justify-center w-full py-4 mt-4 text-base font-bold text-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isLoading ? "Memproses..." : "Daftar Sekarang \u2192"}
                 </button>
@@ -281,7 +281,7 @@ export default function RegisterPage() {
                   Sudah punya akun?{" "}
                   <Link
                     href="/login"
-                    className="text-primary hover:underline font-bold"
+                    className="text-[#11773D] hover:underline font-bold"
                   >
                     Masuk
                   </Link>
@@ -291,7 +291,7 @@ export default function RegisterPage() {
 
             {/* Trust Footer */}
             {/* <div className="flex items-center justify-center w-full gap-3 px-4 mt-10 text-center">
-              <MdSecurity className="text-primary shrink-0 w-6 h-6" />
+              <MdSecurity className="text-[#11773D] shrink-0 w-6 h-6" />
               <p className="text-sm font-medium text-gray-600">
                 Data kamu aman bersama kami. Kami tidak akan membagikan informasi pribadimu ke pihak lain.
               </p>

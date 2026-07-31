@@ -8,12 +8,12 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/", name: "Beranda" },
-    { href: "/fitur", name: "Fitur" },
-    { href: "/cara-kerja", name: "Cara Kerja" },
-    { href: "/edukasi", name: "Edukasi" },
-    { href: "/komunitas", name: "Komunitas" },
-    { href: "/tentang", name: "Tentang Kami" },
+    { href: "", name: "Beranda" },
+    { href: "fitur", name: "Fitur" },
+    { href: "cara-kerja", name: "Cara Kerja" },
+    { href: "edukasi", name: "Edukasi" },
+    { href: "komunitas", name: "Komunitas" },
+    { href: "tentang", name: "Tentang Kami" },
   ];
 
   return (
@@ -45,16 +45,14 @@ export default function Navbar() {
           {navItems.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
-              className={`relative pb-2 text-[17px] font-semibold transition-colors ${
-                pathname === item.href
-                  ? "text-[#076635]"
-                  : "text-[#0B0F1F] hover:text-[#076635]"
-              }`}
+              href={'/' + item.href}
+              className={`relative pb-2 text-[17px] font-semibold transition-colors ${pathname === item.href
+                ? "text-[#076635]"
+                : "text-[#0B0F1F] hover:text-[#076635]"
+                }`}
             >
               {item.name}
-
-              {pathname === item.href && (
+              {pathname.split('/')[1] === (item.href) && (
                 <span className="absolute left-0 bottom-0 h-[3px] w-full rounded-full bg-[#076635]" />
               )}
             </Link>

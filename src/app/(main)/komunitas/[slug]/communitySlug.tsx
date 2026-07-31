@@ -28,6 +28,8 @@ export default function DetailKomunitas({
     <div className="bg-gray-50 flex flex-col items-center w-full">
       <div className="w-full px-16 py-12">
         <Link
+          data-aos="fade-right"
+          data-aos-duration="500"
           href="/komunitas"
           className="text-[#11773D] hover:underline inline-flex items-center gap-2 mb-8 text-base font-bold"
         >
@@ -35,7 +37,11 @@ export default function DetailKomunitas({
         </Link>
 
         {/* Main Banner Card */}
-        <div className="bg-white rounded-[3rem] p-10 flex gap-10   items-stretch">
+        <div
+          data-aos='fade-right'
+          data-aos-duration='800'
+          className="bg-white rounded-[3rem] p-10 flex gap-10   items-stretch">
+          {/* Left Side */}
           <div className="flex flex-col justify-between w-1/2 py-6">
             <div>
               <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-3xl border border-green-100 bg-[#EEF6EE]">
@@ -76,7 +82,11 @@ export default function DetailKomunitas({
               </button>
             </div>
           </div>
-          <div className="w-1/2 relative rounded-4xl overflow-hidden">
+          {/* Right Side */}
+          <div
+            data-aos='fade-left'
+            data-aos-duration='800'
+            className="w-1/2 relative rounded-4xl overflow-hidden">
             <Image
               src={community.image}
               alt="Community Activity"
@@ -117,7 +127,7 @@ export default function DetailKomunitas({
               lbl: "Kegiatan Telah Dilakukan",
             },
           ].map((stat, idx) => (
-            <div key={idx} className="flex items-center gap-5">
+            <div data-aos='fade-up' data-aos-duration="800" data-aos-delay={idx * 150} key={idx} className="flex items-center gap-5">
               <div className="text-[#11773D] text-5xl">{stat.icon}</div>
               <div>
                 <div className="text-2xl font-bold text-[#0B0F1F]">
@@ -135,7 +145,10 @@ export default function DetailKomunitas({
         {/* Left Column */}
         <div className="w-2/3 space-y-10">
           {/* Tentang Komunitas */}
-          <div className="rounded-3xl p-10 bg-white">
+          <div
+            data-aos='zoom-in-right'
+            data-aos-duration='800'
+            className="rounded-3xl p-10 bg-white">
             <h2 className="mb-6 text-3xl font-bold text-[#0B0F1F]">
               Tentang Komunitas <FaLeaf className="text-[#11773D] inline" />
             </h2>
@@ -183,7 +196,10 @@ export default function DetailKomunitas({
           </div>
 
           {/* Kegiatan Terbaru */}
-          <div className="-mt-10 rounded-[28px] border border-[#E9EDF3] bg-white p-8 shadow-[0_4px_20px_rgba(16,24,40,0.04)]">
+          <div
+            data-aos='zoom-in-right'
+            data-aos-duration='800'
+            className="-mt-10 rounded-[28px] border border-[#E9EDF3] bg-white p-8 shadow-[0_4px_20px_rgba(16,24,40,0.04)]">
             <h2 className="mb-6 flex items-center gap-2 text-[30px] font-bold text-[#101828]">
               Kegiatan Terbaru
               <FaLeaf className="text-[#11773D] text-lg" />
@@ -299,7 +315,10 @@ export default function DetailKomunitas({
             </button>
           </div>
           {/* Galeri Kegiatan */}
-          <div className="rounded-3xl p-10 bg-white border border-gray-100 shadow-sm">
+          <div
+            data-aos='zoom-in-right'
+            data-aos-duration='800'
+            className="rounded-3xl p-10 bg-white border border-gray-100 shadow-sm">
             <div className="flex items-end justify-between mb-8">
               <h2 className="text-3xl font-semibold text-[#0B0F1F]">
                 Galeri Kegiatan <FaLeaf className="text-[#11773D] inline" />
@@ -353,7 +372,10 @@ export default function DetailKomunitas({
         {/* Right Column (Sidebar) */}
         <div className="w-1/3 space-y-8">
           {/* Informasi Kontak */}
-          <div className="rounded-[24px] border border-[#E9EDF3] bg-white p-8">
+          <div
+            data-aos='zoom-in-left'
+            data-aos-duration='800'
+            className="rounded-3xl border border-[#E9EDF3] bg-white p-8">
             <h3 className="mb-8 text-[30px] font-bold text-[#101828]">
               Informasi Kontak
             </h3>
@@ -383,7 +405,10 @@ export default function DetailKomunitas({
           </div>
 
           {/* Koordinator */}
-          <div className="rounded-3xl p-8 bg-white shadow-sm">
+          <div
+            data-aos='zoom-in-left'
+            data-aos-duration='800'
+            className="rounded-3xl p-8 bg-white shadow-sm">
             <h3 className="mb-6 text-2xl font-bold text-[#0B0F1F]">
               Koordinator
             </h3>
@@ -409,7 +434,10 @@ export default function DetailKomunitas({
           </div>
 
           {/* Fokus Kami */}
-          <div className="rounded-3xl p-8 bg-white border border-gray-100 shadow-sm">
+          <div
+            data-aos='zoom-in-left'
+            data-aos-duration='800'
+            className="rounded-3xl p-8 bg-white border border-gray-100 shadow-sm">
             <h3 className="mb-6 text-2xl font-bold text-[#0B0F1F]">
               Fokus Kami
             </h3>
@@ -442,7 +470,11 @@ export default function DetailKomunitas({
           </div>
         </div>
       </div>
-      <div className="w-full px-10">
+      <div
+        data-aos='fade-up'
+        data-aos-duration='500'
+        data-aos-anchor-placement="top-bottom"
+        className="w-full px-10">
         <div className="relative mt-16 flex items-center justify-between overflow-hidden rounded-[28px] border border-[#E8F2EA] bg-[#F5FAF6] px-12 py-6 shadow-[0_4px_20px_rgba(16,24,40,0.04)]">
           {/* Left */}
           <div className="flex items-center gap-8">

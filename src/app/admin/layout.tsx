@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "HijauIn",
-  description: "Skibidi respect",
+  description: "Selamatkan Bumi!",
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",

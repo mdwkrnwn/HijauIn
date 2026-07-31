@@ -11,8 +11,6 @@ const ProfilePage = async () => {
   }
   const { data: userProfiles } = await supabase.from('profiles').select("*").eq('id', user.id).single()
 
-
-
   return (
     <Profil user={user!} userProfiles={userProfiles} />
   )

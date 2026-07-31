@@ -28,12 +28,13 @@ export default function ChallengePage() {
             Ikuti challenge seru dan raih poin serta badge spesial!
           </p>
         </div>
-        <div className="lg:w-2/3 opacity-40 lg:opacity-100 absolute top-0 right-0 z-0 flex justify-end w-full h-full">
-          <img
-            src="https://picsum.photos/id/13/800/300"
+        <div className="lg:w-2/3 absolute top-0 right-0 z-0 flex justify-end w-full h-full">
+          <Image
+            src="/assets/challange/main.png"
             alt="Eco Trophy Landscape"
-            className="mask-image-linear-gradient object-cover w-full h-full"
-            style={{ maskImage: 'linear-gradient(to right, transparent, black)' }}
+            width={1539}
+            height={400}
+            className="object-contain"
           />
         </div>
       </header>
@@ -74,8 +75,8 @@ export default function ChallengePage() {
               <div className="animate-in fade-in flex flex-col gap-8 duration-300">
                 {/* Active Highlight */}
                 <div className="rounded-2xl lg:flex-row flex flex-col items-center gap-8 p-6 border border-gray-100">
-                  <div className="bg-primary-light shrink-0 flex items-center justify-center w-32 h-32 overflow-hidden rounded-full">
-                    <img src="https://picsum.photos/id/400/120/120" alt="Bottle" className="mix-blend-multiply object-cover w-full h-full" />
+                  <div className="bg-primary-light shrink-0 flex items-center justify-center w-32 h-32 overflow-hidden rounded-full relative">
+                    <Image fill src="https://picsum.photos/id/400/120/120" alt="Bottle" className="mix-blend-multiply object-cover w-full h-full" />
                   </div>
                   <div className="flex-1 w-full">
                     <span className="bg-primary-light text-primary inline-block px-3 py-1 mb-3 text-base font-bold rounded-full">Tantangan Aktif</span>

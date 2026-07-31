@@ -66,7 +66,7 @@ export default function Profil({ user, userProfiles }: {
               <div className="w-32 h-32 rounded-full border-4 border-white bg-white overflow-hidden shadow-sm relative">
                 <Image
                   src={userProfiles.avatar_url ?? "/assets/beranda/ava1.png"}
-                  alt={user.user_metadata.full_name}
+                  alt={userProfiles.full_name}
                   fill
                   className="object-cover"
                 />
@@ -80,7 +80,7 @@ export default function Profil({ user, userProfiles }: {
             <div className="relative z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-4">
               <div>
                 <h2 className="text-3xl font-black text-gray-800 flex flex-wrap items-center justify-center md:justify-start gap-3 mb-3">
-                  {user.user_metadata?.full_name}
+                  {userProfiles.full_name}
                   <span className="bg-primary-light text-primary text-base px-3 py-1 rounded-full font-bold">Eco Guardian</span>
                 </h2>
                 <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-base text-gray-600 font-bold mb-4">
@@ -131,7 +131,7 @@ export default function Profil({ user, userProfiles }: {
                     <AchievementCard icon={<FaLeaf className="w-6 h-6 text-success" />} value="1.250" label="Total Poin" />
                     <AchievementCard icon={<FaTrophy className="w-6 h-6 text-success" />} value="8" label="Challenge Selesai" />
                     <AchievementCard icon={<FaShieldAlt className="w-6 h-6 text-success" />} value="4" label="Badge Dimiliki" />
-                    <AchievementCard icon={<FiCalendar className="w-6 h-6 text-success" />} value="28" label="Hari Aktif Konsisten" />
+                    <AchievementCard icon={<FiCalendar className="w-6 h-6 text-success" />} value={userProfiles.streak.toString()} label="Hari Aktif Konsisten" />
                   </div>
                 </div>
 
@@ -141,7 +141,7 @@ export default function Profil({ user, userProfiles }: {
                   <div className="flex flex-col">
                     <InfoRow icon={<FaRegEnvelope className="text-gray-400 w-5 h-5" />} label="Email" value={user.email!} />
                     <InfoRow icon={<FaPhone className="text-gray-400 w-5 h-5" />} label="Nomor Telepon" value={user.phone!.length > 0 ? user.phone! : '-'} />
-                    <InfoRow icon={<FaMapMarkerAlt className="text-gray-400 w-5 h-5" />} label="Lokasi" value="Yogyakarta, Indonesia" borderBottom={false} />
+                    <InfoRow icon={<FaMapMarkerAlt className="text-gray-400 w-5 h-5" />} label="Lokasi" value={userProfiles.city ?? '-'} borderBottom={false} />
                   </div>
                 </div>
 

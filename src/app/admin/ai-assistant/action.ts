@@ -43,7 +43,7 @@ export async function continueChat(userId: string, newUserPrompt: string) {
     }
   });
 
-  const aiResponseText = result.text || "No response generated.";
+  const aiResponseText = result.text || "Maaf, tidak ada jawaban yang dihasilkan.";
 
   await supabase.from('messages').insert([
     { user_id: userId, role: 'user', content: newUserPrompt },

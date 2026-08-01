@@ -58,8 +58,8 @@ export default function LoginPage() {
 
       setTimeout(() => {
         router.refresh();
-        window.location.href = "/admin";
-      }, 200);
+        router.replace("/admin");
+      }, 1000);
     } catch (err) {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");
       setIsLoading(false);

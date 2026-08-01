@@ -4,6 +4,9 @@ import { Poppins } from "next/font/google";
 import Sidebar from "./components/sidebar";
 import NextTopLoader from "nextjs-toploader";
 import { Metadata } from "next";
+import Header from "./components/Header";
+import { getNotifications, getSession } from "./components/action";
+import { redirect } from "next/navigation";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,19 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: ReactNode;
 }) {
+  const { userProfiles } = await getSession();
+  if (!userProfiles) {
+    redirect("/login")
+  }
+  const data = await getNotifications(userProfiles.id)
+
   return (
     <html lang="id">
       <body
-        className={`${poppins.className} min-h-screen flex bg-[#F8FAF8] text-[#1A202C] antialiased`}
+        className={`${poppins.className} min-h-screen grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-[#F8FAF8] text-[#1A202C] antialiased`}
       >
         <NextTopLoader color="#0E5F35" showSpinner />
         <Sidebar />
-        <main className="lg:ml-70 flex-1 w-full overflow-x-hidden p-6 lg:p-8">
+        <Header notifications={data!} userProfile={userProfiles} />
+        <main className="flex-1 w-full z-10 overflow-x-hidden p-6 lg:p-8 pt-0!">
           {children}
         </main>
       </body>

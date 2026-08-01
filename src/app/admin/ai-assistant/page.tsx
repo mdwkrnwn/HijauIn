@@ -19,9 +19,9 @@ import { FaCheckCircle } from "react-icons/fa";
 
 export default function AiAssistantPage() {
   return (
-    <div className="flex flex-col w-full -mt-5 gap-6">
+    <div className="flex flex-col w-full gap-6">
       {/* Header */}
-      <header className="lg:flex-row lg:items-center rounded-3xl relative flex flex-col items-start justify-between gap-4 p-8 overflow-hidden ">
+      {/* <header className="lg:flex-row lg:items-center rounded-3xl relative flex flex-col items-start justify-between gap-4 p-8 overflow-hidden ">
         <div className="lg:w-1/2 z-10 w-full">
           <h1 className="mb-2 text-3xl font-bold">AI Assistant</h1>
           <p className=" text-base text-gray-600">
@@ -51,7 +51,7 @@ export default function AiAssistantPage() {
             <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Hero Section */}
       <div className="relative overflow-hidden rounded-[24px] border border-[#EAECF0] bg-gradient-to-r from-white via-[#FCFEFC] to-[#F2F9F3] px-8 py-7">

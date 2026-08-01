@@ -21,9 +21,9 @@ import Image from "next/image";
 
 export default function AktivitasPage() {
   return (
-    <div className="flex flex-col gap-6 mx-auto -mt-5">
+    <div className="flex flex-col gap-6 mx-auto">
       {/* Header Section */}
-      <header className="lg:flex-row lg:items-center rounded-3xl relative flex flex-col items-start justify-between gap-4 p-8 overflow-hidden ">
+      {/* <header className="lg:flex-row lg:items-center rounded-3xl relative flex flex-col items-start justify-between gap-4 p-8 overflow-hidden ">
         <div className="lg:w-1/2 z-10 w-full">
           <h1 className="mb-2 text-3xl font-bold">Aktivitas</h1>
           <p className=" text-base text-gray-600">
@@ -53,8 +53,6 @@ export default function AktivitasPage() {
             <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
           </div>
         </div>
-
-        {/* Abstract Header Image Integration */}
         <div className="lg:w-1/2 absolute  right-60 z-0 flex justify-end w-full h-full">
           <Image
             width={800}
@@ -64,10 +62,10 @@ export default function AktivitasPage() {
             className="object-cover w-full h-full rounded-l-full"
           />
         </div>
-      </header>
+      </header> */}
 
       {/* Main Grid Layout */}
-      <div className="lg:grid-cols-3 grid -mt-10 z-100 grid-cols-1 gap-6">
+      <div className="lg:grid-cols-3 grid z-100 grid-cols-1 gap-6">
         {/* Left Column (Span 2) */}
         <div className="lg:col-span-2 flex flex-col gap-6">
           {/* Catat Aksi Hijau */}
@@ -420,7 +418,7 @@ export default function AktivitasPage() {
                   </div>
                 </div>
                 <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-4 transition-shadow border border-gray-100 cursor-pointer">
-                   <div className="flex items-center justify-between py-2">
+                  <div className="flex items-center justify-between py-2">
                     {/* Left */}
                     <div className="flex items-center gap-4">
                       {/* Icon */}

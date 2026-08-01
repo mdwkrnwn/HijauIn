@@ -20,7 +20,7 @@ export default function KomunitasPage() {
     <div className="flex flex-col w-full gap-6 mx-auto">
 
       {/* Header Section */}
-      <header className="rounded-3xl relative flex items-center justify-between p-8 overflow-hidden bg-white shadow-sm">
+      {/* <header className="rounded-3xl relative flex items-center justify-between p-8 overflow-hidden bg-white shadow-sm">
         <div className="lg:w-1/2 relative z-10 w-full">
           <h1 className="flex items-center gap-2 mb-2 text-3xl font-extrabold">
             Komunitas <MdOutlineEnergySavingsLeaf className="text-primary" />
@@ -39,7 +39,7 @@ export default function KomunitasPage() {
             style={{ maskImage: 'linear-gradient(to right, transparent, black)' }}
           />
         </div>
-      </header>
+      </header> */}
 
       {/* Main Grid Layout */}
       <div className="lg:grid-cols-3 grid grid-cols-1 gap-6">
@@ -328,7 +328,7 @@ export default function KomunitasPage() {
 
 // Subcomponents
 
-function PopularCard({ img, icon, title, members }: { img?: string, icon?: any, title: string, members: string }) {
+function PopularCard({ img, icon, title, members }: { img?: string, icon?: React.ReactNode, title: string, members: string }) {
   return (
     <div className="rounded-2xl min-w-40 hover:border-primary flex flex-col items-center justify-center p-4 transition-colors border border-gray-100 cursor-pointer">
       <div className="bg-gray-50 flex items-center justify-center w-20 h-20 mb-3 overflow-hidden rounded-full">
@@ -343,7 +343,17 @@ function PopularCard({ img, icon, title, members }: { img?: string, icon?: any, 
   );
 }
 
-function PostCard({ avatar, name, badge, community, time, text, likes, comments, image }: any) {
+function PostCard({ avatar, name, badge, community, time, text, likes, comments, image }: {
+  avatar: string,
+  name: string,
+  badge: string,
+  community: string,
+  time: string,
+  text: string,
+  likes: string,
+  comments: string,
+  image: string
+}) {
   return (
     <div className="rounded-2xl p-5 border border-gray-100">
       <div className="flex items-start justify-between mb-4">
@@ -380,7 +390,16 @@ function PostCard({ avatar, name, badge, community, time, text, likes, comments,
   );
 }
 
-function MyCommunityRow({ img, icon, title, desc, date, members, posts, isCreator = false }: any) {
+function MyCommunityRow({ img, icon, title, desc, date, members, posts, isCreator = false }: {
+  img?: string,
+  icon?: React.ReactNode,
+  title: string,
+  desc: string,
+  date: string,
+  members: string,
+  posts: string,
+  isCreator?: boolean
+}) {
   return (
     <div className="rounded-2xl hover:shadow-md flex items-center justify-between p-4 transition-shadow border border-gray-100">
       <div className="flex items-center flex-1 gap-4">
@@ -415,7 +434,7 @@ function MyCommunityRow({ img, icon, title, desc, date, members, posts, isCreato
   );
 }
 
-function CategoryCard({ icon, title, count }: { icon: any, title: string, count: string }) {
+function CategoryCard({ icon, title, count }: { icon: React.ReactNode, title: string, count: string }) {
   return (
     <div className="rounded-2xl min-w-45 hover:border-primary flex flex-col items-center justify-center p-4 transition-colors bg-white border border-gray-100 cursor-pointer">
       <div className="bg-gray-50 flex items-center justify-center w-16 h-16 mb-3 rounded-full">
@@ -427,7 +446,18 @@ function CategoryCard({ icon, title, count }: { icon: any, title: string, count:
   );
 }
 
-function DiscoverRow({ img, icon, title, verified, tag, desc, loc, date, members, posts }: any) {
+function DiscoverRow({ img, icon, title, verified, tag, desc, loc, date, members, posts }: {
+  img?: string,
+  icon?: React.ReactNode,
+  title: string,
+  verified?: boolean,
+  tag: string,
+  desc: string,
+  loc: string,
+  date: string,
+  members: string,
+  posts: string
+}) {
   return (
     <div className="rounded-2xl hover:shadow-md flex items-center justify-between p-5 transition-shadow border border-gray-100">
       <div className="flex items-start flex-1 gap-4">
@@ -464,7 +494,13 @@ function DiscoverRow({ img, icon, title, verified, tag, desc, loc, date, members
   );
 }
 
-function ContributorRow({ rank, avatar, name, badge, score }: any) {
+function ContributorRow({ rank, avatar, name, badge, score }: {
+  rank: number,
+  avatar: string,
+  name: string,
+  badge: string,
+  score: string
+}) {
   const rankColors = ["bg-warning text-white", "bg-gray-300 text-gray-700", "bg-orange-400 text-white"];
   const badgeClass = rank <= 3 ? rankColors[rank - 1] : "bg-gray-100 text-gray-600 border border-gray-200";
 
@@ -487,7 +523,12 @@ function ContributorRow({ rank, avatar, name, badge, score }: any) {
   );
 }
 
-function SuggestionRow({ icon, bg, title, members }: any) {
+function SuggestionRow({ icon, bg, title, members }: {
+  icon: React.ReactNode,
+  bg: string,
+  title: string,
+  members: string
+}) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">

@@ -58,11 +58,8 @@ export default function CTA() {
   ];
 
   return (
-    <section
-      data-aos="fade-up"
-      className="px-16 py-9"
-    >
-      <div className="relative overflow-hidden rounded-[32px] bg-[#F1F6EA] p-16">
+    <section data-aos="fade-up" className="px-4 py-9 sm:px-8 lg:px-16">
+      <div className="relative overflow-hidden rounded-4xl bg-[#F1F6EA] p-6 sm:p-8 lg:p-16">
         {/* ================= ORNAMENT ================= */}
 
         <Image
@@ -78,7 +75,7 @@ export default function CTA() {
           alt=""
           width={250}
           height={250}
-          className="pointer-events-none absolute -bottom-15 left-[295px] z-0 opacity-90 animate-float"
+          className="pointer-events-none absolute -bottom-15 left-73.75 z-0 opacity-90 animate-float"
         />
 
         <Image
@@ -86,7 +83,7 @@ export default function CTA() {
           alt=""
           width={100}
           height={100}
-          className="pointer-events-none absolute left-[440px] top-5 rotate-12 opacity-80 animate-float"
+          className="pointer-events-none absolute left-110 top-5 rotate-12 opacity-80 animate-float"
         />
 
         <Image
@@ -99,9 +96,9 @@ export default function CTA() {
 
         {/* ================= CONTENT ================= */}
 
-        <div className="relative z-10 flex items-center justify-between gap-8">
+        <div className="relative z-10 flex flex-col gap-8 xl:flex-row xl:items-center">
           {/* LEFT */}
-          <div className="w-[38%]">
+          <div className="w-full xl:w-[38%]">
             <FaLeaf
               data-aos="fade-right"
               data-aos-duration="700"
@@ -111,7 +108,7 @@ export default function CTA() {
             <h2
               data-aos="fade-up"
               data-aos-delay="150"
-              className="text-[40px] font-semibold leading-[1.18] text-[#0B0F1F]"
+              className="text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-[1.18] text-[#0B0F1F]"
             >
               Punya Teman Pintar
               <br />
@@ -121,7 +118,7 @@ export default function CTA() {
             <p
               data-aos="fade-up"
               data-aos-delay="300"
-              className="mt-8 text-[18px] leading-9 text-[#667085]"
+              className="mt-8 text-[clamp(1rem,1.5vw,1.125rem)] leading-8 text-[#667085] sm:leading-9"
             >
               AI Green Coach siap membantumu memahami dampak
               <br />
@@ -133,36 +130,13 @@ export default function CTA() {
             <button
               data-aos="zoom-in"
               data-aos-delay="450"
-              className="
-                group
-                relative
-                mt-10
-                inline-flex
-                h-[50px]
-                items-center
-                overflow-hidden
-                rounded-full
-                bg-[linear-gradient(90deg,#076635_0%,#0A6F39_48%,#086735_100%)]
-                pl-8
-                pr-[10px]
-                text-[17px]
-                font-medium
-                tracking-[0.01em]
-                text-white
-                shadow-[0_10px_22px_rgba(7,102,53,0.18)]
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:shadow-[0_14px_28px_rgba(7,102,53,0.25)]
-              "
+              className="group relative mt-10 inline-flex h-12.5 items-center overflow-hidden rounded-full bg-[linear-gradient(90deg,#076635_0%,#0A6F39_48%,#086735_100%)] pl-8 pr-2.5 text-[17px] font-medium tracking-[0.01em] text-white shadow-[0_10px_22px_rgba(7,102,53,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(7,102,53,0.25)]"
             >
-              <span className="absolute inset-x-0 top-0 h-[1px] bg-white/25" />
+              <span className="absolute inset-x-0 top-0 h-px bg-white/25" />
 
-              <span className="relative z-10">
-                Coba Sekarang
-              </span>
+              <span className="relative z-10">Coba Sekarang</span>
 
-              <span className="relative z-10 ml-3 flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:translate-x-1">
+              <span className="relative z-10 ml-3 flex h-7.5 w-7.5 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:translate-x-1">
                 <FaArrowRight className="text-[13px] text-[#076635]" />
               </span>
             </button>
@@ -172,19 +146,15 @@ export default function CTA() {
           <div
             data-aos="fade-left"
             data-aos-duration="900"
-            className="relative z-10 w-[60%] overflow-hidden rounded-[28px] border border-white/40 bg-white/30 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
+            className="relative z-10 w-full overflow-hidden rounded-[28px] border border-white/40 bg-white/30 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.04)] backdrop-blur-md xl:w-[60%]"
           >
-            <div className="grid grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {features.map((feature, idx) => (
                 <div
                   key={feature.title}
                   data-aos="fade-up"
                   data-aos-delay={idx * 150}
-                  className={`group flex min-h-[300px] flex-col items-center justify-start px-7 py-10 text-center ${
-                    idx !== features.length - 1
-                      ? "border-r border-[#EEF2EE]"
-                      : ""
-                  }`}
+                  className="group flex min-h-[280px] flex-col items-center justify-start rounded-2xl border border-[#EEF2EE] bg-white/80 px-5 py-8 text-center"
                 >
                   <Image
                     src={feature.src}

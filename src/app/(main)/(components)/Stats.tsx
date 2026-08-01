@@ -37,20 +37,16 @@ export default function Stats() {
   return (
     <section
       data-aos="fade-up"
-      className="relative z-10 -mt-25 px-16 py-16"
+      className="relative z-10 -mt-8 px-4 py-8 sm:-mt-12 sm:px-8 lg:-mt-25 lg:px-16 lg:py-16"
     >
-      <div className="flex items-center rounded-[25px] border border-[#ECECEC] bg-white py-8 shadow-lg">
+      <div className="grid gap-4 rounded-[25px] border border-[#ECECEC] bg-white p-4 shadow-lg sm:p-6 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5">
         {stats.map((item, index) => (
           <div
             key={index}
             data-aos="zoom-in"
             data-aos-delay={index * 150}
             data-aos-duration="700"
-            className={`flex flex-1 items-center justify-center gap-2 px-5 ${
-              index !== stats.length - 1
-                ? "border-r border-[#ECECEC]"
-                : ""
-            }`}
+            className="flex flex-col items-center justify-center gap-3 rounded-2xl p-4 text-center sm:flex-row sm:justify-start sm:text-left"
           >
             {/* Icon */}
             <Image
@@ -58,12 +54,12 @@ export default function Stats() {
               alt={item.line1}
               width={150}
               height={150}
-              className="h-[80px] w-[80px] -ml-15 flex-shrink-0 object-contain"
+              className="size-20 shrink-0 object-contain"
             />
 
             {/* Text */}
-            <div className="ml-5 min-w-0">
-              <h3 className="whitespace-nowrap text-[25px] font-bold leading-none text-[#076635]">
+            <div className="min-w-0">
+              <h3 className="text-[clamp(1.15rem,2.25vw,1.56rem)] font-bold leading-none text-[#076635]">
                 {item.value}
               </h3>
 

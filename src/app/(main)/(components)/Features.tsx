@@ -35,12 +35,12 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="px-16 py-9 text-center">
+    <section className="px-4 py-9 text-center sm:px-8 lg:px-16">
       {/* Heading */}
       <h2
         data-aos="fade-up"
         data-aos-duration="700"
-        className="text-[40px] font-semibold leading-tight text-[#0B0F1F]"
+        className="text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-tight text-[#0B0F1F]"
       >
         Fitur Unggulan <span className="text-[#076635]">HijauIn</span>
       </h2>
@@ -50,20 +50,20 @@ export default function Features() {
         data-aos="fade-up"
         data-aos-delay="150"
         data-aos-duration="700"
-        className="mt-4 text-[18px] text-[#667085]"
+        className="mx-auto mt-4 max-w-2xl text-[clamp(1rem,1.5vw,1.125rem)] text-[#667085]"
       >
         Semua yang kamu butuhkan untuk hidup lebih hijau dalam satu platform
       </p>
 
       {/* Cards */}
-      <div className="mt-16 grid grid-cols-6 gap-6">
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
         {features.map((feature, index) => (
           <div
             key={feature.title}
             data-aos="fade-up"
             data-aos-delay={index * 150}
             data-aos-duration="700"
-            className="flex min-h-[420px] flex-col items-center rounded-2xl border border-[#ECECEC] bg-white px-7 py-10 shadow-[0_6px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            className="flex min-h-full flex-col items-center rounded-2xl border border-[#ECECEC] bg-white px-7 py-8 shadow-[0_6px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:py-10"
           >
             {/* Icon */}
             <Image
@@ -71,7 +71,7 @@ export default function Features() {
               alt={feature.title}
               width={260}
               height={260}
-              className="h-[260px] w-[260px] -mt-10 object-contain transition-transform duration-300 group-hover:scale-105"
+              className="-mt-4 h-auto w-full max-w-[220px] object-contain transition-transform duration-300 hover:scale-105 sm:max-w-[260px]"
             />
 
             {/* Title */}

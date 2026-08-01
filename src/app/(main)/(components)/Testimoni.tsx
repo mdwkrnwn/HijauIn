@@ -61,6 +61,7 @@ const testimonies = [
     text: '"Aplikasinya mudah digunakan dan challenge mingguan membuatku semakin semangat menjaga bumi."',
   },
 ];
+
 export default function Testimoni() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -91,15 +92,15 @@ export default function Testimoni() {
   }, [emblaApi]);
 
   return (
-    <section className="px-16 py-25">
+    <section className="px-4 py-12 sm:px-8 lg:px-16 lg:py-25">
       <div
         data-aos="fade-up"
-        className="rounded-[30px] bg-[#F8F9F9] p-8 shadow-[0_10px_35px_rgba(0,0,0,.06)]"
+        className="rounded-[30px] bg-[#F8F9F9] p-4 shadow-[0_10px_35px_rgba(0,0,0,.06)] sm:p-8"
       >
-        <div className="flex gap-8">
+        <div className="flex flex-col gap-8 xl:flex-row">
           {/* LEFT */}
-          <div data-aos="fade-right" className="w-[24%]">
-            <h2 className="text-[28px] font-semibold leading-tight text-[#0B0F1F]">
+          <div data-aos="fade-right" className="w-full xl:w-[24%]">
+            <h2 className="text-[clamp(1.5rem,3vw,1.75rem)] font-semibold leading-tight text-[#0B0F1F]">
               Komunitas <span className="text-[#076635]">Hijau,</span>
               <br />
               Perubahan Nyata
@@ -123,8 +124,8 @@ export default function Testimoni() {
           </div>
 
           {/* CENTER */}
-          <div data-aos="fade-up" data-aos-delay="150" className="w-[48%]">
-            <div className="mb-5 flex items-center justify-between">
+          <div data-aos="fade-up" data-aos-delay="150" className="w-full xl:w-[48%]">
+            <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h3 className="text-[22px] font-semibold">
                 Kegiatan Komunitas Terbaru
               </h3>
@@ -135,7 +136,7 @@ export default function Testimoni() {
               </button>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {activities.map((item, index) => (
                 <div
                   key={item.title}
@@ -180,7 +181,7 @@ export default function Testimoni() {
           <div
             data-aos="fade-left"
             data-aos-delay="300"
-            className="ml-10 w-[28%]"
+            className="w-full xl:ml-10 xl:w-[28%]"
           >
             <h3 className="mb-6 text-[22px] font-semibold">Kata Mereka</h3>
 
@@ -205,7 +206,7 @@ export default function Testimoni() {
                           />
 
                           <div className="flex-1">
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between gap-2">
                               <h4 className="text-[16px] font-semibold">
                                 {item.name}
                               </h4>
@@ -240,11 +241,10 @@ export default function Testimoni() {
                 <button
                   key={index}
                   onClick={() => emblaApi?.scrollTo(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    selectedIndex === index
+                  className={`h-2 rounded-full transition-all ${selectedIndex === index
                       ? "w-5 bg-[#22A75D]"
                       : "w-2 bg-[#A5D6B0]"
-                  }`}
+                    }`}
                 />
               ))}
             </div>

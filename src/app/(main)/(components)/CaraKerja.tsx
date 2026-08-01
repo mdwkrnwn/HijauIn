@@ -89,26 +89,26 @@ const steps = [
 
 export default function CaraKerja() {
   return (
-    <section className="px-16 py-9 text-center">
+    <section className="px-4 py-9 text-center sm:px-8 lg:px-16">
       {/* Heading */}
       <h2
         data-aos="fade-up"
         data-aos-duration="700"
-        className="text-[40px] font-semibold text-[#0B0F1F]"
+        className="text-[clamp(1.75rem,3vw,2.5rem)] font-semibold text-[#0B0F1F]"
       >
         Cara Kerja <span className="text-[#076635]">HijauIn</span>
       </h2>
 
       {/* Steps */}
-      <div className="mt-20 flex items-start justify-between">
+      <div className="mt-12 flex flex-col items-center gap-8 lg:mt-20 lg:flex-row lg:justify-between lg:gap-0">
         {steps.map((step, index) => (
-          <div key={step.num} className="flex items-start">
+          <div key={step.num} className="flex flex-col items-center lg:flex-row">
             {/* Item */}
             <div
               data-aos="fade-up"
               data-aos-delay={index * 180}
               data-aos-duration="700"
-              className="group relative flex w-[200px] flex-col items-center"
+              className="group relative flex w-full max-w-[220px] flex-col items-center"
             >
               {/* Number */}
               <div className="absolute left-3 top-0 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-[#076635] text-sm font-bold text-white shadow-md">
@@ -152,7 +152,7 @@ export default function CaraKerja() {
                 data-aos="fade-right"
                 data-aos-delay={index * 180 + 100}
                 data-aos-duration="600"
-                className="mx-10 mt-[42px] flex items-center"
+                className="hidden lg:mx-6 lg:mt-[42px] lg:flex lg:items-center"
               >
                 <div className="w-14 border-t-2 border-dashed border-[#22A75D]" />
                 <FaArrowRight className="ml-2 text-[#22A75D]" />

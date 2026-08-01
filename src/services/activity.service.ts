@@ -6,6 +6,8 @@ export const ActivityService = {
   // GET ALL
   // =========================
   async getAll(userId: string): Promise<Activity[]> {
+    console.log("USER ID =", userId);
+
     const { data, error } = await supabase
       .from("eco_actions")
       .select(
@@ -17,10 +19,13 @@ export const ActivityService = {
         color,
         icon
       )
-  `,
+    `,
       )
       .eq("user_id", userId)
       .order("activity_date", { ascending: false });
+
+    console.log("DATA =", data);
+    console.log("ERROR =", error);
 
     if (error) throw error;
 

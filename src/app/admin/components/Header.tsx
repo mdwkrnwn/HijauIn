@@ -26,7 +26,7 @@ export default function Header({
 
   const headerConfig = {
     "/admin": {
-      title: "Halo, Dwi! 👋",
+      title: `Halo, ${userProfile.full_name.split(' ')[0]}! 👋`,
       subtitle: "Selamat datang kembali!",
       description:
         "Teruslah beraksi, karena setiap langkah kecil <br /> berdampak besar bagi bumi kita. 🌱",

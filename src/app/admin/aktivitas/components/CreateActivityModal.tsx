@@ -115,7 +115,12 @@ export default function CreateActivityModal({
         alert("Deskripsi aktivitas wajib diisi");
         return;
       }
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
 
+      console.log("SESSION:", session);
+      console.log("ACCESS TOKEN:", session?.access_token);
       await createActivity({
         user_id: user.id,
         category_id: selectedActivity.id,

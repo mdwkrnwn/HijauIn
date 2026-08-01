@@ -19,7 +19,7 @@ export default function ChallengePage() {
     <div className="flex flex-col w-full gap-6 mx-auto">
 
       {/* Header Section */}
-      <header className="rounded-3xl relative flex items-center justify-between p-8 overflow-hidden bg-white shadow-sm">
+      {/* <header className="rounded-3xl relative flex items-center justify-between p-8 overflow-hidden bg-white shadow-sm">
         <div className="lg:w-1/2 relative z-10 w-full">
           <h1 className="flex items-center gap-2 mb-2 text-3xl font-extrabold">
             Challenge <MdOutlineEnergySavingsLeaf className="text-primary" />
@@ -37,7 +37,7 @@ export default function ChallengePage() {
             className="object-contain"
           />
         </div>
-      </header>
+      </header> */}
 
       {/* Main Grid Layout */}
       <div className="lg:grid-cols-3 grid grid-cols-1 gap-6">

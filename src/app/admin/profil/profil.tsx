@@ -30,17 +30,17 @@ export default function Profil({ user, userProfiles }: {
   const [activeTab, setActiveTab] = useState<'ringkasan' | 'pengaturan'>('ringkasan');
 
   return (
-    <div className="w-full flex flex-col gap-6">
+    <div className="w-full flex flex-col gap-6 mt-4">
 
       {/* Header Section */}
-      <header className="flex flex-col gap-2">
+      {/* <header className="flex flex-col gap-2">
         <h1 className="text-3xl font-extrabold flex items-center gap-2 text-gray-800">
           Profil Saya <MdOutlineEnergySavingsLeaf className="text-primary" />
         </h1>
         <p className="text-base text-gray-600 font-medium">
           Kelola informasi profil dan pengaturan akun Anda.
         </p>
-      </header>
+      </header> */}
 
       {/* Main Grid Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

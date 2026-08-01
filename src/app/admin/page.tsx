@@ -41,57 +41,11 @@ const data = [
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col gap-6 mx-auto -mt-5">
-      <header className="lg:flex-row lg:items-center rounded-3xl relative flex flex-col items-start justify-between gap-4 p-8 overflow-hidden ">
-        <div className="lg:w-1/2 z-10 w-full">
-          <h1 className="mb-2 text-3xl font-bold">Halo, Dwi! 👋</h1>
-          <h2 className="mb-2 text-xl font-bold">Selamat datang kembali!</h2>
-          <p className=" text-base text-gray-600">
-            Teruslah beraksi, karena setiap langkah kecil <br /> berdampak besar
-            bagi bumi kita. 🌱
-          </p>
-        </div>
-
-        <div className="lg:flex top-8 right-8 absolute z-10 items-center hidden gap-6">
-          <div className="relative cursor-pointer">
-            <FaBell className="w-6 h-6 text-gray-600" />
-            <span className="-top-1 -right-1 bg-danger absolute flex items-center justify-center w-5 h-5 text-base font-bold text-white rounded-full">
-              3
-            </span>
-          </div>
-          <div className="flex items-center gap-3 cursor-pointer">
-            <Image
-              width={50}
-              height={50}
-              src="https://picsum.photos/id/1005/50/50"
-              alt="Profile"
-              className="object-cover w-10 h-10 rounded-full"
-            />
-            <div className="text-right">
-              <div className="text-base font-bold">Dwi Kurniawan</div>
-              <div className="text-secondary text-base">Eco Guardian</div>
-            </div>
-            <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
-          </div>
-        </div>
-
-        {/* Abstract Header Image Integration */}
-        <div className="lg:w-1/2 absolute top-2 right-60  z-0 flex justify-end w-full h-full">
-          <Image
-            width={800}
-            height={400}
-            src="/assets/dashboard/main.png"
-            alt="Nature landscape"
-            className="object-cover w-full h-full rounded-l-full"
-          />
-        </div>
-      </header>
-
+    <div className="flex flex-col gap-6 mx-auto">
       {/* Analytics Row 1 */}
-      <div className="grid z-100 -mt-10 grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-12">
+      <div className="grid z-100 grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-12">
         {/* Eco Score */}
-        {/* Eco Score */}
-        <div className="rounded-[24px] bg-white p-7 shadow-sm xl:col-span-4">
+        <div className="rounded-3xl bg-white p-7 shadow-sm xl:col-span-4">
           <div className="flex h-full">
             {/* Left */}
             <div className="flex flex-1 flex-col justify-between pr-7">

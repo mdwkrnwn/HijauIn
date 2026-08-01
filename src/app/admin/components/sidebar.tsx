@@ -27,8 +27,8 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-70 lg:flex fixed z-10 flex-col hidden h-full overflow-y-auto bg-white border-r border-gray-100">
-      <div className="flex mt-8 items-center gap-4 px-6 py-5">
+    <aside className="w-70 lg:flex z-10 flex-col hidden h-screen overflow-y-auto bg-white border-r border-gray-100 row-span-2 sticky top-0">
+      <div className="flex mt-4 items-center gap-4 px-6 py-5">
         <Image
           src="/assets/dashboard/logo.png"
           alt="HijauIn Logo"
@@ -68,16 +68,14 @@ export default function Sidebar() {
             <Link
               key={item.path}
               href={item.path}
-              className={`flex h-[60px] items-center gap-4 rounded-2xl px-5 transition-all duration-200 ${
-                isActive
-                  ? "bg-[#F1F8F3] text-[#11773D]"
-                  : "text-[#344054] hover:bg-[#F8FAF8]"
-              }`}
+              className={`flex h-[60px] items-center gap-4 rounded-2xl px-5 transition-all duration-200 ${isActive
+                ? "bg-[#F1F8F3] text-[#11773D]"
+                : "text-[#344054] hover:bg-[#F8FAF8]"
+                }`}
             >
               <item.icon
-                className={`h-6 w-6 flex-shrink-0 ${
-                  isActive ? "text-[#11773D]" : "text-[#2BA24C]"
-                }`}
+                className={`h-6 w-6 flex-shrink-0 ${isActive ? "text-[#11773D]" : "text-[#2BA24C]"
+                  }`}
               />
 
               <span className="text-[18px] font-semibold">{item.name}</span>

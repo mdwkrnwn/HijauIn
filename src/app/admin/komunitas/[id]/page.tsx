@@ -12,10 +12,9 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function KomunitasDetailPage({ params }: { params: { id: string } }) {
   return (
-    <div className="flex flex-col w-full gap-6">
-
+    <div className="flex flex-col w-full gap-6 z-10">
       {/* Navigation */}
-      <button className="hover:text-primary w-max flex items-center gap-3 text-base font-bold text-gray-800 transition-colors">
+      <button className="hover:text-primary w-max flex items-center gap-3 text-base font-bold text-gray-800 transition-colors ">
         <FaArrowLeft className="w-5 h-5" /> Kembali ke Komunitas
       </button>
 

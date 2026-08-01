@@ -53,13 +53,10 @@ export default function LoginPage() {
         setIsLoading(false);
         return;
       }
+      await loginUser(formData)
 
       setSuccess("Login berhasil! Mengalihkan...");
-
-      setTimeout(() => {
-        router.refresh();
-        router.replace("/admin");
-      }, 1000);
+      router.push('/admin')
     } catch (err) {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");
       setIsLoading(false);

@@ -12,20 +12,20 @@ import {
 import { FiCalendar, FiUsers } from "react-icons/fi";
 import { FaMapMarkerAlt, FaShieldAlt } from "react-icons/fa";
 import { User } from "@supabase/supabase-js";
-
+export type userProfiles = {
+  id: string
+  full_name: string
+  avatar_url: string
+  bio: string
+  city: string
+  eco_score: number
+  level: number
+  xp: number
+  streak: number
+  created_at: string
+}
 export default function Profil({ user, userProfiles }: {
-  user: User, userProfiles: {
-    id: string
-    full_name: string
-    avatar_url: string
-    bio: any
-    city: any
-    eco_score: number
-    level: number
-    xp: number
-    streak: number
-    created_at: string
-  }
+  user: User, userProfiles: userProfiles
 }) {
   const [activeTab, setActiveTab] = useState<'ringkasan' | 'pengaturan'>('ringkasan');
 

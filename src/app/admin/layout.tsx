@@ -5,7 +5,7 @@ import Sidebar from "./components/sidebar";
 import NextTopLoader from "nextjs-toploader";
 import { Metadata } from "next";
 import Header from "./components/Header";
-import { getSession } from "./components/action";
+import { getNotifications, getSession } from "./components/action";
 import { redirect } from "next/navigation";
 
 const poppins = Poppins({
@@ -28,10 +28,11 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const { user: userData } = await getSession();
-  if (!userData) {
+  const { userProfiles } = await getSession();
+  if (!userProfiles) {
     redirect("/login")
   }
+  const data = await getNotifications(userProfiles.id)
 
   return (
     <html lang="id">
@@ -40,7 +41,7 @@ export default async function RootLayout({
       >
         <NextTopLoader color="#0E5F35" showSpinner />
         <Sidebar />
-        <Header />
+        <Header notifications={data!} userProfile={userProfiles} />
         <main className="flex-1 w-full z-10 overflow-x-hidden p-6 lg:p-8 pt-0!">
           {children}
         </main>

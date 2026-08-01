@@ -1,16 +1,19 @@
 "use client";
 
 import React from "react";
-import { FaBell, FaChevronDown } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { userProfiles } from "../profil/profil";
+import { CiBellOn } from "react-icons/ci";
 type HeaderConfigType = Record<string, {
   title: string,
   subtitle: string | null,
   description: string,
   src?: string
 }>
-export default function Header() {
+export default function Header({ userProfile, notifications }: { userProfile: userProfiles, notifications: any[] }) {
+
   const pathname = usePathname() as keyof typeof headerConfig
 
   const headerConfig = {
@@ -99,21 +102,21 @@ export default function Header() {
 
       <div className="lg:flex top-8 right-8 absolute z-10 items-center hidden gap-6">
         <div className="relative cursor-pointer">
-          <FaBell className="w-6 h-6 text-gray-600" />
-          <span className="-top-1 -right-1 bg-danger absolute flex items-center justify-center w-5 h-5 text-base font-bold text-white rounded-full">
-            3
+          <CiBellOn className="size-8 text-primary" />
+          <span className="-top-1 -right-1 bg-primary absolute flex items-center justify-center size-6 text-sm font-bold text-white rounded-full">
+            {notifications.length ?? 0}
           </span>
         </div>
         <div className="flex items-center gap-3 cursor-pointer">
           <Image
             width={50}
             height={50}
-            src="https://picsum.photos/id/1005/50/50"
+            src={userProfile.avatar_url ?? '/assets/beranda/ava1.png'}
             alt="Profile"
             className="object-cover w-10 h-10 rounded-full"
           />
           <div className="text-right">
-            <div className="text-base font-bold">Dwi Kurniawan</div>
+            <div className="text-base font-bold">{userProfile.full_name}</div>
             <div className="text-secondary text-base">Eco Guardian</div>
           </div>
           <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />

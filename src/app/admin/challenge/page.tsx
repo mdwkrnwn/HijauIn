@@ -5,22 +5,15 @@ import {
   FaChevronRight,
   FaChevronDown,
   FaChevronLeft,
-  FaBus,
-  FaBell,
-  FaRecycle,
 } from "react-icons/fa6";
 import { BiSearch } from "react-icons/bi";
 import { FaArrowRight } from "react-icons/fa6";
 import { FiChevronRight } from "react-icons/fi";
 import {
-  MdOutlineEnergySavingsLeaf,
-  MdOutlineWaterDrop,
-  MdPark,
-  MdBolt,
   MdFilterList,
 } from "react-icons/md";
-import { FiAward, FiTarget, FiCalendar } from "react-icons/fi";
-import { FaFire } from "react-icons/fa";
+import { FiCalendar } from "react-icons/fi";
+
 import Image from "next/image";
 const data = [
   { day: "Sen", value: 160 },
@@ -56,52 +49,12 @@ export default function ChallengePage() {
   );
 
   return (
-    <div className="flex flex-col w-full gap-6 -mt-5 mx-auto">
+    <div className="flex flex-col w-full gap-6  mx-auto">
       {/* Header Section */}
-      <header className="lg:flex-row lg:items-center rounded-3xl relative flex flex-col items-start justify-between gap-4 p-8 overflow-hidden ">
-        <div className="lg:w-1/2 z-10 w-full">
-          <h1 className="mb-2 text-3xl font-bold">Challenge</h1>
-          <p className=" text-base text-gray-600">
-            Ikuti challenge seru dan rain poin serta badge spesial.
-          </p>
-        </div>
-
-        <div className="lg:flex top-8 right-8 absolute z-10 items-center hidden gap-6">
-          <div className="relative cursor-pointer">
-            <FaBell className="w-6 h-6 text-gray-600" />
-            <span className="-top-1 -right-1 bg-danger absolute flex items-center justify-center w-5 h-5 text-base font-bold text-white rounded-full">
-              3
-            </span>
-          </div>
-          <div className="flex items-center gap-3 cursor-pointer">
-            <Image
-              width={50}
-              height={50}
-              src="https://picsum.photos/id/1005/50/50"
-              alt="Profile"
-              className="object-cover w-10 h-10 rounded-full"
-            />
-            <div className="text-right">
-              <div className="text-base font-bold">Dwi Kurniawan</div>
-              <div className="text-secondary text-base">Eco Guardian</div>
-            </div>
-            <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
-          </div>
-        </div>
-
-        {/* Abstract Header Image Integration */}
-        {/* <div className="lg:w-1/2 absolute top-2 right-60  z-0 flex justify-end w-full h-full">
-          <Image
-            src="/assets/challange/z.png"
-            alt="Challenge Banner"
-            fill
-            className="object-contain w-full h-full object-right"
-          />
-        </div> */}
-      </header>
+      
 
       {/* Main Grid Layout */}
-      <div className="lg:grid-cols-3 grid grid-cols-1 gap-6 -mt-5">
+      <div className="lg:grid-cols-3 grid grid-cols-1 gap-6 ">
         {/* Left Column (Span 2) - Dynamic Content */}
         <div className="lg:col-span-2 flex flex-col gap-6">
           {/* Main Content Card */}

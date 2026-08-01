@@ -59,7 +59,7 @@ export default function LoginPage() {
       setTimeout(() => {
         router.refresh();
         router.replace("/admin");
-      }, 1000);
+      }, 200);
     } catch (err) {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");
       setIsLoading(false);

@@ -6,46 +6,55 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { userProfiles } from "../profil/profil";
 import { CiBellOn } from "react-icons/ci";
-type HeaderConfigType = Record<string, {
-  title: string,
-  subtitle: string | null,
-  description: string,
-  src?: string
-}>
-export default function Header({ userProfile, notifications }: { userProfile: userProfiles, notifications: any[] }) {
-
-  const pathname = usePathname() as keyof typeof headerConfig
+type HeaderConfigType = Record<
+  string,
+  {
+    title: string;
+    subtitle: string | null;
+    description: string;
+    src?: string;
+  }
+>;
+export default function Header({
+  userProfile,
+  notifications,
+}: {
+  userProfile: userProfiles;
+  notifications: any[];
+}) {
+  const pathname = usePathname() as keyof typeof headerConfig;
 
   const headerConfig = {
     "/admin": {
       title: "Halo, Dwi! 👋",
       subtitle: "Selamat datang kembali!",
-      description: "Teruslah beraksi, karena setiap langkah kecil <br /> berdampak besar bagi bumi kita. 🌱",
-      src: "/assets/dashboard/main.png"
+      description:
+        "Teruslah beraksi, karena setiap langkah kecil <br /> berdampak besar bagi bumi kita. 🌱",
+      src: "/assets/dashboard/main.png",
     },
     "/admin/aktivitas": {
       title: "Aktivitas 🌱",
       subtitle: null,
       description: "Catat dan lihat semua aksi hijau yang kamu lakukan.",
-      src: "/assets/aktivitas/m.png"
+      src: "/assets/aktivitas/m.png",
     },
     "/admin/ai-assistant": {
       title: "AI Assistant ✨",
       subtitle: null,
       description: "Asisten cerdasmu untuk hidup lebih hijau setiap hari.",
-      src: undefined
+      src: undefined,
     },
     "/admin/challenge": {
       title: "Challenge 🌱",
       subtitle: null,
       description: "Ikuti challenge seru dan raih poin serta badge spesial!",
-      src: "/assets/challange/main.png"
+      src: "/assets/challange/main.png",
     },
     "/admin/komunitas": {
       title: "Komunitas 🌱",
       subtitle: null,
       description: "Bersama komunitas, wujudkan bumi yang lebih hijau!",
-      src: "/assets/dashboard-komunitas/main.png"
+      src: "/assets/dashboard-komunitas/main.png",
     },
     "/admin/profil": {
       title: "Profil Saya 🌿",
@@ -56,8 +65,7 @@ export default function Header({ userProfile, notifications }: { userProfile: us
   } as HeaderConfigType;
 
   // Use current route config or default to '/' if path is not found
-  const currentConfig = headerConfig[pathname]
-
+  const currentConfig = headerConfig[pathname];
 
   // Helper to safely render HTML line breaks in the description
   const renderDescription = (desc: string) => {
@@ -74,18 +82,20 @@ export default function Header({ userProfile, notifications }: { userProfile: us
   return (
     <header className="lg:flex-row lg:items-center rounded-3xl relative flex flex-col items-start justify-between gap-4 -z-10 p-8 pb-12">
       <div className="lg:w-1/2 z-10 w-full">
-        {currentConfig &&
+        {currentConfig && (
           <>
             <h1 className="mb-2 text-3xl font-bold">{currentConfig.title}</h1>
             {/* Conditionally render the subtitle only if it exists (Dashboard route) */}
             {currentConfig.subtitle && (
-              <h2 className="mb-2 text-xl font-bold">{currentConfig.subtitle}</h2>
+              <h2 className="mb-2 text-xl font-bold">
+                {currentConfig.subtitle}
+              </h2>
             )}
             <p className="text-base text-gray-600">
               {renderDescription(currentConfig.description)}
             </p>
             {/* Abstract Header Image Integration */}
-            {currentConfig.src &&
+            {currentConfig.src && (
               <div className="lg:w-1/2 absolute top-2 right-60 -z-10 flex justify-end w-full h-full">
                 <Image
                   width={800}
@@ -95,9 +105,9 @@ export default function Header({ userProfile, notifications }: { userProfile: us
                   className="object-cover w-full h-full"
                 />
               </div>
-            }
+            )}
           </>
-        }
+        )}
       </div>
 
       <div className="lg:flex top-8 right-8 absolute z-10 items-center hidden gap-6">
@@ -111,7 +121,7 @@ export default function Header({ userProfile, notifications }: { userProfile: us
           <Image
             width={50}
             height={50}
-            src={userProfile.avatar_url ?? '/assets/beranda/ava1.png'}
+            src="/assets/avatar.png"
             alt="Profile"
             className="object-cover w-10 h-10 rounded-full"
           />
@@ -122,8 +132,6 @@ export default function Header({ userProfile, notifications }: { userProfile: us
           <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
         </div>
       </div>
-
-
     </header>
   );
 }

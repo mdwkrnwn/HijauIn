@@ -1,3 +1,9 @@
+"use client";
+
+import { useState } from "react";
+import CreateActivityModal from "./components/CreateActivityModal";
+import { getSession } from "../components/action";
+
 import {
   FaChevronDown,
   FaChevronRight,
@@ -20,50 +26,12 @@ import { FiCoffee, FiActivity } from "react-icons/fi";
 import Image from "next/image";
 
 export default function AktivitasPage() {
+ 
+
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <div className="flex flex-col gap-6 mx-auto">
-      {/* Header Section */}
-      {/* <header className="lg:flex-row lg:items-center rounded-3xl relative flex flex-col items-start justify-between gap-4 p-8 overflow-hidden ">
-        <div className="lg:w-1/2 z-10 w-full">
-          <h1 className="mb-2 text-3xl font-bold">Aktivitas</h1>
-          <p className=" text-base text-gray-600">
-            Catat dan lihat semua aksi hijau yang kamu lakukan.
-          </p>
-        </div>
-
-        <div className="lg:flex top-8 right-8 absolute z-10 items-center hidden gap-6">
-          <div className="relative cursor-pointer">
-            <FaBell className="w-6 h-6 text-gray-600" />
-            <span className="-top-1 -right-1 bg-danger absolute flex items-center justify-center w-5 h-5 text-base font-bold text-white rounded-full">
-              3
-            </span>
-          </div>
-          <div className="flex items-center gap-3 cursor-pointer">
-            <Image
-              width={50}
-              height={50}
-              src="https://picsum.photos/id/1005/50/50"
-              alt="Profile"
-              className="object-cover w-10 h-10 rounded-full"
-            />
-            <div className="text-right">
-              <div className="text-base font-bold">Dwi Kurniawan</div>
-              <div className="text-secondary text-base">Eco Guardian</div>
-            </div>
-            <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
-          </div>
-        </div>
-        <div className="lg:w-1/2 absolute  right-60 z-0 flex justify-end w-full h-full">
-          <Image
-            width={800}
-            height={400}
-            src="/assets/aktivitas/m.png"
-            alt="Nature landscape"
-            className="object-cover w-full h-full rounded-l-full"
-          />
-        </div>
-      </header> */}
-
       {/* Main Grid Layout */}
       <div className="lg:grid-cols-3 grid z-100 grid-cols-1 gap-6">
         {/* Left Column (Span 2) */}
@@ -82,7 +50,10 @@ export default function AktivitasPage() {
                 dapatkan poin serta dampak positif!
               </p>
 
-              <button className="mt-8 flex h-[56px] w-[190px] items-center justify-center gap-3 rounded-[14px] bg-[#11773D] text-[18px] font-semibold text-white transition hover:bg-[#0D6433]">
+              <button
+                onClick={() => setOpenModal(true)}
+                className="mt-8 flex h-[56px] w-[190px] items-center justify-center gap-3 rounded-[14px] bg-[#11773D] text-[18px] font-semibold text-white transition hover:bg-[#0D6433]"
+              >
                 <FaPlus className="text-[18px]" />
                 Catat Aksi
               </button>
@@ -849,6 +820,10 @@ export default function AktivitasPage() {
           </div>
         </div>
       </div>
+      <CreateActivityModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      />
     </div>
   );
 }

@@ -30,9 +30,9 @@ export default async function RootLayout({
 }) {
   const { userProfiles } = await getSession();
   if (!userProfiles) {
-    redirect("/login")
+    redirect("/login");
   }
-  const data = await getNotifications(userProfiles.id)
+  const data = await getNotifications(userProfiles.id);
 
   return (
     <html lang="id">
@@ -40,7 +40,7 @@ export default async function RootLayout({
         className={`${poppins.className} min-h-screen grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-[#F8FAF8] text-[#1A202C] antialiased`}
       >
         <NextTopLoader color="#0E5F35" showSpinner />
-        <Sidebar />
+        <Sidebar userProfile={userProfiles} />{" "}
         <Header notifications={data!} userProfile={userProfiles} />
         <main className="flex-1 w-full z-10 overflow-x-hidden p-6 lg:p-8 pt-0!">
           {children}

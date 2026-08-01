@@ -20,3 +20,21 @@ export async function getNotifications(id: string) {
   const { data } = (await supabase.from("notifications").select('*').eq('user_id', id))
   return data
 }
+
+export async function getCurrentUserId() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return null;
+
+  return user.id;
+}
+
+export async function getUserProfile() {
+  const { userProfiles } = await getSession();
+
+  return userProfiles;
+}

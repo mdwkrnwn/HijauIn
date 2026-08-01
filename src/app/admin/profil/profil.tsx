@@ -61,7 +61,7 @@ export default function Profil({
               <div className="relative shrink-0">
                 <div className="relative -mt-40 h-[150px] w-[150px] overflow-hidden rounded-full border-[4px] border-white bg-white">
                   <Image
-                    src={userProfiles.avatar_url ?? "/assets/beranda/ava1.png"}
+                    src="/assets/avatar.png"
                     alt={userProfiles.full_name}
                     fill
                     className="object-cover"

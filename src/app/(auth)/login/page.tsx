@@ -16,6 +16,7 @@ import { FiTrendingUp } from "react-icons/fi";
 import { IoLeaf } from "react-icons/io5";
 import Image from "next/image";
 import { loginUser } from "../actions/login";
+import { supabase } from "@/utils/supabase";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -32,9 +33,8 @@ export default function LoginPage() {
     setError("");
     setSuccess("");
 
-    const formEmail = formData.get("email");
-    const formPassword = formData.get("password");
-
+    const formEmail = formData.get("email")?.toString();
+    const formPassword = formData.get("password")?.toString();
 
     if (!formEmail || !formPassword) {
       return setError("Email dan kata sandi wajib diisi.");
@@ -43,10 +43,13 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const result = await loginUser(formData);
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formEmail,
+        password: formPassword,
+      });
 
-      if (!result?.success) {
-        setError(result.message);
+      if (error) {
+        setError(error.message);
         setIsLoading(false);
         return;
       }
@@ -54,15 +57,14 @@ export default function LoginPage() {
       setSuccess("Login berhasil! Mengalihkan...");
 
       setTimeout(() => {
-        router.push("/admin");
+        router.refresh();
+        router.replace("/admin");
       }, 1000);
-
     } catch (err) {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");
       setIsLoading(false);
     }
   };
-
   return (
     <div className="min-h-screen w-full relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-green-50">
       {/* Decorative blurred blobs - full page */}
@@ -144,10 +146,7 @@ export default function LoginPage() {
                 </div>
               )}
 
-              <form
-                className="flex flex-col gap-6"
-                action={handleLogin}
-              >
+              <form className="flex flex-col gap-6" action={handleLogin}>
                 {/* Input Email */}
                 <div className="flex flex-col gap-2">
                   <label className="text-base font-bold text-[#0B0F1F]">
@@ -186,7 +185,11 @@ export default function LoginPage() {
                       onClick={() => setShowPassword(!showPassword)}
                       className="right-4 top-1/2 hover:text-gray-600 absolute text-gray-400 transition-colors -translate-y-1/2"
                     >
-                      {showPassword ? <FaRegEye className="w-5 h-5" /> : <FaRegEyeSlash className="w-5 h-5" />}
+                      {showPassword ? (
+                        <FaRegEye className="w-5 h-5" />
+                      ) : (
+                        <FaRegEyeSlash className="w-5 h-5" />
+                      )}
                     </button>
                   </div>
                 </div>

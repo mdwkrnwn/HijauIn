@@ -14,6 +14,7 @@ import { FcGoogle } from "react-icons/fc";
 import { MdSecurity } from "react-icons/md";
 import { FiTrendingUp } from "react-icons/fi";
 import { IoLeaf } from "react-icons/io5";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Image from "next/image";
 import { loginUser } from "../actions/login";
 import { supabase } from "@/utils/supabase";
@@ -53,10 +54,12 @@ export default function LoginPage() {
         setIsLoading(false);
         return;
       }
-      await loginUser(formData)
+
+      // await loginUser(formData);
+      // await new Promise((resolve) => setTimeout(resolve, 2000));
 
       setSuccess("Login berhasil! Mengalihkan...");
-      router.push('/admin')
+      router.push("/admin");
     } catch (err) {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");
       setIsLoading(false);
@@ -205,13 +208,17 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="bg-[#11773D] hover:bg-[#11773D]-dark rounded-2xl flex items-center justify-center w-full gap-2 py-4 mt-2 text-base font-bold text-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="flex w-full items-center justify-center gap-3 rounded-2xl bg-[#11773D] py-4 text-base font-bold text-white transition hover:bg-[#0b5f31] disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {isLoading ? (
-                    "Memproses..."
+                    <>
+                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      Memproses...
+                    </>
                   ) : (
                     <>
-                      <FaRegUser className="w-4 h-4" /> Masuk
+                      <FaRegUser className="h-4 w-4" />
+                      Masuk
                     </>
                   )}
                 </button>

@@ -130,7 +130,7 @@ export default function AktivitasPage() {
 
   const visibleActivities = showAll
     ? filteredActivities
-    : filteredActivities.slice(0, 6);
+    : filteredActivities.slice(0, 5);
 
   const groupedActivities = visibleActivities.reduce(
     (acc, activity) => {

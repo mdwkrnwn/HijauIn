@@ -5,7 +5,6 @@ import Image from "next/image";
 
 import { FiCalendar, FiArrowRight, FiMapPin, FiEdit2, FiPhone,FiMail,FiChevronRight } from "react-icons/fi";
 
-import { FaMapMarkerAlt, FaShieldAlt } from "react-icons/fa";
 import { User } from "@supabase/supabase-js";
 export type userProfiles = {
   id: string;

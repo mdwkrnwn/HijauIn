@@ -13,7 +13,9 @@ import { rewardUser } from "@/services/profile.service";
 interface CreateActivityModalProps {
   open: boolean;
   onClose: () => void;
+  activity: ReturnType<typeof useActivity>;
 }
+
 const colorMap = {
   green: {
     bg: "bg-green-50",
@@ -47,8 +49,9 @@ const colorMap = {
 export default function CreateActivityModal({
   open,
   onClose,
+  activity,
 }: CreateActivityModalProps) {
-  const { createActivity } = useActivity();
+  const { createActivity, getActivities } = activity;
   const { categories } = useCategory();
   const router = useRouter();
 
@@ -140,7 +143,7 @@ export default function CreateActivityModal({
       });
 
       await rewardUser(user.id, selectedActivity.point);
-
+      await getActivities(user.id);
       // Reset form
       setDescription("");
       setActivityDate("");

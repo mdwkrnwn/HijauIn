@@ -21,109 +21,155 @@ export default function Navbar() {
   const activePath = pathname === "/" ? "" : pathname.split("/")[1];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white shadow-sm">
-      <div className="mx-auto flex items-center justify-between px-6 py-4 lg:px-16">
-        <Link href="/" className="flex items-center gap-3">
+    <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white">
+      <div className="mx-auto flex items-center justify-between px-16 py-6">
+        {/* Logo */}
+        {/* Logo Desktop */}
+        <Link href="/" className="hidden lg:flex items-center gap-2">
           <Image
             src="/assets/icon.png"
             alt="HijauIn"
-            width={52}
-            height={52}
+            width={60}
+            height={60}
             priority
           />
+
           <div className="leading-none">
-            <h1 className="text-2xl font-semibold text-[#0B0F1F] sm:text-3xl">
+            <h1 className="text-[36px] font-semibold">
               <span className="text-[#0B0F1F]">Hijau</span>
               <span className="text-[#1F8148]">In</span>
             </h1>
-            <p className="mt-1 text-sm font-medium text-gray-500">
+
+            <p className="mt-1 text-[14px] font-medium text-gray-500">
               Satu Langkah Hijau Setiap Hari
             </p>
           </div>
         </Link>
 
-        <div className="flex items-center gap-4 lg:hidden">
-          <button
-            type="button"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 transition hover:border-green-600 hover:text-[#076635] focus:outline-none focus:ring-2 focus:ring-green-200"
-            aria-label="Toggle navigation menu"
-          >
-            <span className="sr-only">Open navigation</span>
-            <div className="flex h-5 w-5 flex-col justify-between">
-              <span className="block h-0.5 w-full rounded-full bg-current" />
-              <span className="block h-0.5 w-full rounded-full bg-current" />
-              <span className="block h-0.5 w-full rounded-full bg-current" />
-            </div>
-          </button>
-        </div>
+        {/* Logo Mobile */}
+        <Link href="/" className="flex items-center gap-2 -ml-10 lg:hidden">
+          <Image
+            src="/assets/icon.png"
+            alt="HijauIn"
+            width={42}
+            height={42}
+            priority
+          />
 
-        <div className="hidden items-center gap-10 lg:flex">
+          <h1 className="text-[28px] font-semibold leading-none">
+            <span className="text-[#0B0F1F]">Hijau</span>
+            <span className="text-[#1F8148]">In</span>
+          </h1>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-10">
           {navItems.map((item) => {
             const isActive = activePath === item.href;
+
             return (
               <Link
                 key={item.href}
                 href={`/${item.href}`}
-                className={`relative pb-2 text-[17px] font-semibold transition-colors ${isActive ? "text-[#076635]" : "text-[#0B0F1F] hover:text-[#076635]"
-                  }`}
+                className={`relative pb-2 text-[17px] font-semibold transition-colors ${
+                  isActive
+                    ? "text-[#076635]"
+                    : "text-[#0B0F1F] hover:text-[#076635]"
+                }`}
               >
                 {item.name}
+
                 {isActive && (
-                  <span className="absolute left-0 bottom-0 h-[3px] w-full rounded-full bg-[#076635]" />
+                  <span className="absolute bottom-0 left-0 h-[3px] w-full rounded-full bg-[#076635]" />
                 )}
               </Link>
             );
           })}
         </div>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        {/* Desktop Buttons */}
+        <div className="hidden lg:flex items-center gap-4">
           <Link
             href="/login"
-            className="rounded-xl border border-green-600 bg-white px-6 py-3 text-sm font-semibold text-[#076635] transition hover:bg-green-50"
+            className="rounded-xl border border-green-600 bg-white px-7 py-3 font-semibold text-[#076635] transition hover:bg-green-50"
           >
             Masuk
           </Link>
+
           <Link
             href="/register"
-            className="rounded-xl bg-[#076635] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-green-700"
+            className="rounded-xl bg-[#076635] px-7 py-3 font-semibold text-white shadow-md transition hover:bg-green-700"
           >
             Daftar Gratis
           </Link>
         </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="flex h-11 w-11 items-center -mr-13 justify-center rounded-xl border border-gray-200 lg:hidden"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-[#076635]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            {menuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
       </div>
 
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden h-full">
-          <div className="border-t border-gray-100 bg-white px-6 py-5 shadow-sm">
-            <div className="flex flex-col gap-4">
-              {navItems.map((item) => {
-                const isActive = activePath === item.href;
-                return (
-                  <Link
-                    key={item.href}
-                    href={`/${item.href}`}
-                    className={`rounded-2xl px-4 py-3 text-base font-semibold transition ${isActive ? "bg-green-50 text-[#076635]" : "text-[#0B0F1F] hover:bg-gray-100"
-                      }`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                );
-              })}
-            </div>
-            <div className="mt-5 flex flex-col gap-3">
+        <div className="border-t border-gray-100 bg-white shadow-lg lg:hidden">
+          <div className="flex flex-col px-6 py-6">
+            {navItems.map((item) => {
+              const isActive = activePath === item.href;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={`/${item.href}`}
+                  onClick={() => setMenuOpen(false)}
+                  className={`rounded-xl px-4 py-3 text-[16px] font-semibold transition ${
+                    isActive
+                      ? "bg-green-50 text-[#076635]"
+                      : "text-[#0B0F1F] hover:bg-gray-100"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+
+            <div className="mt-6 flex flex-col gap-3">
               <Link
                 href="/login"
-                className="rounded-xl border border-green-600 bg-white px-4 py-3 text-center text-sm font-semibold text-[#076635] transition hover:bg-green-50"
                 onClick={() => setMenuOpen(false)}
+                className="rounded-xl border border-green-600 px-4 py-3 text-center font-semibold text-[#076635]"
               >
                 Masuk
               </Link>
+
               <Link
                 href="/register"
-                className="rounded-xl bg-[#076635] px-4 py-3 text-center text-sm font-semibold text-white shadow-md transition hover:bg-green-700"
                 onClick={() => setMenuOpen(false)}
+                className="rounded-xl bg-[#076635] px-4 py-3 text-center font-semibold text-white"
               >
                 Daftar Gratis
               </Link>

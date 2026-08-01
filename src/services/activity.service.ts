@@ -10,17 +10,17 @@ export const ActivityService = {
       .from("eco_actions")
       .select(
         `
-          *,
-          category:categories(
-            id,
-            name,
-            icon,
-            color
-          )
-        `
+      *,
+      category:categories(
+        id,
+        name,
+        color,
+        icon
+      )
+  `,
       )
       .eq("user_id", userId)
-      .order("created_at", { ascending: false });
+      .order("activity_date", { ascending: false });
 
     if (error) throw error;
 
@@ -82,10 +82,7 @@ export const ActivityService = {
   // DELETE
   // =========================
   async delete(id: string) {
-    const { error } = await supabase
-      .from("eco_actions")
-      .delete()
-      .eq("id", id);
+    const { error } = await supabase.from("eco_actions").delete().eq("id", id);
 
     if (error) throw error;
   },

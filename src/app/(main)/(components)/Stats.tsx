@@ -37,16 +37,55 @@ export default function Stats() {
   return (
     <section
       data-aos="fade-up"
-      className="relative z-10 -mt-8 px-4 py-8 sm:-mt-12 sm:px-8 lg:-mt-25 lg:px-16 lg:py-16"
+      className="
+        relative z-10
+        -mt-8 px-4 py-8
+        sm:-mt-12 sm:px-8
+        lg:-mt-25 lg:px-16 lg:py-16
+      "
     >
-      <div className="grid gap-4 rounded-[25px] border border-[#ECECEC] bg-white p-4 shadow-lg sm:p-6 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5">
+      <div
+        className="
+          grid grid-cols-1
+          gap-4
+          rounded-[25px]
+          border border-[#ECECEC]
+          bg-white
+          p-5
+          shadow-lg
+
+          sm:grid-cols-2
+          sm:p-6
+
+          lg:grid-cols-2
+          lg:p-6
+
+          xl:grid-cols-3
+          2xl:grid-cols-5
+        "
+      >
         {stats.map((item, index) => (
           <div
             key={index}
             data-aos="zoom-in"
             data-aos-delay={index * 150}
             data-aos-duration="700"
-            className="flex flex-col items-center justify-center gap-3 rounded-2xl p-4 text-center sm:flex-row sm:justify-start sm:text-left"
+            className="
+              flex
+              flex-col
+              items-center
+              justify-center
+              gap-3
+              rounded-2xl
+              p-3
+              text-center
+
+              sm:flex-row
+              sm:justify-start
+              sm:text-left
+
+              lg:p-4
+            "
           >
             {/* Icon */}
             <Image
@@ -54,16 +93,24 @@ export default function Stats() {
               alt={item.line1}
               width={150}
               height={150}
-              className="size-20 shrink-0 object-contain"
+              className="
+                h-16
+                w-16
+                shrink-0
+                object-contain
+
+                lg:h-20
+                lg:w-20
+              "
             />
 
             {/* Text */}
             <div className="min-w-0">
-              <h3 className="text-[clamp(1.15rem,2.25vw,1.56rem)] font-bold leading-none text-[#076635]">
+              <h3 className="text-[20px] font-bold leading-none text-[#076635] lg:text-[25px]">
                 {item.value}
               </h3>
 
-              <p className="mt-2 text-[13px] leading-[22px] text-[#667085]">
+              <p className="mt-2 text-[12px] leading-5 text-[#667085] lg:text-[13px] lg:leading-[22px]">
                 {item.line1}
                 {item.line2 && (
                   <>

@@ -10,7 +10,6 @@ import { useCategory } from "@/hooks/useCategory";
 import { FaBottleWater } from "react-icons/fa6";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { rewardUser } from "@/services/profile.service";
-import { useUser } from "@/app/context/UserContext";
 interface CreateActivityModalProps {
   open: boolean;
   onClose: () => void;
@@ -54,7 +53,6 @@ export default function CreateActivityModal({
 }: CreateActivityModalProps) {
   const { createActivity, getActivities } = activity;
   const { categories } = useCategory();
-  const { user } = useUser();
   const router = useRouter();
 
   const iconMap = {
@@ -101,6 +99,16 @@ export default function CreateActivityModal({
     try {
       setLoading(true);
 
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      console.log(session);
+
       if (!user) {
         alert("Belum login");
         return;
@@ -108,23 +116,22 @@ export default function CreateActivityModal({
 
       if (!title.trim()) {
         alert("Judul aktivitas wajib diisi");
+        setLoading(false);
         return;
       }
 
       if (!description.trim()) {
         alert("Deskripsi aktivitas wajib diisi");
+        setLoading(false);
         return;
       }
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
 
-      console.log("SESSION:", session);
-      console.log("ACCESS TOKEN:", session?.access_token);
       await createActivity({
         user_id: user.id,
         category_id: selectedActivity.id,
+
         title,
+
         description,
         point: selectedActivity.point,
         verification_type: "manual",
@@ -137,7 +144,7 @@ export default function CreateActivityModal({
 
       await rewardUser(user.id, selectedActivity.point);
       await getActivities(user.id);
-
+      // Reset form
       setDescription("");
       setActivityDate("");
       setActivityTime("");
@@ -155,6 +162,7 @@ export default function CreateActivityModal({
       router.refresh();
 
       alert("Aktivitas berhasil ditambahkan");
+
       onClose();
     } catch (error) {
       console.error(error);

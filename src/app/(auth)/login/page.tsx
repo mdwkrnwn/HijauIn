@@ -33,30 +33,32 @@ export default function LoginPage() {
   const handleLogin = async (formData: FormData) => {
     setError("");
     setSuccess("");
-    setIsLoading(true);
 
     const formEmail = formData.get("email")?.toString();
     const formPassword = formData.get("password")?.toString();
 
     if (!formEmail || !formPassword) {
-      setError("Email dan kata sandi wajib diisi.");
-      setIsLoading(false);
-      return;
+      return setError("Email dan kata sandi wajib diisi.");
     }
 
-    try {
-      const result = await loginUser(formData);
+    setIsLoading(true);
 
-      if (!result.success) {
-        setError(result.message);
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formEmail,
+        password: formPassword,
+      });
+
+      if (error) {
+        setError(error.message);
         setIsLoading(false);
         return;
       }
+      await loginUser(formData);
 
       setSuccess("Login berhasil! Mengalihkan...");
-
       router.push("/admin");
-    } catch {
+    } catch (err) {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");
       setIsLoading(false);
     }

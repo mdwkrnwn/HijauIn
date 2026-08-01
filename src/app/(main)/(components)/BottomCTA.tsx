@@ -4,7 +4,7 @@ import { FaArrowRight, FaPlay } from "react-icons/fa";
 export default function BottomCTA() {
   return (
     <section data-aos="fade-up" className="w-full px-4 py-10 sm:px-8 lg:px-16 lg:py-16">
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-8 overflow-hidden rounded-[28px] bg-[#F3F6F3] px-6 py-8 shadow-[0_8px_25px_rgba(0,0,0,.04)] sm:px-8 lg:flex-row lg:items-center lg:px-10 lg:py-10">
+      <div className="relative mx-auto flex  flex-col gap-8 overflow-hidden rounded-[28px] bg-[#F3F6F3] px-6 py-8 shadow-[0_8px_25px_rgba(0,0,0,.04)] sm:px-8 lg:flex-row lg:items-center lg:px-10 lg:py-10">
         {/* Left Illustration */}
         <div
           data-aos="fade-right"

@@ -448,7 +448,7 @@ export default function DashboardPage() {
                 <div className="absolute left-[-8px]  h-4 w-4 rotate-45 bg-[#F8FAFC]" />
 
                 <h4 className="mb-3 text-[22px] font-bold text-[#101828]">
-                  Halo Dwi! 👋
+                  Halo Budi! 👋
                 </h4>
 
                 <p className="text-[14px] leading-7 text-[#667085]">

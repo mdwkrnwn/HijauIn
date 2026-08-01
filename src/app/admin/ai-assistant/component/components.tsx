@@ -1,10 +1,22 @@
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 
-export function SuggestionChip({ icon, text }: { icon: React.ReactNode; text: string }) {
+export function SuggestionChip({
+  icon,
+  text,
+  onClick,
+}: {
+  icon: React.ReactNode;
+  text: string;
+  onClick?: () => void;
+}) {
   return (
-    <button className="rounded-xl hover:bg-gray-50 hover:border-[#11773D] flex items-center gap-2 px-4 py-2 text-base font-semibold text-gray-700 transition-colors bg-white border border-gray-200">
-      {icon} {text}
+    <button
+      onClick={onClick}
+      className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-base font-semibold text-gray-700 transition-colors hover:border-[#11773D] hover:bg-gray-50"
+    >
+      {icon}
+      {text}
     </button>
   );
 }

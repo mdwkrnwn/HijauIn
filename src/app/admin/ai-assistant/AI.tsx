@@ -1,19 +1,23 @@
-import { Hero } from './component/Hero';
+"use client";
+
+import { Hero } from "./component/Hero";
 import Image from "next/image";
-import {
-  FaArrowRight,
-} from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
 import { userProfiles } from "../profil/profil";
 import { FeatureCard } from "./component/components";
-import { MainSection } from './component/MainSection';
+import { MainSection } from "./component/MainSection";
+import { useState } from "react";
 
-
-export default function AiAssistantPage({ userProfiles }: { userProfiles: userProfiles }) {
+export default function AiAssistantPage({
+  userProfiles,
+}: {
+  userProfiles: userProfiles;
+}) {
+  const [heroMessage, setHeroMessage] = useState("");
   return (
     <div className="flex flex-col w-full gap-6">
-
       {/* Hero Section */}
-      <Hero />
+      <Hero onSend={(text) => setHeroMessage(text)} />
       {/* Features Grid */}
       <div>
         <div className="mb-8 flex items-center justify-between">
@@ -59,7 +63,11 @@ export default function AiAssistantPage({ userProfiles }: { userProfiles: userPr
       </div>
 
       {/* Main Bottom Section */}
-      <MainSection userId={userProfiles.id} />
+      <MainSection
+        userId={userProfiles.id}
+        heroMessage={heroMessage}
+        onHeroMessageHandled={() => setHeroMessage("")}
+      />
 
       {/* Footer Banner */}
       <div className="flex items-center justify-between rounded-3xl border border-[#EAECF0] bg-white px-8 py-7">

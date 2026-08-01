@@ -33,15 +33,16 @@ export default function LoginPage() {
   const handleLogin = async (formData: FormData) => {
     setError("");
     setSuccess("");
+    setIsLoading(true);
 
     const formEmail = formData.get("email")?.toString();
     const formPassword = formData.get("password")?.toString();
 
     if (!formEmail || !formPassword) {
-      return setError("Email dan kata sandi wajib diisi.");
+      setError("Email dan kata sandi wajib diisi.");
+      setIsLoading(false);
+      return;
     }
-
-    setIsLoading(true);
 
     try {
       const { error } = await supabase.auth.signInWithPassword({
@@ -55,12 +56,10 @@ export default function LoginPage() {
         return;
       }
 
-      // await loginUser(formData);
-      // await new Promise((resolve) => setTimeout(resolve, 2000));
-
       setSuccess("Login berhasil! Mengalihkan...");
+
       router.push("/admin");
-    } catch (err) {
+    } catch {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");
       setIsLoading(false);
     }
@@ -146,7 +145,13 @@ export default function LoginPage() {
                 </div>
               )}
 
-              <form className="flex flex-col gap-6" action={handleLogin}>
+              <form
+                className="flex flex-col gap-6"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  await handleLogin(new FormData(e.currentTarget));
+                }}
+              >
                 {/* Input Email */}
                 <div className="flex flex-col gap-2">
                   <label className="text-base font-bold text-[#0B0F1F]">

@@ -58,7 +58,7 @@ export default function LoginPage() {
 
       setTimeout(() => {
         router.refresh();
-        router.replace("/admin");
+        window.location.href = "/admin";
       }, 200);
     } catch (err) {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");

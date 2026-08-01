@@ -17,16 +17,10 @@ import {
   FaFire,
   FaChevronRight,
 } from "react-icons/fa6";
-import {
-  MdOutlineEnergySavingsLeaf,
-  MdCloud,
-  MdOutlineWaterDrop,
-  MdBolt,
-  MdPark,
-} from "react-icons/md";
+import { MdOutlineEnergySavingsLeaf } from "react-icons/md";
 import { FiCheckSquare, FiMessageCircle, FiAward } from "react-icons/fi";
 import { FaArrowRight } from "react-icons/fa";
-import { IoIosTrendingUp } from "react-icons/io";
+import { CalendarDays } from "lucide-react";
 import Image from "next/image";
 
 const data = [
@@ -167,22 +161,44 @@ export default function DashboardPage() {
         </div>
         {/* Aksi Hari Ini */}
         <div className="rounded-3xl bg-white p-6 shadow-sm xl:col-span-2">
-          <h3 className="flex items-center gap-2 mb-4 text-base font-bold text-gray-700">
-            <FiCheckSquare className="text-[#11773D] w-6 h-6" /> Aksi Hari Ini
-          </h3>
+          {/* Header */}
+          <div className="mb-8 flex items-center gap-3">
+            <CalendarDays
+              className="h-7 w-7 text-[#11773D]"
+              strokeWidth={2.2}
+            />
+
+            <h3 className="text-[22px] font-semibold text-[#101828]">
+              Aksi Hari Ini
+            </h3>
+          </div>
+
+          {/* Counter */}
           <div>
-            <div className="text-[#11773D] mb-2 text-4xl font-black">
-              3 <span className="text-2xl text-gray-400">/ 5</span>
+            <div className="flex items-end gap-2">
+              <span className="text-[58px] font-bold leading-none text-[#11773D]">
+                3
+              </span>
+
+              <span className="text-[58px] font-bold leading-none text-[#11773D]">
+                / 5
+              </span>
             </div>
-            <div className="mb-4 text-base font-bold text-gray-500">
+
+            <p className="mt-3 text-[20px] font-semibold text-[#475467]">
               Selesai
+            </p>
+
+            {/* Progress */}
+            <div className="mt-8 h-[10px] w-full overflow-hidden rounded-full bg-[#DFE7E2]">
+              <div
+                className="h-full rounded-full bg-[#11773D]"
+                style={{ width: "60%" }}
+              />
             </div>
-            <div className="w-full h-3 mb-4 bg-gray-200 rounded-full">
-              <div className="bg-[#11773D] h-3 rounded-full w-[60%] relative">
-                <div className="-right-2 -top-1 border-[#11773D] absolute w-5 h-5 bg-white border-2 rounded-full"></div>
-              </div>
-            </div>
-            <p className="text-base font-medium text-gray-500">
+
+            {/* Footer */}
+            <p className="mt-7 text-[15px] font-medium text-[#667085]">
               Teruskan! Kamu bisa lebih hebat lagi! 💚
             </p>
           </div>

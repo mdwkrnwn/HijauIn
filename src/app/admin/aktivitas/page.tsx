@@ -106,7 +106,7 @@ export default function AktivitasPage() {
           {/* Riwayat Aktivitas */}
           <div className=" rounded-3xl flex flex-col flex-1 p-6 bg-white shadow-sm">
             <div className="lg:flex-row lg:items-center flex flex-col items-start justify-between gap-4 mb-6">
-              <h3 className="text-xl font-bold text-gray-800">
+              <h3 className="text-xl font-bold text-[#0B0F1F]">
                 Riwayat Aktivitas
               </h3>
               <div className="lg:w-auto flex items-center w-full gap-3">

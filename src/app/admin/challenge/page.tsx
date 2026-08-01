@@ -2,101 +2,209 @@
 
 import { useState } from "react";
 import {
-  FaChevronRight, FaChevronDown, FaChevronLeft, FaBus, FaRecycle
+  FaChevronRight,
+  FaChevronDown,
+  FaChevronLeft,
+  FaBus,
+  FaBell,
+  FaRecycle,
 } from "react-icons/fa6";
 import { BiSearch } from "react-icons/bi";
+import { FaArrowRight } from "react-icons/fa6";
+import { FiChevronRight } from "react-icons/fi";
 import {
-  MdOutlineEnergySavingsLeaf, MdOutlineWaterDrop, MdPark, MdBolt, MdFilterList
+  MdOutlineEnergySavingsLeaf,
+  MdOutlineWaterDrop,
+  MdPark,
+  MdBolt,
+  MdFilterList,
 } from "react-icons/md";
 import { FiAward, FiTarget, FiCalendar } from "react-icons/fi";
 import { FaFire } from "react-icons/fa";
 import Image from "next/image";
+const data = [
+  { day: "Sen", value: 160 },
+  { day: "Sel", value: 270 },
+  { day: "Rab", value: 200 },
+  { day: "Kam", value: 200 },
+  { day: "Jum", value: 390 },
+  { day: "Sab", value: 320 },
+  { day: "Min", value: 200 },
+];
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Cell,
+} from "recharts";
 
 export default function ChallengePage() {
-  const [activeTab, setActiveTab] = useState<'aktif' | 'semua' | 'selesai'>('aktif');
+  const tabs: {
+    key: "aktif" | "semua" | "selesai";
+    label: string;
+  }[] = [
+    { key: "aktif", label: "Challenge Aktif" },
+    { key: "semua", label: "Semua Challenge" },
+    { key: "selesai", label: "Selesai" },
+  ];
+
+  const [activeTab, setActiveTab] = useState<"aktif" | "semua" | "selesai">(
+    "aktif",
+  );
 
   return (
-    <div className="flex flex-col w-full gap-6 mx-auto">
-
+    <div className="flex flex-col w-full gap-6 -mt-5 mx-auto">
       {/* Header Section */}
-      <header className="rounded-3xl relative flex items-center justify-between p-8 overflow-hidden bg-white shadow-sm">
-        <div className="lg:w-1/2 relative z-10 w-full">
-          <h1 className="flex items-center gap-2 mb-2 text-3xl font-extrabold">
-            Challenge <MdOutlineEnergySavingsLeaf className="text-primary" />
-          </h1>
-          <p className="text-base font-medium text-gray-600">
-            Ikuti challenge seru dan raih poin serta badge spesial!
+      <header className="lg:flex-row lg:items-center rounded-3xl relative flex flex-col items-start justify-between gap-4 p-8 overflow-hidden ">
+        <div className="lg:w-1/2 z-10 w-full">
+          <h1 className="mb-2 text-3xl font-bold">Challenge</h1>
+          <p className=" text-base text-gray-600">
+            Ikuti challenge seru dan rain poin serta badge spesial.
           </p>
         </div>
-        <div className="lg:w-2/3 absolute top-0 right-0 z-0 flex justify-end w-full h-full">
-          <Image
-            src="/assets/challange/main.png"
-            alt="Eco Trophy Landscape"
-            width={1539}
-            height={400}
-            className="object-contain"
-          />
+
+        <div className="lg:flex top-8 right-8 absolute z-10 items-center hidden gap-6">
+          <div className="relative cursor-pointer">
+            <FaBell className="w-6 h-6 text-gray-600" />
+            <span className="-top-1 -right-1 bg-danger absolute flex items-center justify-center w-5 h-5 text-base font-bold text-white rounded-full">
+              3
+            </span>
+          </div>
+          <div className="flex items-center gap-3 cursor-pointer">
+            <Image
+              width={50}
+              height={50}
+              src="https://picsum.photos/id/1005/50/50"
+              alt="Profile"
+              className="object-cover w-10 h-10 rounded-full"
+            />
+            <div className="text-right">
+              <div className="text-base font-bold">Dwi Kurniawan</div>
+              <div className="text-secondary text-base">Eco Guardian</div>
+            </div>
+            <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
+          </div>
         </div>
+
+        {/* Abstract Header Image Integration */}
+        {/* <div className="lg:w-1/2 absolute top-2 right-60  z-0 flex justify-end w-full h-full">
+          <Image
+            src="/assets/challange/z.png"
+            alt="Challenge Banner"
+            fill
+            className="object-contain w-full h-full object-right"
+          />
+        </div> */}
       </header>
 
       {/* Main Grid Layout */}
-      <div className="lg:grid-cols-3 grid grid-cols-1 gap-6">
-
+      <div className="lg:grid-cols-3 grid grid-cols-1 gap-6 -mt-5">
         {/* Left Column (Span 2) - Dynamic Content */}
         <div className="lg:col-span-2 flex flex-col gap-6">
-
           {/* Main Content Card */}
           <div className="rounded-3xl flex flex-col flex-1 p-6 bg-white shadow-sm">
-
             {/* Tabs */}
-            <div className="flex items-center gap-8 mb-6 overflow-x-auto border-b border-gray-100">
-              <button
-                onClick={() => setActiveTab('aktif')}
-                className={`text-base font-bold pb-4 whitespace-nowrap border-b-2 transition-colors ${activeTab === 'aktif' ? 'text-primary border-primary' : 'text-gray-500 border-transparent hover:text-gray-800'}`}
-              >
-                Challenge Aktif
-              </button>
-              <button
-                onClick={() => setActiveTab('semua')}
-                className={`text-base font-bold pb-4 whitespace-nowrap border-b-2 transition-colors ${activeTab === 'semua' ? 'text-primary border-primary' : 'text-gray-500 border-transparent hover:text-gray-800'}`}
-              >
-                Semua Challenge
-              </button>
-              <button
-                onClick={() => setActiveTab('selesai')}
-                className={`text-base font-bold pb-4 whitespace-nowrap border-b-2 transition-colors ${activeTab === 'selesai' ? 'text-primary border-primary' : 'text-gray-500 border-transparent hover:text-gray-800'}`}
-              >
-                Selesai
-              </button>
+            <div className="mb-8 flex items-center gap-10 border-b border-[#EAECF0]">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`pb-4 text-[16px] font-semibold transition ${
+                    activeTab === tab.key
+                      ? "border-b-2 border-[#11773D] text-[#11773D]"
+                      : "border-b-2 border-transparent text-[#667085]"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
             </div>
 
             {/* TAB CONTENT: AKTIF */}
-            {activeTab === 'aktif' && (
+            {activeTab === "aktif" && (
               <div className="animate-in fade-in flex flex-col gap-8 duration-300">
                 {/* Active Highlight */}
-                <div className="rounded-2xl lg:flex-row flex flex-col items-center gap-8 p-6 border border-gray-100">
-                  <div className="bg-primary-light shrink-0 flex items-center justify-center w-32 h-32 overflow-hidden rounded-full relative">
-                    <Image fill src="https://picsum.photos/id/400/120/120" alt="Bottle" className="mix-blend-multiply object-cover w-full h-full" />
+                <div className="rounded-[20px] border border-[#EAECF0] p-6 flex items-center gap-6">
+                  <div className="bg-[#11773D]-light shrink-0 flex items-center justify-center w-32 h-32 overflow-hidden rounded-full relative">
+                    <div className="relative h-[120px] w-[120px] shrink-0">
+                      <Image
+                        src="/assets/dashboard/plastic.png"
+                        alt=""
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
                   </div>
                   <div className="flex-1 w-full">
-                    <span className="bg-primary-light text-primary inline-block px-3 py-1 mb-3 text-base font-bold rounded-full">Tantangan Aktif</span>
-                    <h2 className="mb-2 text-2xl font-bold text-gray-800">30 Hari Tanpa Plastik</h2>
-                    <p className="mb-4 text-base text-gray-600">Kurangi penggunaan plastik sekali pakai selama 30 hari berturut-turut.</p>
+                    <span className="inline-flex rounded-full bg-[#EEF8EF] px-3 py-1 text-[12px] font-semibold text-[#11773D]">
+                      Tantangan Aktif
+                    </span>
+                    <h2 className="mt-3 text-[30px] font-bold text-[#101828]">
+                      30 Hari Tanpa Plastik
+                    </h2>
+                    <p className="mt-2 max-w-[420px] text-[15px] leading-7 text-[#667085]">
+                      Kurangi penggunaan plastik sekali pakai selama 30 hari
+                      berturut-turut.
+                    </p>
                   </div>
                   <div className="lg:w-1/3 flex flex-col w-full gap-3">
-                    <div className="flex justify-between text-base font-bold text-gray-800">
-                      <span className="text-primary text-xl">12</span>
-                      <span className="text-gray-400">/ 30 Hari</span>
+                    <div className="flex items-end gap-2">
+                      <span className="text-[34px] font-bold text-[#11773D]">
+                        12
+                      </span>
+
+                      <span className="pb-1 text-[18px] text-[#98A2B3]">
+                        / 30 Hari
+                      </span>
                     </div>
-                    <div className="w-full h-3 bg-gray-200 rounded-full">
-                      <div className="bg-primary h-3 rounded-full w-[40%]"></div>
+                    <div className="mt-4 h-[8px] w-full rounded-full bg-[#DDE3DE]">
+                      <div
+                        className="h-full rounded-full bg-[#11773D]"
+                        style={{ width: "40%" }}
+                      />
                     </div>
-                    <div className="flex items-center gap-4 mt-1 text-base font-bold text-gray-600">
-                      <span className="flex items-center gap-1"><MdOutlineEnergySavingsLeaf className="text-success" /> 500 Eco Point</span>
-                      <span className="flex items-center gap-1"><FiAward className="text-success" /> Eco Warrior</span>
+                    <div className="mt-5 flex items-center gap-5">
+                      <div className="flex items-center gap-2">
+                        <Image
+                          src="/assets/challange/point.png"
+                          width={18}
+                          height={18}
+                          alt=""
+                        />
+
+                        <span className="text-[14px] font-medium">
+                          500 Eco Point
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <Image
+                          src="/assets/challange/eco.png"
+                          width={18}
+                          height={18}
+                          alt=""
+                        />
+
+                        <span className="text-[14px] font-medium">
+                          Eco Warrior
+                        </span>
+                      </div>
                     </div>
-                    <div className="bg-warning/10 text-warning w-max inline-flex items-center gap-2 px-3 py-2 mt-2 text-base font-bold rounded-lg">
-                      12 Hari Berturut-turut <FaFire />
+                    <div className="mt-5 inline-flex items-center w-[220px] gap-2 rounded-full bg-[#FFF7E8] px-3 py-2">
+                      <span className="text-[14px] font-semibold text-[#C76B00]">
+                        12 Hari Berturut-turut
+                      </span>
+
+                      <Image
+                        src="/assets/challange/api.png"
+                        width={16}
+                        height={16}
+                        alt=""
+                        className="ml-2"
+                      />
                     </div>
                   </div>
                 </div>
@@ -104,121 +212,418 @@ export default function ChallengePage() {
                 {/* Challenge Lainnya List */}
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-gray-800">Challenge Lainnya</h3>
-                    <button className="text-primary flex items-center gap-1 text-base font-bold">Lihat Semua <FaChevronRight className="w-4 h-4" /></button>
+                    <h3 className="text-lg font-bold text-[#0B0F1F]">
+                      Challenge Lainnya
+                    </h3>
+                    <button className="text-[#11773D] flex items-center gap-1 text-base font-bold">
+                      Lihat Semua <FaChevronRight className="w-4 h-4" />
+                    </button>
                   </div>
                   <div className="flex flex-col gap-4">
-                    <ChallengeRow icon={<MdOutlineWaterDrop className="text-info w-6 h-6" />} bg="bg-info/20" title="Hemat Air Setiap Hari" desc="Hemat penggunaan air selama 14 hari." progress="8 / 14 Hari" percent="57%" point="200" />
-                    <ChallengeRow icon={<FaBus className="w-6 h-6 text-gray-600" />} bg="bg-gray-100" title="Naik Transportasi Umum" desc="Gunakan transportasi umum selama 10 hari." progress="6 / 10 Hari" percent="60%" point="250" />
-                    <ChallengeRow icon={<FaRecycle className="text-success w-6 h-6" />} bg="bg-success/20" title="Pilah Sampah di Rumah" desc="Pilah sampah organik dan anorganik selama 7 hari." progress="5 / 7 Hari" percent="71%" point="150" />
-                    <ChallengeRow icon={<MdPark className="text-success w-6 h-6" />} bg="bg-success/20" title="Tanam dan Rawat Pohon" desc="Tanam atau rawat pohon selama 30 hari." progress="10 / 30 Hari" percent="33%" point="300" />
-                    <ChallengeRow icon={<MdBolt className="text-warning w-6 h-6" />} bg="bg-warning/20" title="Hemat Energi di Rumah" desc="Hemat penggunaan listrik selama 14 hari." progress="7 / 14 Hari" percent="50%" point="200" />
+                    <ChallengeRow
+                      image="/assets/challange/water.png"
+                      title="Hemat Air Setiap Hari"
+                      desc="Hemat penggunaan air selama 14 hari."
+                      progress="8 / 14 Hari"
+                      percent="57%"
+                      point="200"
+                    />
+
+                    <ChallengeRow
+                      image="/assets/challange/transportasi.png"
+                      title="Naik Transportasi Umum"
+                      desc="Gunakan transportasi umum selama 10 hari."
+                      progress="6 / 10 Hari"
+                      percent="60%"
+                      point="250"
+                    />
+
+                    <ChallengeRow
+                      image="/assets/challange/sampah.png"
+                      title="Pilah Sampah di Rumah"
+                      desc="Pilah sampah organik dan anorganik selama 7 hari."
+                      progress="5 / 7 Hari"
+                      percent="71%"
+                      point="150"
+                    />
+
+                    <ChallengeRow
+                      image="/assets/challange/tanam.png"
+                      title="Tanam dan Rawat Pohon"
+                      desc="Tanam atau rawat pohon selama 30 hari."
+                      progress="10 / 30 Hari"
+                      percent="33%"
+                      point="300"
+                    />
+
+                    <ChallengeRow
+                      image="/assets/petir.png"
+                      title="Hemat Energi di Rumah"
+                      desc="Hemat penggunaan listrik selama 14 hari."
+                      progress="7 / 14 Hari"
+                      percent="50%"
+                      point="200"
+                    />
                   </div>
                 </div>
 
                 {/* Cara Kerja */}
-                <div className="pt-6 border-t border-gray-100">
-                  <h3 className="mb-6 text-lg font-bold text-gray-800">Cara Kerja Challenge</h3>
-                  <div className="md:flex-row flex flex-col items-center justify-between gap-4 text-center">
-                    <StepCard icon={<FiTarget className="text-primary w-8 h-8" />} title="1. Pilih Challenge" desc="Pilih challenge yang kamu ingin ikuti." />
-                    <FaChevronRight className="md:block hidden w-6 h-6 text-gray-300" />
-                    <StepCard icon={<MdOutlineEnergySavingsLeaf className="w-8 h-8 text-white" />} iconBg="bg-primary" title="2. Lakukan Aksi" desc="Lakukan aksi hijau sesuai target challenge." />
-                    <FaChevronRight className="md:block hidden w-6 h-6 text-gray-300" />
-                    <StepCard icon={<FiAward className="text-primary w-8 h-8" />} title="3. Dapatkan Poin" desc="Setiap aksi yang tervalidasi memberi poin." />
-                    <FaChevronRight className="md:block hidden w-6 h-6 text-gray-300" />
-                    <StepCard icon={<FiAward className="text-primary w-8 h-8" />} title="4. Raih Reward" desc="Selesaikan challenge dan raih reward spesial!" />
+                <div className="border-[#EAECF0]">
+                  <h3 className="mb-8 text-[22px] font-semibold text-[#101828]">
+                    Cara Kerja Challenge
+                  </h3>
+
+                  <div className="flex items-start justify-between">
+                    <StepCard
+                      image="/assets/challange/pilih.png"
+                      title="1. Pilih Challenge"
+                      imageWidth={58}
+                      imageHeight={58}
+                      desc="Pilih challenge yang kamu ingin ikuti."
+                    />
+
+                    <FaArrowRight
+                      className="mt-6 hidden text-[#11773D] md:block"
+                      size={20}
+                    />
+
+                    <StepCard
+                      image="/assets/challange/aksi.png"
+                      title="2. Lakukan Aksi"
+                      imageWidth={78}
+                      imageHeight={78}
+                      desc="Lakukan aksi hijau sesuai target challenge."
+                    />
+
+                    <FaArrowRight
+                      className="mt-6 hidden text-[#11773D] md:block"
+                      size={20}
+                    />
+
+                    <StepCard
+                      image="/assets/challange/dapatkanpoin.png"
+                      title="3. Dapatkan Poin"
+                      imageWidth={76}
+                      imageHeight={76}
+                      desc="Setiap aksi yang tervalidasi memberi poin."
+                    />
+
+                    <FaArrowRight
+                      className="mt-6 hidden text-[#11773D] md:block"
+                      size={20}
+                    />
+
+                    <StepCard
+                      image="/assets/challange/reward.png"
+                      title="4. Raih Reward"
+                      imageWidth={74}
+                      imageHeight={74}
+                      desc="Selesaikan challenge dan raih reward spesial!"
+                    />
                   </div>
                 </div>
               </div>
             )}
 
             {/* TAB CONTENT: SEMUA */}
-            {activeTab === 'semua' && (
+            {activeTab === "semua" && (
               <div className="animate-in fade-in flex flex-col gap-6 duration-300">
                 {/* Filters */}
                 <div className="md:flex-row flex flex-col items-center gap-4">
                   <button className="md:w-auto rounded-xl flex items-center justify-between w-full gap-2 px-4 py-3 text-base font-semibold text-gray-700 bg-white border border-gray-200">
-                    <MdFilterList className="w-5 h-5 text-gray-500" /> Semua Kategori <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
+                    <MdFilterList className="w-5 h-5 text-gray-500" /> Semua
+                    Kategori{" "}
+                    <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
                   </button>
                   <div className="relative flex-1 w-full">
                     <BiSearch className="left-4 top-1/2 absolute w-5 h-5 text-gray-400 -translate-y-1/2" />
-                    <input type="text" placeholder="Cari challenge..." className="rounded-xl focus:border-primary w-full py-3 pl-12 pr-4 text-base font-semibold border border-gray-200 outline-none" />
+                    <input
+                      type="text"
+                      placeholder="Cari challenge..."
+                      className="rounded-xl focus:border-[#11773D] w-full py-3 pl-12 pr-4 text-base font-semibold border border-gray-200 outline-none"
+                    />
                   </div>
                   <button className="md:w-auto rounded-xl flex items-center justify-between w-full gap-2 px-4 py-3 text-base font-semibold text-gray-700 bg-white border border-gray-200">
-                    Terbaru <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
+                    Terbaru{" "}
+                    <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
                   </button>
                 </div>
 
                 {/* Extended List */}
                 <div className="flex flex-col gap-4">
-                  <ChallengeRowDetailed iconImg="https://picsum.photos/id/400/80/80" tag="Kebiasaan" title="30 Hari Tanpa Plastik" desc="Kurangi penggunaan plastik sekali pakai selama 30 hari berturut-turut." progress="12 / 30 Hari" percent="40%" point="500" badge="Eco Warrior" badgeColor="text-success" />
-                  <ChallengeRowDetailed icon={<MdOutlineWaterDrop className="text-info w-8 h-8" />} tag="Penghematan" title="Hemat Air Setiap Hari" desc="Hemat penggunaan air selama 14 hari." progress="8 / 14 Hari" percent="57%" point="200" badge="Water Saver" badgeColor="text-gray-800" />
-                  <ChallengeRowDetailed icon={<FaBus className="w-8 h-8 text-gray-600" />} tag="Transportasi" title="Naik Transportasi Umum" desc="Gunakan transportasi umum selama 10 hari." progress="6 / 10 Hari" percent="60%" point="250" badge="Eco Hero" badgeColor="text-success" />
-                  <ChallengeRowDetailed icon={<FaRecycle className="text-success w-8 h-8" />} tag="Lingkungan" title="Pilah Sampah di Rumah" desc="Pilah sampah organik dan anorganik selama 7 hari." progress="5 / 7 Hari" percent="71%" point="150" badge="Green Starter" badgeColor="text-gray-800" />
-                  <ChallengeRowDetailed icon={<MdPark className="text-success w-8 h-8" />} tag="Lingkungan" title="Tanam dan Rawat Pohon" desc="Tanam atau rawat pohon selama 30 hari." progress="10 / 30 Hari" percent="33%" point="300" badge="Earth Lover" badgeColor="text-gray-800" />
-                  <ChallengeRowDetailed icon={<MdBolt className="text-warning w-8 h-8" />} tag="Penghematan" title="Hemat Energi di Rumah" desc="Hemat penggunaan listrik selama 14 hari." progress="7 / 14 Hari" percent="50%" point="200" badge="Energy Saver" badgeColor="text-gray-800" />
+                  <ChallengeRowDetailed
+                    image="/assets/challange/30hari.png"
+                    title="30 Hari Tanpa Plastik"
+                    tag="Kebiasaan"
+                    tagColor="bg-[#E8F5E9] text-[#11773D]"
+                    desc="Kurangi penggunaan plastik sekali pakai selama 30 hari berturut-turut."
+                    progress="12 / 30 Hari"
+                    percent="40%"
+                    point="500"
+                    badge="Eco Warrior"
+                    badgeImage="/assets/challange/ecowarrior.png"
+                  />
+                  <ChallengeRowDetailed
+                    image="/assets/challange/water.png"
+                    title="Hemat Air Setiap Hari"
+                    tag="Penghematan"
+                    tagColor="bg-[#E3F2FD] text-[#2196F3]"
+                    desc="Hemat penggunaan air selama 14 hari."
+                    progress="8 / 14 Hari"
+                    percent="57%"
+                    point="200"
+                    badge="Water Saver"
+                    badgeImage="/assets/challange/ecowarrior.png"
+                  />
+                  <ChallengeRowDetailed
+                    image="/assets/challange/transportasi.png"
+                    title="Naik Transportasi Umum"
+                    tag="Transportasi"
+                    tagColor="bg-[#E8F5E9] text-[#11773D]"
+                    desc="Gunakan transportasi umum selama 10 hari."
+                    progress="6 / 10 Hari"
+                    percent="60%"
+                    point="250"
+                    badge="Eco Hero"
+                    badgeImage="/assets/challange/ecowarrior.png"
+                  />
+                  <ChallengeRowDetailed
+                    image="/assets/challange/sampah.png"
+                    title="Pilah Sampah di Rumah"
+                    tag="Lingkungan"
+                    tagColor="bg-[#E8F5E9] text-[#11773D]"
+                    desc="Pilah sampah organik dan anorganik selama 7 hari."
+                    progress="5 / 7 Hari"
+                    percent="71%"
+                    point="150"
+                    badge="Green Starter"
+                    badgeImage="/assets/challange/ecowarrior.png"
+                  />
+                  <ChallengeRowDetailed
+                    image="/assets/challange/tanam.png"
+                    title="Tanam dan Rawat Pohon"
+                    tag="Lingkungan"
+                    tagColor="bg-[#E8F5E9] text-[#11773D]"
+                    desc="Tanam atau rawat pohon selama 30 hari."
+                    progress="10 / 30 Hari"
+                    percent="33%"
+                    point="300"
+                    badge="Earth Lover"
+                    badgeImage="/assets/challange/ecowarrior.png"
+                  />
+                  <ChallengeRowDetailed
+                    image="/assets/petir.png"
+                    imageWidth={45}
+                    imageHeight={45}
+                    title="Hemat Energi di Rumah"
+                    tag="Penghematan"
+                    tagColor="bg-[#E3F2FD] text-[#2196F3]"
+                    desc="Hemat penggunaan listrik selama 14 hari."
+                    progress="7 / 14 Hari"
+                    percent="50%"
+                    point="200"
+                    badge="Energy Saver"
+                    badgeImage="/assets/challange/ecowarrior.png"
+                  />
                 </div>
 
                 {/* Pagination */}
                 <div className="flex items-center justify-center gap-2 mt-6">
-                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-gray-400 border border-gray-200 rounded-lg"><FaChevronLeft /></button>
-                  <button className="bg-primary flex items-center justify-center w-10 h-10 text-base font-bold text-white rounded-lg">1</button>
-                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-base font-bold text-gray-600 border border-gray-200 rounded-lg">2</button>
-                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-base font-bold text-gray-600 border border-gray-200 rounded-lg">3</button>
-                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-base font-bold text-gray-600 border border-gray-200 rounded-lg">4</button>
-                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-base font-bold text-gray-600 border border-gray-200 rounded-lg">5</button>
-                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-gray-600 border border-gray-200 rounded-lg"><FaChevronRight /></button>
+                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-gray-400 border border-gray-200 rounded-lg">
+                    <FaChevronLeft />
+                  </button>
+                  <button className="bg-[#11773D] flex items-center justify-center w-10 h-10 text-base font-bold text-white rounded-lg">
+                    1
+                  </button>
+                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-base font-bold text-gray-600 border border-gray-200 rounded-lg">
+                    2
+                  </button>
+                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-base font-bold text-gray-600 border border-gray-200 rounded-lg">
+                    3
+                  </button>
+                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-base font-bold text-gray-600 border border-gray-200 rounded-lg">
+                    4
+                  </button>
+                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-base font-bold text-gray-600 border border-gray-200 rounded-lg">
+                    5
+                  </button>
+                  <button className="hover:bg-gray-50 flex items-center justify-center w-10 h-10 text-gray-600 border border-gray-200 rounded-lg">
+                    <FaChevronRight />
+                  </button>
                 </div>
               </div>
             )}
 
             {/* TAB CONTENT: SELESAI */}
-            {activeTab === 'selesai' && (
+            {activeTab === "selesai" && (
               <div className="animate-in fade-in flex flex-col h-full gap-6 duration-300">
                 <div>
-                  <h3 className="mb-1 text-xl font-bold text-gray-800">Challenge yang Telah Selesai</h3>
-                  <p className="mb-6 text-base text-gray-600">Terus konsisten! Setiap langkah kecil membawa perubahan besar.</p>
+                  <h3 className="mb-1 text-xl font-bold text-[#0B0F1F]">
+                    Challenge yang Telah Selesai
+                  </h3>
+                  <p className="mb-6 text-base text-gray-600">
+                    Terus konsisten! Setiap langkah kecil membawa perubahan
+                    besar.
+                  </p>
                 </div>
 
                 <div className="flex flex-col flex-1 gap-4">
-                  <CompletedRow icon={<FaRecycle className="text-success w-8 h-8" />} title="Pilah Sampah di Rumah" desc="Pilah sampah organik dan anorganik selama 7 hari." date="Selesai pada 12 Mei 2025" point="150" badge="Green Starter" />
-                  <CompletedRow icon={<MdOutlineWaterDrop className="text-info w-8 h-8" />} title="Hemat Air Setiap Hari" desc="Hemat penggunaan air selama 14 hari." date="Selesai pada 30 April 2025" point="200" badge="Water Saver" />
-                  <CompletedRow icon={<FaBus className="w-8 h-8 text-gray-600" />} title="Naik Transportasi Umum" desc="Gunakan transportasi umum selama 10 hari." date="Selesai pada 20 April 2025" point="250" badge="Eco Hero" />
-                  <CompletedRow icon={<MdPark className="text-success w-8 h-8" />} title="Tanam dan Rawat Pohon" desc="Tanam atau rawat pohon selama 30 hari." date="Selesai pada 10 April 2025" point="300" badge="Earth Lover" />
-                  <CompletedRow icon={<MdBolt className="text-warning w-8 h-8" />} title="Hemat Energi di Rumah" desc="Hemat penggunaan listrik selama 14 hari." date="Selesai pada 5 April 2025" point="200" badge="Energy Saver" />
+                  <CompletedRow
+                    image="/assets/challange/sampah.png"
+                    title="Pilah Sampah di Rumah"
+                    desc="Pilah sampah organik dan anorganik selama 7 hari."
+                    date="Selesai pada 12 Mei 2025"
+                    point="150"
+                    badge="Green Starter"
+                    badgeImage="/assets/challange/g.png"
+                    badgeMr="-mr-9"
+                  />
+
+                  <CompletedRow
+                    image="/assets/challange/water.png"
+                    title="Hemat Air Setiap Hari"
+                    desc="Hemat penggunaan air selama 14 hari."
+                    date="Selesai pada 30 April 2025"
+                    point="200"
+                    badge="Water Saver"
+                    badgeImage="/assets/challange/water-saver.png"
+                    badgeMr="-mr-7"
+                  />
+
+                  <CompletedRow
+                    image="/assets/challange/transportasi.png"
+                    title="Naik Transportasi Umum"
+                    desc="Gunakan transportasi umum selama 10 hari."
+                    date="Selesai pada 20 April 2025"
+                    point="250"
+                    badge="Eco Hero"
+                    badgeImage="/assets/challange/g.png"
+                  />
+
+                  <CompletedRow
+                    image="/assets/challange/tanam.png"
+                    title="Tanam dan Rawat Pohon"
+                    desc="Tanam atau rawat pohon selama 30 hari."
+                    date="Selesai pada 10 April 2025"
+                    point="300"
+                    badge="Earth Lover"
+                    badgeMr="-mr-5"
+                    badgeImage="/assets/challange/earth.png"
+                  />
+
+                  <CompletedRow
+                    image="/assets/petir.png"
+                    imageWidth={48}
+                    imageHeight={48}
+                    title="Hemat Energi di Rumah"
+                    desc="Hemat penggunaan listrik selama 14 hari."
+                    date="Selesai pada 5 April 2025"
+                    point="200"
+                    badgeMr="-mr-9"
+                    badge="Energy Saver"
+                    badgeImage="/assets/challange/listrik.png"
+                  />
                 </div>
 
                 {/* Pencapaian Totalmu */}
-                <div className="pt-8 mt-8 border-t border-gray-100">
-                  <h3 className="text-primary mb-4 text-lg font-bold">Pencapaian Totalmu</h3>
-                  <div className="md:grid-cols-4 grid grid-cols-2 gap-4">
-                    <div className="rounded-2xl flex items-center justify-between p-4 border border-gray-100">
+                <div className="relative mt-8 rounded-[28px] bg-[#F8FBF8] px-8 py-7 overflow-hidden">
+                  {/* Daun kanan atas */}
+                  <Image
+                    src="/assets/challange/point.png"
+                    alt=""
+                    width={35}
+                    height={35}
+                    className="absolute right-5 top-0"
+                  />
+
+                  <h3 className="mb-6 text-[20px] font-semibold text-[#11773D]">
+                    Pencapaian Totalmu
+                  </h3>
+
+                  <div className="grid grid-cols-4 gap-6">
+                    {/* Card 1 */}
+                    <div className="flex items-center gap-5 rounded-[20px] bg-white px-7 py-7">
+                      <Image
+                        src="/assets/challange/point.png"
+                        alt=""
+                        width={52}
+                        height={52}
+                      />
+
                       <div>
-                        <div className="text-2xl font-black text-gray-800">1.250</div>
-                        <div className="text-base font-semibold text-gray-500">Total Poin Diperoleh</div>
+                        <h4 className="text-[38px] font-semibold leading-none text-[#101828]">
+                          1.250
+                        </h4>
+
+                        <p className="mt-3 text-[16px] leading-7 text-[#475467]">
+                          Total Poin
+                          <br />
+                          Diperoleh
+                        </p>
                       </div>
-                      <MdOutlineEnergySavingsLeaf className="text-primary w-8 h-8" />
                     </div>
-                    <div className="rounded-2xl flex items-center justify-between p-4 border border-gray-100">
+
+                    {/* Card 2 */}
+                    <div className="flex items-center gap-5 rounded-[20px] bg-white px-7 py-7">
+                      <Image
+                        src="/assets/challange/t.png"
+                        alt=""
+                        width={52}
+                        height={52}
+                      />
+
                       <div>
-                        <div className="text-2xl font-black text-gray-800">8</div>
-                        <div className="text-base font-semibold text-gray-500">Challenge Selesai</div>
+                        <h4 className="text-[38px] font-semibold leading-none text-[#101828]">
+                          8
+                        </h4>
+
+                        <p className="mt-3 text-[16px] leading-7 text-[#475467]">
+                          Challenge
+                          <br />
+                          Selesai
+                        </p>
                       </div>
-                      <FiAward className="text-success w-8 h-8" />
                     </div>
-                    <div className="rounded-2xl flex items-center justify-between p-4 border border-gray-100">
+
+                    {/* Card 3 */}
+                    <div className="flex items-center gap-5 rounded-[20px] bg-white px-7 py-7">
+                      <Image
+                        src="/assets/challange/g.png"
+                        alt=""
+                        width={52}
+                        height={52}
+                      />
+
                       <div>
-                        <div className="text-2xl font-black text-gray-800">4</div>
-                        <div className="text-base font-semibold text-gray-500">Badge Diperoleh</div>
+                        <h4 className="text-[38px] font-semibold leading-none text-[#101828]">
+                          4
+                        </h4>
+
+                        <p className="mt-3 text-[16px] leading-7 text-[#475467]">
+                          Badge
+                          <br />
+                          Diperoleh
+                        </p>
                       </div>
-                      <FiAward className="text-primary w-8 h-8" />
                     </div>
-                    <div className="rounded-2xl flex items-center justify-between p-4 border border-gray-100">
-                      <div>
-                        <div className="text-2xl font-black text-gray-800">28</div>
-                        <div className="text-base font-semibold text-gray-500">Hari Aktif Konsisten</div>
+
+                    {/* Card 4 */}
+                    <div className="flex items-center gap-5 rounded-[20px] bg-white px-7 py-7">
+                      <div className="flex h-[52px] w-[52px] items-center justify-center">
+                        <FiCalendar className="h-[42px] w-[42px] text-[#16A34A]" />
                       </div>
-                      <FiCalendar className="text-success w-8 h-8" />
+
+                      <div>
+                        <h4 className="text-[38px] font-semibold leading-none text-[#101828]">
+                          28
+                        </h4>
+
+                        <p className="mt-3 text-[16px] leading-7 text-[#475467]">
+                          Hari Aktif
+                          <br />
+                          Konsisten
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -229,100 +634,265 @@ export default function ChallengePage() {
 
         {/* Right Column (Span 1) - Static Sidebar */}
         <div className="lg:col-span-1 flex flex-col gap-6">
-
           {/* Ringkasan Challenge */}
-          <div className="rounded-3xl p-6 bg-white shadow-sm">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-bold text-gray-800">Ringkasan Challenge</h3>
-              <button className="text-primary text-base font-bold">Lihat Detail</button>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <div className="mb-2 text-base font-bold text-gray-500">Total Poin</div>
-                <div className="text-primary flex items-center gap-2 text-3xl font-black">
-                  1.250 <MdOutlineEnergySavingsLeaf className="w-5 h-5" />
+          <div className="rounded-[24px] border border-[#EAECF0] bg-white p-7 shadow-sm">
+            {/* Title */}
+            <h3 className="mb-10 text-[22px] font-semibold text-[#101828]">
+              Ringkasan Challenge
+            </h3>
+
+            <div className="flex items-center">
+              {/* Total Poin */}
+              <div className="flex-1">
+                <p className="mb-4 text-[16px] font-medium text-[#667085]">
+                  Total Poin
+                </p>
+
+                <div className="flex items-center gap-2">
+                  <span className="text-[54px] font-semibold leading-none text-[#11773D]">
+                    1.250
+                  </span>
+
+                  <Image
+                    src="/assets/challange/point.png"
+                    alt="Leaf"
+                    width={26}
+                    height={26}
+                    className="object-contain"
+                  />
                 </div>
               </div>
-              <div>
-                <div className="mb-2 text-base font-bold text-gray-500">Challenge Selesai</div>
-                <div className="flex items-center gap-2 text-3xl font-black text-gray-800">
-                  8 <FiAward className="text-success w-5 h-5" />
+
+              {/* Divider */}
+              <div className="mx-10 h-20 w-px bg-[#EAECF0]" />
+
+              {/* Challenge */}
+              <div className="flex-1">
+                <p className="mb-4 text-[16px] font-medium text-[#667085]">
+                  Challenge Selesai
+                </p>
+
+                <div className="flex items-center gap-3">
+                  <span className="text-[54px] font-semibold leading-none text-[#11773D]">
+                    8
+                  </span>
+
+                  <Image
+                    src="/assets/challange/t.png"
+                    alt="Trophy"
+                    width={28}
+                    height={28}
+                    className="object-contain"
+                  />
                 </div>
               </div>
             </div>
           </div>
 
           {/* Progress Mingguan */}
-          <div className="rounded-3xl p-6 bg-white shadow-sm">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-gray-800">Progress Mingguan</h3>
-              <button className="text-primary text-base font-bold">Lihat Detail</button>
-            </div>
-            <div className="text-primary flex items-center gap-2 mb-1 text-3xl font-black">
-              320 <MdOutlineEnergySavingsLeaf className="w-5 h-5" />
-            </div>
-            <div className="mb-6 text-base font-bold text-gray-500">Poin</div>
+          <div className="rounded-[24px] border border-[#EAECF0] bg-white p-7 shadow-sm">
+            {/* Header */}
+            <div className="mb-5 flex items-center justify-between">
+              <h3 className="text-[22px] font-semibold text-[#101828]">
+                Progress Mingguan
+              </h3>
 
-            {/* Chart Simulation */}
-            <div className="relative flex items-end justify-between h-48 gap-2 px-2 pt-4 pb-1 border-b border-l border-gray-200">
-              {/* Y-axis labels */}
-              <div className="absolute -left-7.5 bottom-1 flex flex-col justify-between h-full text-base text-gray-400 font-semibold text-right">
-                <span>400</span><span>300</span><span>200</span><span>100</span><span>0</span>
-              </div>
-
-              {/* Bars */}
-              <div className="bg-success w-full rounded-t-sm" style={{ height: '35%' }}></div>
-              <div className="bg-success w-full rounded-t-sm" style={{ height: '60%' }}></div>
-              <div className="bg-success w-full rounded-t-sm" style={{ height: '45%' }}></div>
-              <div className="bg-success w-full rounded-t-sm" style={{ height: '55%' }}></div>
-              <div className="bg-success w-full rounded-t-sm" style={{ height: '90%' }}></div>
-              <div className="bg-success w-full rounded-t-sm" style={{ height: '80%' }}></div>
-              <div className="bg-success w-full rounded-t-sm" style={{ height: '40%' }}></div>
+              <button className="text-[15px] font-semibold text-[#11773D] hover:underline">
+                Lihat Detail
+              </button>
             </div>
-            <div className="flex justify-between px-2 mt-3 text-base font-semibold text-gray-500">
-              <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+
+            {/* Total */}
+            <div className="mb-1 flex items-center gap-2">
+              <span className="text-[54px] font-semibold leading-none text-[#11773D]">
+                320
+              </span>
+
+              <Image
+                src="/assets/challange/point.png"
+                alt="Leaf"
+                width={24}
+                height={24}
+                className="object-contain"
+              />
+            </div>
+
+            <p className="mb-8 text-[18px] font-medium text-[#667085]">Poin</p>
+
+            {/* Chart */}
+            <div className="h-[250px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={data}
+                  margin={{
+                    top: 10,
+                    right: 10,
+                    left: -15,
+                    bottom: 10,
+                  }}
+                  barCategoryGap="35%"
+                >
+                  <defs>
+                    <linearGradient id="greenBar" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#8BCB5E" />
+                      <stop offset="100%" stopColor="#11773D" />
+                    </linearGradient>
+                  </defs>
+
+                  <CartesianGrid
+                    stroke="#EAECF0"
+                    vertical={false}
+                    strokeDasharray=""
+                  />
+
+                  <XAxis
+                    dataKey="day"
+                    tick={{
+                      fill: "#667085",
+                      fontSize: 14,
+                      fontWeight: 500,
+                    }}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+
+                  <YAxis
+                    domain={[0, 400]}
+                    ticks={[0, 100, 200, 300, 400]}
+                    tick={{
+                      fill: "#667085",
+                      fontSize: 13,
+                    }}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+
+                  <Bar dataKey="value" radius={[8, 8, 8, 8]} barSize={12}>
+                    {data.map((_, i) => (
+                      <Cell key={i} fill="url(#greenBar)" />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
             </div>
           </div>
 
           {/* Badge yang Didapat */}
-          <div className="rounded-3xl p-6 bg-white shadow-sm">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-bold text-gray-800">Badge yang Didapat</h3>
-              <button className="text-primary text-base font-bold">Lihat Semua</button>
+          <div className="rounded-[24px] border border-[#EAECF0] bg-white p-7 shadow-sm">
+            {/* Header */}
+            <div className="mb-10 flex items-center justify-between">
+              <h3 className="text-[22px] font-semibold text-[#101828]">
+                Badge yang Didapat
+              </h3>
+
+              <button className="text-[15px] font-semibold text-[#11773D] hover:underline">
+                Lihat Semua
+              </button>
             </div>
-            <div className="grid grid-cols-4 gap-2 text-center">
+
+            {/* Badge List */}
+            <div className="grid grid-cols-4 gap-8">
+              {/* Eco Warrior */}
               <div className="flex flex-col items-center">
-                <Image width={60} height={60} src="https://picsum.photos/id/111/60/60" alt="Badge 1" className="w-14 h-14 rounded-xl border-primary object-cover mb-2 border-2" />
-                <div className="text-base font-bold leading-tight text-gray-800">Eco Warrior</div>
+                <Image
+                  src="/assets/challange/ecowarrior.png"
+                  alt="Eco Warrior"
+                  width={78}
+                  height={78}
+                  className="mb-4 object-contain"
+                />
+
+                <p className="text-center text-[18px] font-medium text-[#344054]">
+                  Eco Warrior
+                </p>
               </div>
+
+              {/* Water Saver */}
               <div className="flex flex-col items-center">
-                <Image width={60} height={60} src="https://picsum.photos/id/112/60/60" alt="Badge 2" className="w-14 h-14 rounded-xl border-primary object-cover mb-2 border-2" />
-                <div className="text-base font-bold leading-tight text-gray-800">Water Saver</div>
+                <Image
+                  src="/assets/challange/water-saver.png"
+                  alt="Water Saver"
+                  width={78}
+                  height={78}
+                  className="mb-4 object-contain"
+                />
+
+                <p className="text-center text-[18px] font-medium text-[#344054]">
+                  Water Saver
+                </p>
               </div>
+
+              {/* Green Starter */}
               <div className="flex flex-col items-center">
-                <Image width={60} height={60} src="https://picsum.photos/id/113/60/60" alt="Badge 3" className="w-14 h-14 rounded-xl border-primary object-cover mb-2 border-2" />
-                <div className="text-base font-bold leading-tight text-gray-800">Green Starter</div>
+                <Image
+                  src="/assets/challange/green.png"
+                  alt="Green Starter"
+                  width={78}
+                  height={78}
+                  className="mb-4 object-contain"
+                />
+
+                <p className="text-center text-[18px] font-medium text-[#344054]">
+                  Green Starter
+                </p>
               </div>
+
+              {/* Earth Lover */}
               <div className="flex flex-col items-center">
-                <Image width={60} height={60} src="https://picsum.photos/id/114/60/60" alt="Badge 4" className="w-14 h-14 rounded-xl object-cover mb-2 border-2 border-gray-800" />
-                <div className="text-base font-bold leading-tight text-gray-800">Earth Lover</div>
+                <Image
+                  src="/assets/challange/earth.png"
+                  alt="Earth Lover"
+                  width={78}
+                  height={78}
+                  className="mb-4 object-contain"
+                />
+
+                <p className="text-center text-[18px] font-medium text-[#344054]">
+                  Earth Lover
+                </p>
               </div>
             </div>
           </div>
 
           {/* Tips Hari Ini */}
-          <div className="rounded-3xl relative p-6 overflow-hidden bg-white shadow-sm">
-            <h3 className="flex items-center gap-2 mb-4 text-lg font-bold text-gray-800">
-              <MdOutlineEnergySavingsLeaf className="text-primary" /> Tips Hari Ini
-            </h3>
-            <p className="relative z-10 w-2/3 text-base text-gray-600">
-              Matikan lampu saat tidak digunakan untuk menghemat energi dan kurangi emisi CO₂.
-            </p>
-            <div className="-right-5 -bottom-5 opacity-90 absolute z-0 w-32 h-32">
-              <Image src="https://picsum.photos/id/321/150/150" alt="Earth Globe" width={150} height={150} className="object-cover w-full h-full rounded-full" />
+          <div className="relative overflow-hidden rounded-[24px] border border-[#EAECF0] bg-white p-7 shadow-sm">
+            <div className="flex items-center justify-between">
+              {/* Left */}
+              <div className="max-w-[48%]">
+                {/* Header */}
+                <div className="mb-8 flex items-center gap-3">
+                  <Image
+                    src="/assets/challange/point.png"
+                    alt="Leaf"
+                    width={28}
+                    height={28}
+                    className="object-contain"
+                  />
+
+                  <h3 className="text-[22px] font-semibold text-[#101828]">
+                    Tips Hari Ini
+                  </h3>
+                </div>
+
+                {/* Content */}
+                <p className="text-[18px] leading-[52px] font-medium text-[#344054]">
+                  Matikan lampu saat tidak digunakan untuk menghemat energi dan
+                  kurangi emisi CO₂.
+                </p>
+              </div>
+
+              {/* Right Image */}
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/assets/challange/bumi.png"
+                  alt="Earth"
+                  width={220}
+                  height={220}
+                  className="object-contain"
+                />
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -331,107 +901,294 @@ export default function ChallengePage() {
 
 // Subcomponents for specific rows
 
-function ChallengeRow({ icon, bg, title, desc, progress, percent, point }: { icon: any, bg: string, title: string, desc: string, progress: string, percent: string, point: string }) {
+function ChallengeRow({
+  image,
+  title,
+  desc,
+  progress,
+  percent,
+  point,
+}: {
+  image: string;
+  title: string;
+  desc: string;
+  progress: string;
+  percent: string;
+  point: string;
+}) {
   return (
-    <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-4 transition-shadow border border-gray-100 cursor-pointer">
-      <div className="flex items-center flex-1 gap-4">
-        <div className={`${bg} p-4 rounded-full`}>{icon}</div>
-        <div className="flex-1">
-          <div className="text-lg font-bold text-gray-800">{title}</div>
-          <div className="mb-2 text-base text-gray-500">{desc}</div>
+    <div className="group flex items-center justify-between border-b border-[#EAECF0] py-5 transition">
+      {/* Left */}
+      <div className="flex flex-1 items-center gap-5">
+        <div className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-[#EEF4EC]">
+          <div className="relative h-[42px] w-[42px]">
+            <Image src={image} alt={title} fill className="object-contain" />
+          </div>
         </div>
-      </div>
-      <div className="w-1/3 mx-4">
-        <div className="flex justify-between mb-1 text-base font-bold text-gray-600">
-          <span>{progress}</span>
-        </div>
-        <div className="w-full h-2 bg-gray-200 rounded-full">
-          <div className="bg-success h-2 rounded-full" style={{ width: percent }}></div>
-        </div>
-      </div>
-      <div className="flex items-center gap-4">
-        <div className="text-right">
-          <div className="text-success text-lg font-bold">{point}</div>
-          <div className="text-base text-gray-400">Poin</div>
-        </div>
-        <FaChevronRight className="group-hover:text-primary w-5 h-5 text-gray-300 transition-colors" />
-      </div>
-    </div>
-  );
-}
 
-function ChallengeRowDetailed({ iconImg, icon, tag, title, desc, progress, percent, point, badge, badgeColor }: { iconImg?: string, icon?: any, tag: string, title: string, desc: string, progress: string, percent: string, point: string, badge: string, badgeColor: string }) {
-  return (
-    <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-4 transition-shadow border border-gray-100 cursor-pointer">
-      <div className="flex items-center flex-1 gap-4">
-        <div className="bg-gray-50 shrink-0 flex items-center justify-center w-20 h-20 overflow-hidden rounded-full">
-          {iconImg ? <Image width={64} height={64} src={iconImg} alt="icon" className="mix-blend-multiply object-cover w-16 h-16" /> : icon}
-        </div>
-        <div className="flex-1">
-          <div className="flex items-center gap-3 mb-1">
-            <h4 className="text-xl font-bold text-gray-800">{title}</h4>
-            <span className="bg-primary-light text-primary text-base px-3 py-0.5 rounded-full font-bold inline-block">{tag}</span>
-          </div>
-          <div className="text-base text-gray-500">{desc}</div>
-        </div>
-      </div>
-      <div className="w-1/4 mx-6">
-        <div className="flex justify-between mb-2 text-base font-bold text-gray-800">
-          <span>{progress}</span>
-        </div>
-        <div className="w-full h-3 bg-gray-200 rounded-full">
-          <div className="bg-primary h-3 rounded-full" style={{ width: percent }}></div>
-        </div>
-      </div>
-      <div className="flex items-center gap-6">
-        <div className="flex items-center gap-4">
-          <div className="text-right">
-            <div className="flex items-center gap-1 text-lg font-bold text-gray-800"><MdOutlineEnergySavingsLeaf className="text-success" /> {point} Eco Point</div>
-          </div>
-          <div className="flex items-center gap-1 text-base font-bold text-right text-gray-800">
-            <FiAward className={badgeColor} /> {badge}
-          </div>
-        </div>
-        <FaChevronRight className="group-hover:text-primary w-5 h-5 text-gray-300 transition-colors" />
-      </div>
-    </div>
-  );
-}
-
-function CompletedRow({ icon, title, desc, date, point, badge }: { icon: any, title: string, desc: string, date: string, point: string, badge: string }) {
-  return (
-    <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-5 transition-shadow border border-gray-100 cursor-pointer">
-      <div className="flex items-center flex-1 gap-4">
-        <div className="bg-gray-50 shrink-0 flex items-center justify-center w-16 h-16 rounded-full">
-          {icon}
-        </div>
         <div>
-          <div className="mb-1 text-xl font-bold text-gray-800">{title}</div>
-          <div className="mb-2 text-base text-gray-500">{desc}</div>
-          <div className="flex items-center gap-2 text-base font-semibold text-gray-500">
-            <FiCalendar /> {date}
-          </div>
+          <h4 className="text-[22px] font-semibold text-[#101828]">{title}</h4>
+
+          <p className="mt-1 text-[15px] text-[#667085]">{desc}</p>
         </div>
       </div>
-      <div className="flex flex-col items-end gap-2">
-        <div className="text-success text-xl font-black">+{point} Poin</div>
-        <div className="bg-gray-50 rounded-xl flex items-center gap-2 px-4 py-2 text-base font-bold text-gray-800 border border-gray-100">
-          <FiAward className="text-primary w-5 h-5" /> {badge}
+
+      {/* Progress */}
+      <div className="mr-10 w-[170px]">
+        <p className="mb-2 text-[15px] font-semibold text-[#11773D]">
+          {progress}
+        </p>
+
+        <div className="h-[7px] rounded-full bg-[#DDE3DE]">
+          <div
+            className="h-full rounded-full bg-[#11773D]"
+            style={{ width: percent }}
+          />
         </div>
       </div>
-      <FaChevronRight className="group-hover:text-primary w-5 h-5 ml-6 text-gray-300 transition-colors" />
+
+      {/* Point */}
+      <div className="mr-6 w-[70px] text-right">
+        <p className="text-[24px] font-bold text-[#11773D]">{point}</p>
+
+        <p className="text-[14px] text-[#667085]">Poin</p>
+      </div>
+
+      {/* Arrow */}
+      <FaChevronRight
+        size={14}
+        className="text-[#98A2B3] transition group-hover:text-[#11773D]"
+      />
     </div>
   );
 }
 
-function StepCard({ icon, iconBg = "bg-primary-light", title, desc }: { icon: any, iconBg?: string, title: string, desc: string }) {
+type ChallengeRowDetailedProps = {
+  image: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  title: string;
+  tag: string;
+  tagColor: string;
+  desc: string;
+  progress: string;
+  percent: string;
+  point: string;
+  badge: string;
+  badgeImage: string;
+};
+function ChallengeRowDetailed({
+  image,
+  imageWidth = 70,
+  imageHeight = 70,
+  title,
+  tag,
+  tagColor,
+  desc,
+  progress,
+  percent,
+  point,
+  badge,
+  badgeImage,
+}: ChallengeRowDetailedProps) {
+  const [current, total] = progress.split("/");
+
   return (
-    <div className="max-w-50 flex flex-col items-center">
-      <div className={`w-16 h-16 ${iconBg} rounded-xl flex items-center justify-center mb-4`}>
-        {icon}
+    <div className="group flex items-center justify-between border-b border-[#EAECF0] py-4">
+      {/* LEFT */}
+      <div className="flex flex-1 items-center gap-6">
+        {/* Icon */}
+        <div className="flex h-[86px] w-[86px] items-center justify-center rounded-full bg-[#EEF4EC]">
+          <Image
+            src={image}
+            alt={title}
+            width={imageWidth}
+            height={imageHeight}
+            className="object-contain"
+          />
+        </div>
+
+        {/* Text */}
+        <div>
+          <h3 className="text-[20px] font-semibold text-[#101828]">{title}</h3>
+
+          <span
+            className={`mt-2 inline-flex rounded-full px-3 py-1 text-[13px] font-semibold ${tagColor}`}
+          >
+            {tag}
+          </span>
+
+          <p className="mt-3 max-w-[330px] text-[15px] leading-8 text-[#667085]">
+            {desc}
+          </p>
+        </div>
       </div>
-      <div className="mb-2 text-base font-bold text-gray-800">{title}</div>
-      <div className="text-base text-gray-500">{desc}</div>
+
+      {/* CENTER */}
+      <div className="w-[230px]">
+        <div className="mb-3">
+          <span className="text-[36px] font-semibold text-[#11773D]">
+            {current.trim()}
+          </span>
+
+          <span className="ml-2 text-[18px] font-medium text-[#667085]">
+            / {total.trim()}
+          </span>
+        </div>
+
+        <div className="h-[6px] rounded-full bg-[#DDE3DE]">
+          <div
+            className="h-full rounded-full bg-[#11773D]"
+            style={{ width: percent }}
+          />
+        </div>
+
+        <div className="mt-4 flex items-center gap-8">
+          <div className="flex items-center gap-2">
+            <Image
+              src="/assets/challange/point.png"
+              alt=""
+              width={18}
+              height={18}
+            />
+
+            <span className="text-[18px] font-semibold text-[#11773D]">
+              {point}
+            </span>
+
+            <span className="text-[15px] w-[100px] text-[#667085]">
+              Eco Point
+            </span>
+          </div>
+
+          <div className="flex items-center -ml-5 gap-2">
+            <Image src={badgeImage} alt="" width={18} height={18} />
+
+            <span className="text-[15px] w-[200px] font-medium text-[#475467]">
+              {badge}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Arrow */}
+      <button className="ml-8">
+        <FiChevronRight
+          size={20}
+          className="text-[#98A2B3] transition-colors group-hover:text-[#11773D]"
+        />
+      </button>
+    </div>
+  );
+}
+
+type CompletedRowProps = {
+  image: string;
+  title: string;
+  desc: string;
+  date: string;
+  point: string;
+  badge: string;
+  badgeImage: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  badgeMl?: string;
+  badgeMr?: string;
+};
+
+function CompletedRow({
+  image,
+  title,
+  desc,
+  date,
+  point,
+  badge,
+  badgeImage,
+  imageWidth = 70,
+  imageHeight = 70,
+  badgeMl = "ml-0",
+  badgeMr = "mr-0",
+}: CompletedRowProps) {
+  return (
+    <div className="group flex items-center justify-between rounded-[20px] border border-[#EAECF0] px-6 py-5 transition hover:shadow-sm">
+      {/* LEFT */}
+      <div className="flex flex-1 items-center gap-6">
+        <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#EEF4EC]">
+          <Image
+            src={image}
+            alt={title}
+            width={imageWidth}
+            height={imageHeight}
+            className="object-contain"
+          />
+        </div>
+
+        <div>
+          <h3 className="text-[20px] font-semibold text-[#101828]">{title}</h3>
+
+          <p className="mt-2 text-[15px] text-[#667085]">{desc}</p>
+
+          <div className="mt-3 flex items-center gap-2 text-[14px] text-[#667085]">
+            <FiCalendar size={15} />
+            {date}
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT */}
+      <div className="mr-8 flex flex-col items-end gap-4">
+        <p className="text-[26px] font-semibold text-[#11773D]">
+          +{point} Poin
+        </p>
+
+        <div
+          className={`flex items-center gap-2 rounded-full bg-[#F8FAF8] px-4 py-2 ${badgeMl} ${badgeMr}`}
+        >
+          <Image src={badgeImage} alt={badge} width={22} height={22} />
+
+          <span className="text-[15px] font-medium text-[#475467] whitespace-nowrap">
+            {badge}
+          </span>
+        </div>
+      </div>
+
+      {/* Arrow */}
+      <button>
+        <FiChevronRight
+          size={20}
+          className="text-[#98A2B3] transition group-hover:text-[#11773D]"
+        />
+      </button>
+    </div>
+  );
+}
+
+function StepCard({
+  image,
+  title,
+  desc,
+  imageWidth = 62,
+  imageHeight = 62,
+}: {
+  image: string;
+  title: string;
+  desc: string;
+  imageWidth?: number;
+  imageHeight?: number;
+}) {
+  return (
+    <div className="flex w-[170px] flex-col items-center text-center">
+      <Image
+        src={image}
+        alt={title}
+        width={imageWidth}
+        height={imageHeight}
+        className="mb-5 object-contain"
+      />
+
+      <h4 className="text-[16px] font-semibold text-[#101828]">{title}</h4>
+
+      <p className="mt-2 text-[14px] leading-6 text-[#667085]">{desc}</p>
     </div>
   );
 }

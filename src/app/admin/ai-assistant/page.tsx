@@ -68,7 +68,7 @@ export default function AiAssistantPage() {
 
         {/* Content */}
         <div className="relative z-10 max-w-[58%]">
-          <h2 className="text-[28px] font-bold text-[#101828]">Hai Dwi! 👋</h2>
+          <h2 className="text-[28px] font-bold text-[#0B0F1F]">Hai Dwi! 👋</h2>
 
           <p className="mt-3 max-w-[420px] text-[17px] leading-8 text-[#667085]">
             Aku Eco AI, siap membantumu
@@ -139,7 +139,7 @@ export default function AiAssistantPage() {
       {/* Features Grid */}
       <div>
         <div className="mb-8 flex items-center justify-between">
-          <h3 className="text-[22px] font-semibold text-[#101828]">Fitur AI</h3>
+          <h3 className="text-[22px] font-semibold text-[#0B0F1F]">Fitur AI</h3>
 
           <button className="flex items-center gap-2 text-[17px] font-semibold text-[#11773D] transition hover:gap-3">
             Lihat Semua
@@ -183,56 +183,72 @@ export default function AiAssistantPage() {
       {/* Main Bottom Section */}
       <div className="lg:grid-cols-3 grid mt-15 grid-cols-1 gap-6">
         {/* Chat Interface (Span 2) */}
-        <div className="lg:col-span-2 bg-white rounded-3xl shadow-sm border border-gray-100 flex flex-col h-[700px]">
+        <div className="lg:col-span-2 bg-white rounded-3xl  border border-gray-100 flex flex-col h-[1065px]">
           <div className="rounded-t-3xl flex items-center justify-between px-6 py-4 bg-white border-b border-gray-100">
             <h3 className="text-lg font-bold text-gray-800">
               Chat dengan Eco AI
             </h3>
-            <button className="hover:text-primary flex items-center gap-2 text-base font-semibold text-gray-600 transition-colors">
+            <button className="hover:text-[#11773D] flex items-center gap-2 text-base font-semibold text-gray-600 transition-colors">
               Riwayat Chat <FiClock className="w-5 h-5" />
             </button>
           </div>
 
           <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 bg-[#FAFAFA]">
             {/* AI Greeting */}
-            <div className="flex items-start w-4/5 gap-4">
-              <div className="shrink-0 flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
-                <FaRobot className="w-6 h-6 text-gray-600" />
-              </div>
-              <div className="rounded-2xl p-4 bg-white border border-gray-100 rounded-tl-sm shadow-sm">
-                <p className="mb-1 text-base font-bold text-gray-800">
-                  Halo Dwi! 😇
-                </p>
-                <p className="text-base font-medium text-gray-600">
-                  Apa yang ingin kamu ketahui hari ini tentang gaya hidup hijau?
+            <div className="flex items-start gap-3">
+              <Image
+                src="/assets/ai/robot.png"
+                alt="Eco AI"
+                width={38}
+                height={38}
+                className="mt-1 shrink-0 object-contain"
+              />
+
+              <div className="max-w-[72%] rounded-[20px] bg-[#F8FAFC] px-5 py-4">
+                <h4 className="mb-2 text-[17px] font-semibold text-[#344054]">
+                  Halo Dwi! 😊
+                </h4>
+
+                <p className="text-[17px] leading-8 text-[#475467]">
+                  Apa yang ingin kamu ketahui hari ini tentang
+                  <br />
+                  gaya hidup hijau?
                 </p>
               </div>
             </div>
 
             {/* User Message */}
-            <div className="flex items-end justify-end w-full gap-4">
-              <div className="bg-primary text-white rounded-2xl rounded-tr-sm p-4 shadow-sm max-w-[80%]">
-                <p className="text-base font-medium leading-relaxed">
+            <div className="flex justify-end">
+              <div className="max-w-[63%] rounded-[18px] bg-[#11773D] px-5 py-4 text-white">
+                <p className="text-[17px] leading-8">
                   Bagaimana cara mengurangi penggunaan plastik dalam kehidupan
                   sehari-hari?
                 </p>
-                <div className="text-primary-light mt-1 text-base font-medium text-right">
-                  09.41 <FaCheckCircle className="inline w-3 h-3 ml-1" />
+
+                <div className="mt-3 flex items-center justify-end gap-1 text-[13px] text-[#D2F0DB]">
+                  <span>09.41</span>
+                  <FaCheckCircle className="text-[11px]" />
                 </div>
               </div>
             </div>
 
             {/* AI Response */}
-            <div className="flex items-start w-full gap-4 pr-12">
-              <div className="shrink-0 flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
-                <FaRobot className="w-6 h-6 text-gray-600" />
-              </div>
-              <div className="rounded-2xl w-full p-5 bg-white border border-gray-100 rounded-tl-sm shadow-sm">
-                <p className="mb-4 text-base font-medium leading-relaxed text-gray-800">
+            <div className="flex items-start gap-3">
+              <Image
+                src="/assets/ai/robot.png"
+                alt="Eco AI"
+                width={38}
+                height={38}
+                className="mt-1 shrink-0 object-contain"
+              />
+
+              <div className="max-w-[82%] rounded-[20px] bg-[#F8FAFC] px-5 py-5">
+                <p className="mb-5 text-[17px] leading-8 text-[#344054]">
                   Berikut beberapa cara yang bisa kamu lakukan untuk mengurangi
                   penggunaan plastik:
                 </p>
-                <div className="flex flex-col gap-3 mb-4">
+
+                <div className="space-y-4">
                   <ListItem
                     num="1"
                     text="Bawa tumbler dan botol minum sendiri."
@@ -251,12 +267,14 @@ export default function AiAssistantPage() {
                     text="Daur ulang plastik yang sudah digunakan."
                   />
                 </div>
-                <p className="flex items-center gap-1 text-base font-medium text-gray-800">
+
+                <p className="mt-6 text-[17px] text-[#344054]">
                   Setiap langkah kecilmu sangat berarti untuk bumi kita! 🌱
                 </p>
-                <div className="mt-2 text-base font-medium text-gray-400">
+
+                <span className="mt-4 block text-[13px] text-[#98A2B3]">
                   09.41
-                </div>
+                </span>
               </div>
             </div>
 
@@ -277,18 +295,20 @@ export default function AiAssistantPage() {
             </div>
           </div>
 
-          <div className="rounded-b-3xl p-4 bg-white border-t border-gray-100">
-            <div className="rounded-2xl focus-within:border-primary relative flex items-center overflow-hidden transition-colors bg-white border border-gray-200">
+          <div className="border-t border-[#EAECF0] p-5">
+            <div className="flex h-[58px] overflow-hidden rounded-2xl border border-[#EAECF0]">
               <input
                 type="text"
                 placeholder="Ketik pesan kamu..."
-                className="flex-1 px-4 py-4 text-base font-medium bg-transparent outline-none"
+                className="flex-1 px-5 text-[16px] outline-none placeholder:text-[#98A2B3]"
               />
-              <button className="hover:text-gray-600 px-4 text-gray-400 transition-colors">
-                <FaPaperclip className="w-5 h-5" />
+
+              <button className="px-5 text-[#98A2B3]">
+                <FaPaperclip />
               </button>
-              <button className="bg-primary hover:bg-primary-dark flex items-center justify-center p-4 text-white transition-colors">
-                <FaPaperPlane className="w-5 h-5" />
+
+              <button className="flex w-[60px] items-center justify-center bg-[#11773D] text-white">
+                <FaPaperPlane />
               </button>
             </div>
           </div>
@@ -297,107 +317,130 @@ export default function AiAssistantPage() {
         {/* Right Sidebar Components (Span 1) */}
         <div className="lg:col-span-1 flex flex-col gap-6">
           {/* Scan Sampah Widget */}
-          <div className="rounded-3xl p-6 bg-white border border-gray-100 shadow-sm">
+          <div className="rounded-3xl p-6 bg-white border border-gray-100 ">
             <h3 className="mb-4 text-lg font-bold text-gray-800">
               Scan Sampah dengan AI
             </h3>
-            <div className="rounded-2xl bg-gray-50/50 hover:bg-gray-50 group flex flex-col items-center justify-center p-6 text-center transition-colors border-2 border-gray-200 border-dashed cursor-pointer">
-              <div className="group-hover:scale-105 flex items-center justify-center w-16 h-16 mb-4 transition-transform bg-white rounded-full shadow-sm">
-                <FaCamera className="text-success w-8 h-8" />
+            <div className="rounded-2xl bg-[#F8F9F5] hover:bg-gray-50 group flex flex-col items-center justify-center p-6 text-center transition-colors border-2 border-gray-200 border-dashed cursor-pointer">
+              <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-[#EEF8F0] transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/assets/ai/scansampah.png"
+                  alt="Scan Camera"
+                  width={62}
+                  height={62}
+                  className="object-contain"
+                />
               </div>
               <p className="mb-6 text-base font-medium leading-relaxed text-gray-600">
                 Upload foto sampah untuk mengetahui jenisnya dan cara
                 pengelolaan yang tepat.
               </p>
-              <button className="bg-primary rounded-xl hover:bg-primary-dark flex items-center justify-center w-full gap-2 py-3 text-base font-bold text-white transition-colors">
+              <button className="bg-[#11773D] rounded-xl hover:bg-[#11773D]-dark flex items-center justify-center w-full gap-2 py-3 text-base font-bold text-white transition-colors">
                 <FaCamera /> Mulai Scan
               </button>
             </div>
           </div>
 
           {/* Recommendations List */}
-          <div className="rounded-3xl flex-1 p-6 bg-white border border-gray-100 shadow-sm">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-bold text-gray-800">
+          <div className="rounded-3xl flex-1 p-6 bg-white border border-gray-100 ">
+            <div className="mb-6 flex items-center justify-between">
+              <h3 className="text-[22px] font-semibold text-[#0B0F1F]">
                 Rekomendasi Untukmu
               </h3>
-              <button className="text-primary hover:underline flex items-center gap-1 text-base font-bold">
-                Lihat Semua <FaChevronRight className="w-3 h-3" />
+
+              <button className="flex items-center gap-2 text-[16px] font-semibold text-[#11773D]">
+                Lihat Semua
+                <FaArrowRight className="text-sm" />
               </button>
             </div>
 
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col">
               <RecItem
-                icon={<MdOutlineWaterDrop className="text-success w-6 h-6" />}
-                bg="bg-success/20"
+                icon="/assets/tumbler.png"
                 title="Bawa Tumbler Setiap Hari"
                 desc="Kurangi penggunaan botol plastik sekali pakai."
                 point="+20"
               />
+
               <RecItem
-                icon={<FaBus className="w-6 h-6 text-gray-600" />}
-                bg="bg-gray-100"
+                icon="/assets/bus.png"
                 title="Naik Transportasi Umum"
                 desc="Kurangi emisi karbon dengan transportasi publik."
                 point="+30"
               />
+
               <RecItem
-                icon={<MdOutlineWaterDrop className="text-info w-6 h-6" />}
-                bg="bg-info/20"
+                icon="/assets/air.png"
                 title="Hemat Air Saat Mandi"
                 desc="Gunakan air secukupnya untuk menghemat sumber daya."
                 point="+20"
               />
+
               <RecItem
-                icon={<FaRecycle className="text-success w-6 h-6" />}
-                bg="bg-success/20"
+                icon="/assets/sampah.png"
                 title="Pilah Sampah Rumah"
                 desc="Pisahkan sampah organik dan anorganik di rumah."
                 point="+25"
               />
             </div>
 
-            <button className="text-primary hover:bg-gray-50 rounded-xl flex items-center justify-center w-full gap-2 py-3 mt-6 text-base font-bold transition-colors">
-              Lihat Semua Rekomendasi <FaChevronRight className="w-4 h-4" />
+            <button className="mt-2 flex w-full items-center justify-center gap-2 text-[18px] font-semibold text-[#11773D]">
+              Lihat Semua Rekomendasi
+              <FaArrowRight className="text-sm" />
             </button>
           </div>
         </div>
       </div>
 
       {/* Footer Banner */}
-      <div className="rounded-3xl md:flex-row relative flex flex-col items-center justify-between gap-6 p-6 overflow-hidden bg-white border border-gray-100 shadow-sm">
-        <div className="md:w-2/3 z-10 flex items-center w-full gap-6">
-          <div className="shrink-0 w-24 h-24 overflow-hidden rounded-full shadow-inner">
-            <Image
-              src="https://picsum.photos/id/28/100/100"
-              alt="Earth Graphic"
-              width={96}
-              height={96}
-              className="mix-blend-multiply object-cover w-full h-full"
-            />
-          </div>
+      <div className="flex items-center justify-between rounded-[24px] border border-[#EAECF0] bg-white px-8 py-7">
+        {/* Left */}
+        <div className="flex w-[60%] items-center gap-6">
+          <Image
+            src="/assets/ai/tahukahkamu.png"
+            alt="Earth"
+            width={150}
+            height={150}
+            className="object-contain shrink-0"
+          />
+
           <div>
-            <h4 className="mb-1 text-lg font-bold text-gray-800">
+            <h3 className="mb-3 text-[22px] font-semibold text-[#0B0F1F]">
               Tahukah kamu?
-            </h4>
-            <p className="text-base font-medium text-gray-600">
+            </h3>
+
+            <p className="max-w-[520px] text-[18px] leading-8 text-[#475467]">
               Jika semua pengguna HijauIn melakukan 1 aksi kecil setiap hari,
               kita bisa mengurangi ribuan ton CO₂ setiap tahunnya! 💚
             </p>
           </div>
         </div>
-        <div className="md:w-1/3 z-10 flex items-center w-full gap-3">
-          <FiAward className="text-success shrink-0 w-8 h-8" />
+
+        {/* Divider */}
+        <div className="mx-10 h-24 w-px bg-[#EAECF0]" />
+
+        {/* Right */}
+        <div className="flex flex-1 items-center gap-5">
+          <Image
+            src="/assets/ai/da.png"
+            alt="Leaf"
+            width={42}
+            height={42}
+            className="object-contain shrink-0"
+          />
+
           <div>
-            <div className="text-success text-base font-bold">
+            <h4 className="text-[20px] font-semibold text-[#11773D]">
               Bersama HijauIn,
-            </div>
-            <div className="text-base font-medium text-gray-600">
-              kita ciptakan bumi yang lebih baik untuk generasi mendatang.
-            </div>
+            </h4>
+
+            <p className="mt-2 text-[18px] leading-8 text-[#475467]">
+              kita ciptakan bumi yang
+              <br />
+              lebih baik untuk generasi mendatang.
+            </p>
           </div>
         </div>
-        <div className="bg-linear-to-l from-primary-light/30 to-transparent absolute top-0 right-0 z-0 w-1/2 h-full pointer-events-none"></div>
       </div>
     </div>
   );
@@ -407,7 +450,7 @@ export default function AiAssistantPage() {
 
 function SuggestionChip({ icon, text }: { icon: any; text: string }) {
   return (
-    <button className="rounded-xl hover:bg-gray-50 hover:border-primary flex items-center gap-2 px-4 py-2 text-base font-semibold text-gray-700 transition-colors bg-white border border-gray-200">
+    <button className="rounded-xl hover:bg-gray-50 hover:border-[#11773D] flex items-center gap-2 px-4 py-2 text-base font-semibold text-gray-700 transition-colors bg-white border border-gray-200">
       {icon} {text}
     </button>
   );
@@ -432,7 +475,7 @@ function FeatureCard({
         className="mb-6 object-contain transition-transform duration-300 group-hover:scale-105"
       />
 
-      <h4 className="text-[22px] font-semibold text-[#101828]">{title}</h4>
+      <h4 className="text-[22px] font-semibold text-[#0B0F1F]">{title}</h4>
 
       <p className="mt-4 text-[16px] leading-8 text-[#667085]">{desc}</p>
     </div>
@@ -442,57 +485,71 @@ function FeatureCard({
 function ListItem({ num, text }: { num: string; text: string }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="w-6 h-6 rounded-full bg-success text-white flex items-center justify-center font-bold text-base shrink-0 mt-0.5">
+      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#11773D] text-[13px] font-semibold text-white">
         {num}
       </div>
-      <p className="text-base font-medium leading-relaxed text-gray-800">
-        {text}
-      </p>
+
+      <p className="text-[16px] leading-7 text-[#344054]">{text}</p>
     </div>
   );
 }
 
-function ChatSuggestion({ text, icon }: { text: string; icon: any }) {
+function ChatSuggestion({
+  icon,
+  text,
+}: {
+  icon: React.ReactNode;
+  text: string;
+}) {
   return (
-    <button className="rounded-xl hover:bg-primary hover:text-white hover:border-primary flex items-center gap-2 px-4 py-2 text-base font-semibold text-gray-600 transition-colors bg-white border border-gray-200">
-      <span className="text-primary-dark">{icon}</span> {text}
+    <button className="flex items-center gap-2 rounded-full border border-[#EAECF0] bg-white px-4 py-2 text-[14px] font-medium text-[#475467] transition hover:bg-[#F8FAFC]">
+      {icon}
+      {text}
     </button>
   );
 }
 
 function RecItem({
   icon,
-  bg,
   title,
   desc,
   point,
 }: {
-  icon: any;
-  bg: string;
+  icon: string;
   title: string;
   desc: string;
   point: string;
 }) {
   return (
-    <div className="group flex items-start justify-between gap-4 cursor-pointer">
-      <div className="flex items-start flex-1 gap-4">
-        <div
-          className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${bg}`}
-        >
-          {icon}
+    <div className="flex items-center justify-between border-b border-[#F2F4F7] py-5 last:border-b-0">
+      {/* Left */}
+      <div className="flex items-center gap-5">
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F8FAF8]">
+          <Image
+            src={icon}
+            alt={title}
+            width={25}
+            height={25}
+            className="object-contain"
+          />
         </div>
+
         <div>
-          <h4 className="group-hover:text-primary mb-1 text-base font-bold text-gray-800 transition-colors">
-            {title}
-          </h4>
-          <p className="text-base font-medium leading-relaxed text-gray-500">
+          <h4 className="text-[18px] font-semibold text-[#0B0F1F]">{title}</h4>
+
+          <p className="mt-1 max-w-[360px] text-[14px] leading-7 text-[#667085]">
             {desc}
           </p>
         </div>
       </div>
-      <div className="shrink-0 text-right">
-        <div className="text-success text-lg font-black">{point}</div>
-        <div className="text-base font-bold text-gray-400">poin</div>
+
+      {/* Right */}
+      <div className="text-right">
+        <div className="text-[18px] font-bold leading-none text-[#11773D]">
+          {point}
+        </div>
+
+        <div className="mt-1 text-[14px] font-medium text-[#667085]">poin</div>
       </div>
     </div>
   );

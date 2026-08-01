@@ -155,7 +155,7 @@ export default function KomunitasPage() {
 
                     <PopularCard
                       image="/assets/dashboard-komunitas/bike.png"
-                      title="Go Green"
+                      title="Go Green IDN"
                       members="5.120"
                     />
 

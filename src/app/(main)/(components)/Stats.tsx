@@ -37,7 +37,7 @@ export default function Stats() {
   return (
     <section
       data-aos="fade-up"
-      className="relative z-10 mt-5 px-16 py-16"
+      className="relative z-10 -mt-25 px-16 py-16"
     >
       <div className="flex items-center rounded-[25px] border border-[#ECECEC] bg-white py-8 shadow-lg">
         {stats.map((item, index) => (

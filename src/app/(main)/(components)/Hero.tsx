@@ -5,7 +5,7 @@ import { FaLeaf, FaPlay, FaArrowRight } from "react-icons/fa";
 
 export default function Hero() {
   return (
-    <section className="flex flex-row items-center justify-between w-full pl-16 overflow-hidden">
+    <section className="flex flex-row h-[950px] -mt-30 items-center justify-between w-full pl-16 overflow-hidden">
       {/* Left Content */}
       <div className="w-[46%] z-10">
         {/* Badge */}
@@ -120,7 +120,7 @@ export default function Hero() {
           src="/assets/beranda/hero.png"
           alt="Earth Graphic"
           width={1492}
-          height={1054}
+          height={1254}
           style={{
             WebkitMaskImage:
               "linear-gradient(to right, transparent, black 20%, black 30%, black)",

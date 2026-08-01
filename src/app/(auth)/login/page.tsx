@@ -54,8 +54,8 @@ export default function LoginPage() {
       }
 
       setSuccess("Login berhasil! Mengalihkan...");
-      router.refresh(); // sinkronkan cookie session
-      router.replace("/admin");
+
+      router.push("/admin");
     } catch {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");
       setIsLoading(false);

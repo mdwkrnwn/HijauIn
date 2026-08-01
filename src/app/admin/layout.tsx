@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import Header from "./components/Header";
 import { getNotifications, getSession } from "./components/action";
 import { redirect } from "next/navigation";
-
+import { UserProvider } from "../context/UserContext";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -39,12 +39,17 @@ export default async function RootLayout({
       <body
         className={`${poppins.className} min-h-screen grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] bg-[#F8FAF8] text-[#1A202C] antialiased`}
       >
-        <NextTopLoader color="#0E5F35" showSpinner />
-        <Sidebar userProfile={userProfiles} />{" "}
-        <Header notifications={data!} userProfile={userProfiles} />
-        <main className="flex-1 w-full z-10 overflow-x-hidden p-6 lg:p-8 pt-0!">
-          {children}
-        </main>
+        <UserProvider user={userProfiles}>
+          <NextTopLoader color="#0E5F35" showSpinner />
+
+          <Sidebar userProfile={userProfiles} />
+
+          <Header notifications={data!} userProfile={userProfiles} />
+
+          <main className="flex-1 w-full overflow-x-hidden p-6 pt-0 lg:p-8">
+            {children}
+          </main>
+        </UserProvider>
       </body>
     </html>
   );

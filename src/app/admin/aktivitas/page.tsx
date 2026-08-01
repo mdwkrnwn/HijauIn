@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { IoLeaf } from "react-icons/io5";
 import { FaChevronDown, FaChevronRight, FaPlus } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import { useUser } from "@/app/context/UserContext";
 import {
   MdOutlineEnergySavingsLeaf,
   MdFilterList,
@@ -26,6 +27,7 @@ const showComingSoon = () => {
 };
 
 export default function AktivitasPage() {
+  const { user } = useUser();
   const [openModal, setOpenModal] = useState(false);
   const activity = useActivity();
   const { activities, getActivities, loading } = activity;
@@ -37,20 +39,12 @@ export default function AktivitasPage() {
   >("semua");
 
   useEffect(() => {
-    console.log("Activities:", activities);
+    if (!user?.id) return;
 
-    async function loadActivities() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+    console.log("USER:", user.id);
 
-      if (!user) return;
-
-      await getActivities(user.id);
-    }
-
-    loadActivities();
-  }, []);
+    getActivities(user.id);
+  }, [user?.id]);
 
   const activityImageMap: Record<string, string> = {
     "Membawa Tumbler": "/assets/tumbler.png",

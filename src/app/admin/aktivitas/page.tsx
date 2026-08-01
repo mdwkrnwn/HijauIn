@@ -2,33 +2,158 @@
 
 import { useState } from "react";
 import CreateActivityModal from "./components/CreateActivityModal";
-import { getSession } from "../components/action";
-
+import { useActivity } from "@/hooks/useActivity";
+import { supabase } from "@/utils/supabase";
+import { useEffect } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { IoLeaf } from "react-icons/io5";
+import { FaChevronDown, FaChevronRight, FaPlus } from "react-icons/fa6";
+import Swal from "sweetalert2";
 import {
-  FaChevronDown,
-  FaChevronRight,
-  FaPlus,
-  FaBus,
-  FaLightbulb,
-  FaBell,
-  FaTrash,
-} from "react-icons/fa6";
-import {
-  MdOutlineWaterDrop,
   MdOutlineEnergySavingsLeaf,
-  MdCloud,
-  MdBolt,
-  MdPark,
   MdFilterList,
   MdDateRange,
 } from "react-icons/md";
-import { FiCoffee, FiActivity } from "react-icons/fi";
 import Image from "next/image";
+const showComingSoon = () => {
+  Swal.fire({
+    icon: "info",
+    title: "Segera Hadir 🚀",
+    text: "Fitur filter kategori dan tanggal sedang dalam pengembangan.",
+    confirmButtonColor: "#11773D",
+    confirmButtonText: "Mengerti",
+  });
+};
 
 export default function AktivitasPage() {
- 
-
   const [openModal, setOpenModal] = useState(false);
+  const activity = useActivity();
+  const { activities, getActivities, loading } = activity;
+  const [selectedCategory, setSelectedCategory] = useState("Semua");
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [showAll, setShowAll] = useState(false);
+  const [activeTab, setActiveTab] = useState<
+    "semua" | "hari" | "minggu" | "bulan"
+  >("semua");
+
+  useEffect(() => {
+    console.log("Activities:", activities);
+
+    async function loadActivities() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) return;
+
+      await getActivities(user.id);
+    }
+
+    loadActivities();
+  }, []);
+
+  const activityImageMap: Record<string, string> = {
+    "Membawa Tumbler": "/assets/tumbler.png",
+    "Naik Transportasi Umum": "/assets/bus.png",
+    "Hemat Air 20 Liter": "/assets/air.png",
+    "Matikan Lampu 1 Jam": "/assets/lampu.png",
+    "Pilah Sampah": "/assets/sampah.png",
+    "Menanam Pohon": "/assets/menanampohon.png",
+  };
+
+  const badgeColorMap: Record<
+    string,
+    {
+      bg: string;
+      text: string;
+    }
+  > = {
+    Kebiasaan: {
+      bg: "bg-[#EEF8F0]",
+      text: "text-[#11773D]",
+    },
+
+    Transportasi: {
+      bg: "bg-[#EEF8F0]",
+      text: "text-[#11773D]",
+    },
+
+    Penghematan: {
+      bg: "bg-[#F1F9FC]",
+      text: "text-[#286FBD]",
+    },
+
+    Lingkungan: {
+      bg: "bg-[#EEF8F0]",
+      text: "text-[#11773D]",
+    },
+  };
+
+  const filteredActivities = activities.filter((activity) => {
+    // Filter kategori
+    if (
+      selectedCategory !== "Semua" &&
+      activity.category?.name !== selectedCategory
+    ) {
+      return false;
+    }
+
+    // Filter tab
+    if (activeTab === "semua") return true;
+
+    const activityDate = new Date(activity.activity_date);
+    const now = new Date();
+
+    if (activeTab === "hari") {
+      return activityDate.toDateString() === now.toDateString();
+    }
+
+    if (activeTab === "minggu") {
+      const startOfWeek = new Date(now);
+      startOfWeek.setDate(now.getDate() - now.getDay());
+
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+      return activityDate >= startOfWeek && activityDate <= endOfWeek;
+    }
+
+    if (activeTab === "bulan") {
+      return (
+        activityDate.getMonth() === now.getMonth() &&
+        activityDate.getFullYear() === now.getFullYear()
+      );
+    }
+
+    return true;
+  });
+
+  const visibleActivities = showAll
+    ? filteredActivities
+    : filteredActivities.slice(0, 6);
+
+  const groupedActivities = visibleActivities.reduce(
+    (acc, activity) => {
+      const date = new Date(activity.activity_date);
+
+      const key = date.toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
+
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+
+      acc[key].push(activity);
+
+      return acc;
+    },
+    {} as Record<string, typeof activities>,
+  );
+
+  const totalActivities = filteredActivities.length;
 
   return (
     <div className="flex flex-col gap-6 mx-auto">
@@ -79,14 +204,21 @@ export default function AktivitasPage() {
                 Riwayat Aktivitas
               </h3>
               <div className="lg:w-auto flex items-center w-full gap-3">
-                <button className="lg:flex-none rounded-xl flex items-center justify-between flex-1 gap-2 px-4 py-2 text-base font-semibold text-gray-700 bg-white border border-gray-200">
-                  <MdFilterList className="w-5 h-5 text-gray-500" /> Semua
-                  Kategori{" "}
+                <button
+                  onClick={showComingSoon}
+                  className="lg:flex-none rounded-xl flex items-center justify-between flex-1 gap-2 px-4 py-2 text-base font-semibold text-gray-700 bg-white border border-gray-200"
+                >
+                  <MdFilterList className="w-5 h-5 text-gray-500" />
+                  Semua Kategori
                   <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
                 </button>
-                <button className="lg:flex-none rounded-xl flex items-center justify-between flex-1 gap-2 px-4 py-2 text-base font-semibold text-gray-700 bg-white border border-gray-200">
-                  <MdDateRange className="w-5 h-5 text-gray-500" /> Pilih
-                  Tanggal{" "}
+
+                <button
+                  onClick={showComingSoon}
+                  className="lg:flex-none rounded-xl flex items-center justify-between flex-1 gap-2 px-4 py-2 text-base font-semibold text-gray-700 bg-white border border-gray-200"
+                >
+                  <MdDateRange className="w-5 h-5 text-gray-500" />
+                  Pilih Tanggal
                   <FaChevronDown className="w-4 h-4 ml-2 text-gray-400" />
                 </button>
               </div>
@@ -94,356 +226,214 @@ export default function AktivitasPage() {
 
             {/* Tabs */}
             <div className="flex items-center gap-6 mb-6 overflow-x-auto border-b border-gray-100">
-              <button className="text-[#11773D] border-[#11773D] whitespace-nowrap pb-3 text-base font-bold border-b-2">
+              <button
+                onClick={() => setActiveTab("semua")}
+                className={`whitespace-nowrap pb-3 text-base font-bold border-b-2 ${
+                  activeTab === "semua"
+                    ? "text-[#11773D] border-[#11773D]"
+                    : "text-gray-500 border-transparent"
+                }`}
+              >
                 Semua
               </button>
-              <button className="whitespace-nowrap hover:text-gray-700 pb-3 text-base font-bold text-gray-500">
+              <button
+                onClick={() => setActiveTab("hari")}
+                className={`whitespace-nowrap pb-3 text-base font-bold border-b-2 ${
+                  activeTab === "hari"
+                    ? "text-[#11773D] border-[#11773D]"
+                    : "text-gray-500 border-transparent"
+                }`}
+              >
                 Hari Ini
               </button>
-              <button className="whitespace-nowrap hover:text-gray-700 pb-3 text-base font-bold text-gray-500">
+              <button
+                onClick={() => setActiveTab("minggu")}
+                className={`whitespace-nowrap pb-3 text-base font-bold border-b-2 ${
+                  activeTab === "minggu"
+                    ? "text-[#11773D] border-[#11773D]"
+                    : "text-gray-500 border-transparent"
+                }`}
+              >
                 Minggu Ini
               </button>
-              <button className="whitespace-nowrap hover:text-gray-700 pb-3 text-base font-bold text-gray-500">
+              <button
+                onClick={() => setActiveTab("bulan")}
+                className={`whitespace-nowrap pb-3 text-base font-bold border-b-2 ${
+                  activeTab === "bulan"
+                    ? "text-[#11773D] border-[#11773D]"
+                    : "text-gray-500 border-transparent"
+                }`}
+              >
                 Bulan Ini
               </button>
             </div>
 
             {/* List Hari Ini */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-base font-bold text-gray-700">
-                  Hari Ini • 17 Mei 2025
-                </span>
-                <span className="flex items-center gap-1 text-base font-bold text-gray-700">
-                  Total: 120 poin{" "}
-                  <MdOutlineEnergySavingsLeaf className="text-[#11773D]" />
-                </span>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-4 transition-shadow border border-gray-100 cursor-pointer">
-                  <div className="flex items-center justify-between py-4">
-                    {/* Left */}
-                    <div className="flex items-center gap-4">
-                      {/* Icon */}
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#EEF8F0]">
-                        <Image
-                          src="/assets/tumbler.png"
-                          alt="Tumbler"
-                          width={28}
-                          height={28}
-                          className="object-contain"
-                        />
-                      </div>
+            <div
+              className={`space-y-8 pr-2 ${
+                showAll ? "max-h-[900px] overflow-y-auto" : ""
+              }`}
+            >
+              {loading && (
+                <div className="space-y-4">
+                  {Array.from({ length: 6 }).map((_, index) => (
+                    <div
+                      key={index}
+                      className="rounded-2xl border border-gray-100 bg-white p-4"
+                    >
+                      <div className="flex items-center justify-between">
+                        {/* Left */}
+                        <div className="flex items-center gap-4">
+                          <Skeleton className="h-14 w-14 rounded-full" />
 
-                      {/* Title */}
-                      <div className="flex items-center gap-5">
-                        <div>
-                          <h4 className="text-[18px] font-semibold text-[#344054] leading-none">
-                            Membawa tumbler
-                          </h4>
+                          <div className="space-y-3">
+                            <Skeleton className="h-5 w-52 rounded-lg" />
+                            <Skeleton className="h-4 w-28 rounded-lg" />
+                          </div>
 
-                          <p className="mt-2 text-[15px] font-medium text-[#667085]">
-                            08.30 WIB
-                          </p>
+                          <Skeleton className="ml-4 h-7 w-28 rounded-full" />
                         </div>
 
-                        {/* Badge */}
-                        <span className="rounded-full bg-[#EEF8F0] px-3 py-1 text-[13px] font-semibold text-[#11773D]">
-                          Kebiasaan
-                        </span>
-                      </div>
-                    </div>
+                        {/* Right */}
+                        <div className="flex items-center gap-8">
+                          <div className="space-y-2 text-right">
+                            <Skeleton className="ml-auto h-6 w-14 rounded-lg" />
+                            <Skeleton className="ml-auto h-4 w-10 rounded-lg" />
+                          </div>
 
-                    {/* Right */}
-                    <div className="flex items-center ml-118 gap-8">
-                      <div className="text-right leading-none">
-                        <p className="text-[20px] font-semibold text-[#11773D]">
-                          +20
-                        </p>
-
-                        <p className="mt-1 text-[14px] font-medium text-[#667085]">
-                          poin
-                        </p>
-                      </div>
-
-                      <FaChevronRight className="text-[15px] text-[#98A2B3]" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-4 transition-shadow border border-gray-100 cursor-pointer">
-                  <div className="flex items-center justify-between py-2">
-                    {/* Left */}
-                    <div className="flex items-center gap-4">
-                      {/* Icon */}
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#EEF8F0]">
-                        <Image
-                          src="/assets/bus.png"
-                          alt="Tumbler"
-                          width={28}
-                          height={28}
-                          className="object-contain"
-                        />
-                      </div>
-
-                      {/* Title */}
-                      <div className="flex items-center gap-5 w-[500px]">
-                        <div>
-                          <h4 className="text-[18px] font-semibold text-[#344054] leading-none">
-                            Naik Transportasi Umum
-                          </h4>
-
-                          <p className="mt-2 text-[15px] font-medium text-[#667085]">
-                            08.30 WIB
-                          </p>
+                          <Skeleton className="h-5 w-5 rounded-full" />
                         </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
 
-                        {/* Badge */}
-                        <span className="rounded-full bg-[#EEF8F0] px-3 py-1 text-[13px] font-semibold text-[#11773D]">
-                          Transportasi
+              {!loading && filteredActivities.length === 0 && (
+                <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-gray-200 py-20">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#EEF8F0]">
+                    <IoLeaf className="text-4xl text-[#11773D]" />
+                  </div>
+
+                  <h3 className="mt-6 text-xl font-bold">
+                    Belum Ada Aktivitas
+                  </h3>
+
+                  <p className="mt-3 max-w-md text-center text-[#667085] leading-7">
+                    Belum ada aktivitas yang tercatat. Yuk mulai aksi hijau
+                    pertamamu!
+                  </p>
+                </div>
+              )}
+              {!loading &&
+                filteredActivities.length > 0 &&
+                Object.entries(groupedActivities).map(([date, list]) => {
+                  const totalPoint = list.reduce(
+                    (sum, item) => sum + item.point,
+                    0,
+                  );
+
+                  return (
+                    <div key={date}>
+                      <div className="flex justify-between mb-4">
+                        <span className="font-bold text-gray-700">{date}</span>
+
+                        <span className="flex items-center gap-1 font-bold">
+                          Total: {totalPoint} poin
+                          <MdOutlineEnergySavingsLeaf className="text-[#11773D]" />
                         </span>
                       </div>
-                    </div>
 
-                    {/* Right */}
-                    <div className="flex items-center ml-66 gap-8">
-                      <div className="text-right leading-none">
-                        <p className="text-[20px] font-semibold text-[#11773D]">
-                          +20
-                        </p>
+                      <div className="space-y-4">
+                        {list.map((activity) => {
+                          const badge =
+                            badgeColorMap[
+                              activity.category?.name ?? "Kebiasaan"
+                            ];
 
-                        <p className="mt-1 text-[14px] font-medium text-[#667085]">
-                          poin
-                        </p>
-                      </div>
+                          return (
+                            <div
+                              key={activity.id}
+                              className="rounded-2xl hover:shadow-md group flex items-center justify-between border border-gray-100 p-4 transition-shadow cursor-pointer"
+                            >
+                              <div className="flex w-full items-center justify-between py-2">
+                                {/* LEFT */}
+                                <div className="flex items-center gap-4">
+                                  {/* Icon */}
+                                  <div
+                                    className={`flex h-14 w-14 items-center justify-center rounded-full ${badge.bg}`}
+                                  >
+                                    <Image
+                                      src={
+                                        activityImageMap[activity.title] ??
+                                        "/assets/tumbler.png"
+                                      }
+                                      alt={activity.title}
+                                      width={28}
+                                      height={28}
+                                      className="object-contain"
+                                    />
+                                  </div>
 
-                      <FaChevronRight className="text-[15px] text-[#98A2B3]" />
-                    </div>
-                  </div>
-                </div>
+                                  {/* Title */}
+                                  <div className="flex w-[500px] items-center gap-5">
+                                    <div>
+                                      <h4 className="text-[18px] font-semibold leading-none text-[#344054]">
+                                        {activity.title}
+                                      </h4>
 
-                <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-4 transition-shadow border border-gray-100 cursor-pointer">
-                  <div className="flex items-center justify-between py-2">
-                    {/* Left */}
-                    <div className="flex items-center gap-4">
-                      {/* Icon */}
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#]">
-                        <Image
-                          src="/assets/air.png"
-                          alt="Tumbler"
-                          width={28}
-                          height={28}
-                          className="object-contain"
-                        />
-                      </div>
+                                      <p className="mt-2 text-[15px] font-medium text-[#667085]">
+                                        {new Date(
+                                          activity.activity_date,
+                                        ).toLocaleTimeString("id-ID", {
+                                          hour: "2-digit",
+                                          minute: "2-digit",
+                                        })}{" "}
+                                        WIB
+                                      </p>
+                                    </div>
 
-                      {/* Title */}
-                      <div className="flex w-[500px] items-center gap-5">
-                        <div>
-                          <h4 className="text-[18px] font-semibold text-[#344054] leading-none">
-                            Hemat air 20 Liter
-                          </h4>
+                                    <span
+                                      className={`rounded-full px-3 py-1 text-[13px] font-semibold ${badge.bg} ${badge.text}`}
+                                    >
+                                      {activity.category?.name}
+                                    </span>
+                                  </div>
+                                </div>
 
-                          <p className="mt-2 text-[15px] font-medium text-[#667085]">
-                            08.30 WIB
-                          </p>
-                        </div>
+                                {/* RIGHT */}
+                                <div className="flex items-center gap-8">
+                                  <div className="text-right leading-none">
+                                    <p className="text-[20px] font-semibold text-[#11773D]">
+                                      +{activity.point}
+                                    </p>
 
-                        {/* Badge */}
-                        <span className="rounded-full bg-[#F1F9FC] px-3 py-1 text-[13px] font-semibold text-[#286FBD]">
-                          Penghematan
-                        </span>
-                      </div>
-                    </div>
+                                    <p className="mt-1 text-[14px] font-medium text-[#667085]">
+                                      poin
+                                    </p>
+                                  </div>
 
-                    {/* Right */}
-                    <div className="flex items-center ml-66 gap-8">
-                      <div className="text-right leading-none">
-                        <p className="text-[20px] font-semibold text-[#11773D]">
-                          +20
-                        </p>
-
-                        <p className="mt-1 text-[14px] font-medium text-[#667085]">
-                          poin
-                        </p>
-                      </div>
-
-                      <FaChevronRight className="text-[15px] text-[#98A2B3]" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-4 transition-shadow border border-gray-100 cursor-pointer">
-                  <div className="flex items-center justify-between py-2">
-                    {/* Left */}
-                    <div className="flex items-center gap-4">
-                      {/* Icon */}
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#]">
-                        <Image
-                          src="/assets/lampu.png"
-                          alt="Tumbler"
-                          width={28}
-                          height={28}
-                          className="object-contain"
-                        />
-                      </div>
-
-                      {/* Title */}
-                      <div className="flex w-[500px] items-center gap-5">
-                        <div>
-                          <h4 className="text-[18px] font-semibold text-[#344054] leading-none">
-                            Matikan Lampu 1 Jam
-                          </h4>
-
-                          <p className="mt-2 text-[15px] font-medium text-[#667085]">
-                            08.30 WIB
-                          </p>
-                        </div>
-
-                        {/* Badge */}
-                        <span className="rounded-full bg-[#F1F9FC] px-3 py-1 text-[13px] font-semibold text-[#286FBD]">
-                          Penghematan
-                        </span>
+                                  <FaChevronRight className="text-[15px] text-[#98A2B3]" />
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
-
-                    {/* Right */}
-                    <div className="flex items-center ml-66 gap-8">
-                      <div className="text-right leading-none">
-                        <p className="text-[20px] font-semibold text-[#11773D]">
-                          +20
-                        </p>
-
-                        <p className="mt-1 text-[14px] font-medium text-[#667085]">
-                          poin
-                        </p>
-                      </div>
-
-                      <FaChevronRight className="text-[15px] text-[#98A2B3]" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  );
+                })}
             </div>
 
-            {/* List Kemarin */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-base font-bold text-gray-700">
-                  Kemarin • 16 Mei 2025
-                </span>
-                <span className="flex items-center gap-1 text-base font-bold text-gray-700">
-                  Total: 70 poin{" "}
-                  <MdOutlineEnergySavingsLeaf className="text-[#11773D]" />
-                </span>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-4 transition-shadow border border-gray-100 cursor-pointer">
-                  <div className="flex items-center justify-between py-2">
-                    {/* Left */}
-                    <div className="flex items-center gap-4">
-                      {/* Icon */}
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#]">
-                        <Image
-                          src="/assets/sampah.png"
-                          alt="Tumbler"
-                          width={28}
-                          height={28}
-                          className="object-contain"
-                        />
-                      </div>
-
-                      {/* Title */}
-                      <div className="flex w-[500px] items-center gap-5">
-                        <div>
-                          <h4 className="text-[18px] font-semibold text-[#344054] leading-none">
-                            Pilah Sampah
-                          </h4>
-
-                          <p className="mt-2 text-[15px] font-medium text-[#667085]">
-                            08.30 WIB
-                          </p>
-                        </div>
-
-                        {/* Badge */}
-                        <span className="rounded-full bg-[#EEF8F0] px-3 py-1 text-[13px] font-semibold text-[#11773D]">
-                          Lingkungan
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Right */}
-                    <div className="flex items-center ml-66 gap-8">
-                      <div className="text-right leading-none">
-                        <p className="text-[20px] font-semibold text-[#11773D]">
-                          +20
-                        </p>
-
-                        <p className="mt-1 text-[14px] font-medium text-[#667085]">
-                          poin
-                        </p>
-                      </div>
-
-                      <FaChevronRight className="text-[15px] text-[#98A2B3]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="rounded-2xl hover:shadow-md group flex items-center justify-between p-4 transition-shadow border border-gray-100 cursor-pointer">
-                  <div className="flex items-center justify-between py-2">
-                    {/* Left */}
-                    <div className="flex items-center gap-4">
-                      {/* Icon */}
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#]">
-                        <Image
-                          src="/assets/menanampohon.png"
-                          alt="Tumbler"
-                          width={28}
-                          height={28}
-                          className="object-contain"
-                        />
-                      </div>
-
-                      {/* Title */}
-                      <div className="flex w-[500px] items-center gap-5">
-                        <div>
-                          <h4 className="text-[18px] font-semibold text-[#344054] leading-none">
-                            Menanam Pohon
-                          </h4>
-
-                          <p className="mt-2 text-[15px] font-medium text-[#667085]">
-                            08.30 WIB
-                          </p>
-                        </div>
-
-                        {/* Badge */}
-                        <span className="rounded-full bg-[#EEF8F0] px-3 py-1 text-[13px] font-semibold text-[#11773D]">
-                          Lingkungan
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Right */}
-                    <div className="flex items-center ml-66 gap-8">
-                      <div className="text-right leading-none">
-                        <p className="text-[20px] font-semibold text-[#11773D]">
-                          +20
-                        </p>
-
-                        <p className="mt-1 text-[14px] font-medium text-[#667085]">
-                          poin
-                        </p>
-                      </div>
-
-                      <FaChevronRight className="text-[15px] text-[#98A2B3]" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <button className="text-[#11773D] hover:underline rounded-2xl flex items-center justify-center w-full gap-2 py-4 text-base font-bold border border-gray-200">
-              Muat Lebih Banyak <FaChevronDown className="w-4 h-4" />
-            </button>
+            {!showAll && totalActivities > 5 && (
+              <button
+                onClick={() => setShowAll(true)}
+                className="text-[#11773D] hover:underline mt-5 rounded-2xl flex items-center justify-center w-full gap-2 py-4 text-base font-bold border border-gray-200 transition"
+              >
+                Muat Lebih Banyak
+                <FaChevronDown className="w-4 h-4" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -823,6 +813,7 @@ export default function AktivitasPage() {
       <CreateActivityModal
         open={openModal}
         onClose={() => setOpenModal(false)}
+        activity={activity}
       />
     </div>
   );

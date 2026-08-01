@@ -165,7 +165,7 @@ export default function EdukasiUtama() {
   return (
     <div className="flex flex-col items-center w-full gap-12">
       {/* Hero Section */}
-      <section className="relative mx-auto flex w-full items-center justify-between overflow-hidden px-16">
+      <section className="relative mx-auto mt-25 flex w-full items-center justify-between overflow-hidden px-16">
         {/* Left Content */}
         <div
           className="z-10 mb-30 flex w-[55%] flex-col justify-center"

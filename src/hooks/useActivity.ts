@@ -11,7 +11,11 @@ export function useActivity() {
     try {
       setLoading(true);
 
+      console.log("USER ID:", userId);
+
       const result = await ActivityService.getAll(userId);
+
+      console.log("RESULT:", result);
 
       setActivities(result);
 
@@ -33,7 +37,7 @@ export function useActivity() {
 
   const updateActivity = async (
     id: string,
-    payload: Partial<CreateActivityInput>
+    payload: Partial<CreateActivityInput>,
   ) => {
     try {
       setLoading(true);
